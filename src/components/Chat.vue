@@ -2,16 +2,19 @@
     <div class="container">
         <Header/>
         <MessageDisplay/>
+        <MessageManager/>
     </div>
 </template>
 <script>
 import Header from './Header.vue'
 import MessageDisplay from './MessageDisplay.vue'
+import MessageManager from './MessageManager.vue'
 export default {
     name: 'Chat',
     components:{
         Header,
-        MessageDisplay
+        MessageDisplay,
+        MessageManager
     }
 }
 </script>
