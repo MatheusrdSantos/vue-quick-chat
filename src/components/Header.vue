@@ -5,7 +5,7 @@
         </div>
 
         <div class="header-exit">
-            <a class="header-exit-button" href="#"><v-icon name="archive"></v-icon></a>
+            <a class="header-exit-button" href="#"><v-icon name="x"></v-icon></a>
         </div>
     </div>    
 </template>
@@ -18,8 +18,7 @@ export default {
 <style scoped>
 .header-container{
     background: #d30303;
-    height: 80px;
-    width: 100%;
+    height: 70px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     display: flex;
@@ -42,13 +41,15 @@ export default {
 .header-exit-button{
     text-decoration: none;
     color: #fff;
+    width: 20px;
 }
 
 .icon{
-    color:#666
+    color:#fff;
+    width: 20px;
 }
 .icon:hover{
-    color:#000
+    color:rgb(238, 121, 121)
 }
 .icon-close{
     color:red
