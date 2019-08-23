@@ -23,13 +23,11 @@ export default {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     display: flex;
-    padding: 0 20px 0 10px;
+    padding: 0 10px 0 10px;
     align-items: center;
 }
 .header-title{
     padding: 10px;
-    flex: 1;
-    text-align: left;
 }
 
 .header-title-text{
@@ -37,10 +35,10 @@ export default {
 }
 
 .header-exit{
+
 }
 .header-exit-button{
-    text-decoration: none;
-    color: #fff;
+    
 }
 
 </style>
