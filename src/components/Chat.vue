@@ -28,5 +28,8 @@ export default {
     flex-direction: column;
     align-items: stretch;
     /*border: solid 1px #b6b2b2;*/
+    overflow: hidden;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 </style>

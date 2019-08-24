@@ -5,7 +5,7 @@
         </div>
 
         <div class="header-exit">
-            <a class="header-exit-button" href="#"><v-icon name="x"></v-icon></a>
+            <a class="header-exit-button" href="#"><v-icon name="x" base-class="icon-close-chat"></v-icon></a>
         </div>
     </div>    
 </template>
@@ -24,6 +24,9 @@ export default {
     display: flex;
     padding: 0 20px 0 10px;
     align-items: center;
+    -webkit-box-shadow:  0px 2px 20px 2px rgba(90, 90, 90, 0.47);
+    box-shadow: 0px 2px 20px 2px rgba(90, 90, 90, 0.47);
+    z-index: 5;
 }
 .header-title{
     padding: 10px;
@@ -44,15 +47,12 @@ export default {
     width: 20px;
 }
 
-.icon{
+.icon-close-chat{
     color:#fff;
     width: 20px;
 }
-.icon:hover{
+.icon-close-chat:hover{
     color:rgb(238, 121, 121)
-}
-.icon-close{
-    color:red
 }
 
 </style>
