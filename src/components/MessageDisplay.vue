@@ -1,7 +1,7 @@
 <template>
     <div class="contaier-message-display">
-        <div v-for="(message, index) in messages" :key="index" :class="{'my-message': message.myself}">
-            <div class="message-text ">
+        <div v-for="(message, index) in messages" :key="index" class="message-container" :class="{'my-message': message.myself}">
+            <div class="message-text" >
                 <p>{{message.content}}</p>
             </div>
         </div>
@@ -20,9 +20,9 @@ export default {
 
 <style scoped>
 .contaier-message-display{
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-end; */
     /* align-items: center; */
     flex: 1;
     overflow-y: scroll;
@@ -36,6 +36,11 @@ export default {
 }
 
 .my-message{
-    align-self: flex-end;
+    justify-content: flex-end;
+    padding-right: 15px;
+}
+
+.message-container{
+    display: flex;
 }
 </style>
