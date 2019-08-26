@@ -22,9 +22,8 @@ export default {
         ]),
         sendMessage: function(){
             this.textInput = this.$refs.userInput.textContent;
-            this.newMessage(this.textInput)
-            console.log(this.textInput)
-            //alert(this.textInput)
+            this.$refs.userInput.textContent = '';
+            this.newMessage({content: this.textInput, myself: true})
         }
     }
 }
