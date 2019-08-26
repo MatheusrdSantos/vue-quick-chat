@@ -9,6 +9,7 @@
     </div>    
 </template>
 <script>
+import {mapMutations} from 'vuex'
 export default {
     data(){
         return {
@@ -16,9 +17,14 @@ export default {
         }
     },
     methods: {
+        ...mapMutations([
+            'newMessage'
+        ]),
         sendMessage: function(){
             this.textInput = this.$refs.userInput.textContent;
-            alert(this.textInput)
+            this.newMessage(this.textInput)
+            console.log(this.textInput)
+            //alert(this.textInput)
         }
     }
 }

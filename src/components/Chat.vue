@@ -9,8 +9,10 @@
 import Header from './Header.vue'
 import MessageDisplay from './MessageDisplay.vue'
 import MessageManager from './MessageManager.vue'
+import store from '../store'
 export default {
     name: 'Chat',
+    store,
     components:{
         Header,
         MessageDisplay,

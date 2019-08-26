@@ -1,12 +1,16 @@
 <template>
     <div class="contaier-message-display">
-        Messages
+        <p v-for="(message, index) in messages" :key="index">{{message}}</p>
     </div>    
 </template>
 
 <script>
 export default {
-
+    computed: {
+        messages: function(){
+            return this.$store.state.messages;
+        }
+    }
 }
 </script>
 
