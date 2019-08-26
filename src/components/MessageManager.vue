@@ -1,16 +1,26 @@
 <template>
     <div class="container-message-manager">
         <div class="message-text-box">
-            <textarea class="message-input" type="text" name="" id="" placeholder="type your message here"/>
+            <div class="message-input" name="" id="" :placeholder="'type your message here'" tabIndex="0" contenteditable="true" ref="userInput"></div>
         </div>
-        <div class="container-send-message">
+        <div class="container-send-message" @click.prevent="sendMessage">
             <v-icon name="send" base-class="icon-send-message"></v-icon>
         </div>
     </div>    
 </template>
 <script>
 export default {
-    
+    data(){
+        return {
+            textInput: ''
+        }
+    },
+    methods: {
+        sendMessage: function(){
+            this.textInput = this.$refs.userInput.textContent;
+            alert(this.textInput)
+        }
+    }
 }
 </script>
 <style scoped>
@@ -31,7 +41,7 @@ export default {
 }
 .message-input{
     /* border: solid 1px #b9b5b5; */
-    border: none;
+    /* border: none;
     border-radius: 5px;
     overflow: hidden;
     height: 40px;
@@ -39,8 +49,39 @@ export default {
     width: 100%;
     font-size: 15px;
     line-height: 30px;
-    vertical-align: center;
+    display: flex;
+    align-items: center;
+    text-align: left; */
+    width: 100%;
+    resize: none;
+    border: none;
+    outline: none;
+    border-bottom-left-radius: 10px;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.33;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: #565867;
+    -webkit-font-smoothing: antialiased;
+    max-height: 40px;
+    bottom: 0;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: left;
+    cursor: text;
 }
+
+.message-input:empty:before {
+  content: attr(placeholder);
+  display: block; /* For Firefox */
+  /* color: rgba(86, 88, 103, 0.3); */
+  filter: contrast(15%);
+  outline: none;
+}
+
 .message-input:focus{
     outline: none;
 }
