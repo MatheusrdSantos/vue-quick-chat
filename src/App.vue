@@ -8,11 +8,14 @@
 
 <script>
 import Chat from './components/Chat.vue'
-
+import moment from 'moment'
 export default {
   name: 'app',
   components: {
     Chat
+  },
+  created(){
+    moment.locale('pt-br')
   },
   data(){
     return {
@@ -35,19 +38,19 @@ export default {
           content: 'testing style for received messages', 
           myself: false,
           participantId: 1,
-          timestamp: new Date('December 17, 2015 03:24:00')
+          timestamp: moment()
         },
         {
           content: 'testing style for sent messages', 
           myself: true,
           participantId: 3,
-          timestamp: new Date('December 17, 2010 03:24:00')
+          timestamp: moment()
         },
         {
           content: 'testing style for received messages', 
           myself: false,
           participantId: 2,
-          timestamp: new Date('December 17, 2011 03:24:00')
+          timestamp: moment()
         }
       ]
     }

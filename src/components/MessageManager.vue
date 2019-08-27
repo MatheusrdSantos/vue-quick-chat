@@ -10,11 +10,15 @@
 </template>
 <script>
 import { mapMutations } from 'vuex'
+import moment from 'moment'
 export default {
     data(){
         return {
             textInput: ''
         }
+    },
+    created(){
+        moment.locale('pt-br')
     },
     computed: {
         myself: function (){
@@ -33,7 +37,7 @@ export default {
                     content: this.textInput, 
                     myself: true, 
                     participantId: this.myself.id,
-                    timestamp: new Date()
+                    timestamp: moment()
                 })
             }
         }

@@ -7,7 +7,7 @@
                 <p>{{message.content}}</p>
             </div>
             <div class="message-timestamp">
-                {{ message.timestamp }}
+                {{ message.timestamp.format('LT') }}
             </div>
         </div>
     </div>    
@@ -62,7 +62,13 @@ export default {
     text-align: left;
     font-size: 10px;
     color: #bdb8b8;
+    width: 100%;
 }
+
+.my-message >.message-timestamp{
+    text-align: right;
+}
+
 
 .my-message{
     justify-content: flex-end;
