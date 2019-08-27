@@ -9,6 +9,7 @@
 import Header from './Header.vue'
 import MessageDisplay from './MessageDisplay.vue'
 import MessageManager from './MessageManager.vue'
+import { mapMutations } from 'vuex';
 import store from '../store'
 export default {
     name: 'Chat',
@@ -17,6 +18,32 @@ export default {
         Header,
         MessageDisplay,
         MessageManager
+    },
+    props: {
+        participants: {
+            type: Array,
+            required: true
+        },
+        messages: {
+            type: Array,
+            required: true
+        },
+        myself: {
+            type: Object,
+            required: true
+        }
+    },
+    methods: {
+        ...mapMutations([
+            'setParticipants',
+            'setMyself',
+            'setMessages'
+        ])
+    },
+    mounted(){
+        this.setParticipants(this.participants);
+        this.setMyself(this.myself);
+        this.setMessages(this.messages);
     }
 }
 </script>

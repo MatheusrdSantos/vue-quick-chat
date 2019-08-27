@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="chat-container">
-      <Chat/>
+      <Chat :participants="participants" :myself="myself" :messages="messages"/>
     </div>
   </div>
 </template>
@@ -13,6 +13,36 @@ export default {
   name: 'app',
   components: {
     Chat
+  },
+  data(){
+    return {
+      participants: [
+        {
+          name: 'Matheus',
+          id: 1
+        },
+        {
+          name: 'José',
+          id: 2
+        }
+      ],
+      myself: {
+        name: 'Matheus S.',
+        id: 3
+      },
+      messages: [
+        {
+          content: 'testing style for received messages', 
+          myself: false,
+          participantId: 1
+        },
+        {
+          content: 'testing style for sent messages', 
+          myself: true,
+          participantId: 3
+        }
+      ]
+    }
   }
 }
 </script>

@@ -2,6 +2,14 @@
     <div class="header-container">
         <div class="header-title">
             <p class="header-title-text">Chat title</p>
+            <p class="header-paticipants-text">
+                <span>
+                    {{ `${myself.name}, ` }}
+                </span>
+                <span v-for="(participant, index) in participants" :key="participant.id" >
+                    {{ participants.length-1 != index?`${participant.name}, ` : participant.name }}
+                </span>
+            </p>
         </div>
 
         <div class="header-exit">
@@ -11,7 +19,14 @@
 </template>
 <script>
 export default {
-    
+    computed: {
+        participants: function(){
+            return this.$store.state.participants;
+        },
+        myself: function(){
+            return this.$store.state.myself;
+        }
+    }
 }
 </script>
 
@@ -36,11 +51,19 @@ export default {
 
 .header-title-text{
     color: #fff;
+    margin-bottom: 0px;
 }
 
 .header-exit{
 
 }
+
+.header-paticipants-text{
+    color: #e4e4e4;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
 .header-exit-button{
     text-decoration: none;
     color: #fff;
