@@ -5,11 +5,20 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    messages: []
+    messages: [
+      {
+        content: 'testing style for received messages', 
+        myself: false
+      },
+      {
+        content: 'testing style for sent messages', 
+        myself: true
+      }
+    ]
   },
   mutations: {
     newMessage: (state, message) => {
-      state.messages.push(message);
+      state.messages = [message, ...state.messages];
     }
   },
   actions: {
