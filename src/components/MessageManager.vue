@@ -16,6 +16,11 @@ export default {
             textInput: ''
         }
     },
+    computed: {
+        myself: function (){
+            return this.$store.state.myself;
+        }
+    },
     methods: {
         ...mapMutations([
             'newMessage'
@@ -24,7 +29,12 @@ export default {
             this.textInput = this.$refs.userInput.textContent;
             this.$refs.userInput.textContent = '';
             if(this.textInput){
-                this.newMessage({content: this.textInput, myself: true})
+                this.newMessage({
+                    content: this.textInput, 
+                    myself: true, 
+                    participantId: this.myself.id,
+                    timestamp: new Date()
+                })
             }
         }
     }

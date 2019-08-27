@@ -25,5 +25,17 @@ export default new Vuex.Store({
   },
   actions: {
 
+  },
+  getters: {
+    getParticipantById: (state) => (id) => {
+      let curr_participant;
+      state.participants.forEach(participant => {
+        if(participant.id == id){
+          curr_participant = participant;
+        }
+      })
+
+      return curr_participant;
+    }
   }
 })

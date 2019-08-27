@@ -18,7 +18,7 @@ export default {
     return {
       participants: [
         {
-          name: 'Matheus',
+          name: 'Arnaldo',
           id: 1
         },
         {
@@ -34,12 +34,20 @@ export default {
         {
           content: 'testing style for received messages', 
           myself: false,
-          participantId: 1
+          participantId: 1,
+          timestamp: new Date('December 17, 2015 03:24:00')
         },
         {
           content: 'testing style for sent messages', 
           myself: true,
-          participantId: 3
+          participantId: 3,
+          timestamp: new Date('December 17, 2010 03:24:00')
+        },
+        {
+          content: 'testing style for received messages', 
+          myself: false,
+          participantId: 2,
+          timestamp: new Date('December 17, 2011 03:24:00')
         }
       ]
     }

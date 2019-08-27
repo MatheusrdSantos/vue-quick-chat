@@ -2,17 +2,29 @@
     <div class="contaier-message-display">
         <div v-for="(message, index) in messages" :key="index" class="message-container" :class="{'my-message': message.myself, 'other-message': !message.myself}">
             <div class="message-text" >
+                <p v-if="!message.myself" class="message-username">{{getParticipantById(message.participantId).name}}</p>
+                <p v-else class="message-username">{{myself.name}}</p>
                 <p>{{message.content}}</p>
+            </div>
+            <div class="message-timestamp">
+                {{ message.timestamp }}
             </div>
         </div>
     </div>    
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
     computed: {
+        ...mapGetters([
+            'getParticipantById'
+        ]),
         messages: function(){
             return this.$store.state.messages;
+        },
+        myself: function(){
+            return this.$store.state.myself;
         }
     }
 }
@@ -41,6 +53,17 @@ export default {
     text-align: left;
 }
 
+.message-timestamp{
+    padding: 2px 7px;
+    border-radius: 15px;
+    margin: 0;
+    max-width: 50%;
+    overflow-wrap: break-word;
+    text-align: left;
+    font-size: 10px;
+    color: #bdb8b8;
+}
+
 .my-message{
     justify-content: flex-end;
     padding-right: 15px;
@@ -61,5 +84,11 @@ export default {
 }
 .message-container{
     display: flex;
+    flex-wrap: wrap;
+}
+
+.message-username{
+    font-size: 10px;
+    font-weight: bold;
 }
 </style>
