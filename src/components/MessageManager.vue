@@ -9,7 +9,7 @@
     </div>    
 </template>
 <script>
-import {mapMutations} from 'vuex'
+import { mapMutations } from 'vuex'
 export default {
     data(){
         return {
@@ -23,7 +23,9 @@ export default {
         sendMessage: function(){
             this.textInput = this.$refs.userInput.textContent;
             this.$refs.userInput.textContent = '';
-            this.newMessage({content: this.textInput, myself: true})
+            if(this.textInput){
+                this.newMessage({content: this.textInput, myself: true})
+            }
         }
     }
 }

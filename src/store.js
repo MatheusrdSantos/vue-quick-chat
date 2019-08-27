@@ -14,6 +14,9 @@ export default new Vuex.Store({
         content: 'testing style for sent messages', 
         myself: true
       }
+    ],
+    participants: [
+      
     ]
   },
   mutations: {
