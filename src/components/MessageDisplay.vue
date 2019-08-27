@@ -34,7 +34,7 @@ export default {
 .message-text{
     background: #fff;
     padding: 2px 7px;
-    border-radius: 5px;
+    border-radius: 15px;
     margin: 5px 0 5px 0;
     max-width: 70%;
     overflow-wrap: break-word;
@@ -53,6 +53,11 @@ export default {
 .other-message >.message-text{
     background: #fb4141;
     color: #fff;
+    border-bottom-left-radius: 0px;
+}
+
+.my-message >.message-text{
+    border-bottom-right-radius: 0px;
 }
 .message-container{
     display: flex;

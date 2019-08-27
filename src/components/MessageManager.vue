@@ -43,6 +43,7 @@ export default {
 .message-text-box{
     padding: 0 10px 0 10px;
     flex: 1;
+    overflow: hidden;
 }
 .message-input{
     /* border: solid 1px #b9b5b5; */
