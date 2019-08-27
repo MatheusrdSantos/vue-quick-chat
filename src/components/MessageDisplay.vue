@@ -73,6 +73,7 @@ export default {
 .my-message{
     justify-content: flex-end;
     padding-right: 15px;
+    align-items: flex-end;
 }
 
 .other-message{
@@ -91,6 +92,7 @@ export default {
 .message-container{
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
 }
 
 .message-username{
