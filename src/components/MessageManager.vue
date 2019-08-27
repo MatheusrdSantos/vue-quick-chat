@@ -30,7 +30,7 @@ export default {
 </script>
 <style scoped>
 .container-message-manager{
-    height: 50px;
+    height: 65px;
     background: #fff;
     display: flex;
     align-items: center;
