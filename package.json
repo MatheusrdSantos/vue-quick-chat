@@ -1,6 +1,6 @@
 {
   "name": "vue-quick-chat",
-  "version": "0.1.1",
+  "version": "0.1.5",
   "private": false,
   "main": "./dist/vue-quick-chat.common.js",
   "files": [
@@ -22,7 +22,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build-bundle": "vue-cli-service build --target lib --name vue-quick-chat ./src/components/Chat.vue",
+    "build-bundle": "vue-cli-service build --target lib --name vue-quick-chat ./src/index.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
