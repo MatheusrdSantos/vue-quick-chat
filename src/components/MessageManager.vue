@@ -17,6 +17,11 @@ export default {
             type: Function,
             required: false,
             default: () => false
+        },
+        onMessageSubmit: {
+            type: Function,
+            required: false,
+            defalt: () => false
         }
     },
     data(){
@@ -37,7 +42,11 @@ export default {
             'newMessage'
         ]),
         sendMessage: function(){
+            this.textInput = this.$refs.userInput.textContent;
+            this.$refs.userInput.textContent = '';
+
             if(this.textInput){
+                this.onMessageSubmit()
                 this.newMessage({
                     content: this.textInput, 
                     myself: true, 
@@ -45,7 +54,6 @@ export default {
                     timestamp: moment()
                 })
             }
-            this.$refs.userInput.textContent = '';
         }
     }
 }

@@ -18,6 +18,9 @@
     </div>    
 </template>
 <script>
+/*
+* TODO: improve support for more than 10 participants (the names list may break in some cases)
+*/
 export default {
     computed: {
         participants: function(){

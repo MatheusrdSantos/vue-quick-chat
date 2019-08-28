@@ -2,7 +2,7 @@
     <div class="container">
         <Header/>
         <MessageDisplay/>
-        <MessageManager :onType="onType"/>
+        <MessageManager :onType="onType" :onMessageSubmit="onMessageSubmit"/>
     </div>
 </template>
 <script>
@@ -33,6 +33,11 @@ export default {
             required: true
         },
         onType: {
+            type: Function,
+            required: false,
+            defalt: () => false
+        },
+        onMessageSubmit: {
             type: Function,
             required: false,
             defalt: () => false
