@@ -9,7 +9,9 @@ export default new Vuex.Store({
   state: {
     messages: [],
     myself:{},
-    participants: []
+    participants: [],
+    chatTitle: '',
+    placeholder: ''
   },
   mutations: {
     newMessage: (state, message) => {
@@ -24,6 +26,12 @@ export default new Vuex.Store({
     setMessages: (state, messages) => {
       messages.map(message => message.timestamp = moment(message.timestamp))
       state.messages = messages;
+    },
+    setChatTitle: (state, title) => {
+      state.chatTitle = title;
+    },
+    setPlaceholder: (state, placeholder) => {
+      state.placeholder = placeholder;
     }
   },
   actions: {

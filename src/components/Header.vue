@@ -1,7 +1,7 @@
 <template>
     <div class="header-container">
         <div class="header-title">
-            <p class="header-title-text">Chat title</p>
+            <p class="header-title-text">{{ chatTitle }}</p>
             <p class="header-paticipants-text">
                 <span>
                     {{ `${myself.name}, ` }}
@@ -28,6 +28,9 @@ export default {
         },
         myself: function(){
             return this.$store.state.myself;
+        },
+        chatTitle: function(){
+            return this.$store.state.chatTitle;
         }
     }
 }

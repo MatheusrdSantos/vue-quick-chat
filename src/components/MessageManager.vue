@@ -1,7 +1,7 @@
 <template>
     <div class="container-message-manager">
         <div class="message-text-box">
-            <div class="message-input" name="" id="" :placeholder="'type your message here'" tabIndex="0" contenteditable="true" ref="userInput" @input="onType"></div>
+            <div class="message-input" name="" id="" :placeholder="placeholder" tabIndex="0" contenteditable="true" ref="userInput" @input="onType"></div>
         </div>
         <div class="container-send-message" @click.prevent="sendMessage">
             <v-icon name="send" base-class="icon-send-message"></v-icon>
@@ -21,7 +21,7 @@ export default {
         onMessageSubmit: {
             type: Function,
             required: false,
-            defalt: () => false
+            default: () => false
         }
     },
     data(){
@@ -36,6 +36,9 @@ export default {
         myself: function (){
             return this.$store.state.myself;
         },
+        placeholder: function(){
+            return this.$store.state.placeholder;
+        }
     },
     methods: {
         ...mapMutations([

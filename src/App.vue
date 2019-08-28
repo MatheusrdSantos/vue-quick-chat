@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="chat-container">
-      <Chat :participants="participants" :myself="myself" :messages="messages" :onType="onType" :onMessageSubmit="onMessageSubmit"/>
+      <Chat :participants="participants" :myself="myself" :messages="messages" :onType="onType" :onMessageSubmit="onMessageSubmit" :chatTitle="chatTitle" :placeholder="placeholder"/>
     </div>
   </div>
 </template>
@@ -52,7 +52,12 @@ export default {
           participantId: 2,
           timestamp: { year: 2010, month: 3, day: 5, hour: 10, minute: 10, second: 3, millisecond: 123 }
         }
-      ]
+      ],
+      chatTitle: 'My chat title',
+      placeholder: 'send your message',
+      colors:{
+        
+      }
     }
   },
   methods: {

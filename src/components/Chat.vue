@@ -32,28 +32,46 @@ export default {
             type: Object,
             required: true
         },
+        chatTitle:{
+            type: String,
+            required: false,
+            default: ''
+        },
+        placeholder: {
+            type: String,
+            required: false,
+            default: 'type your message here'
+        },
         onType: {
             type: Function,
             required: false,
-            defalt: () => false
+            default: () => false
         },
         onMessageSubmit: {
             type: Function,
             required: false,
-            defalt: () => false
-        }
+            default: () => false
+        },
+        colors: {
+            type: Object,
+            required: true
+        },
     },
     methods: {
         ...mapMutations([
             'setParticipants',
             'setMyself',
-            'setMessages'
+            'setMessages',
+            'setPlaceholder',
+            'setChatTitle'
         ])
     },
     mounted(){
         this.setParticipants(this.participants);
         this.setMyself(this.myself);
         this.setMessages(this.messages);
+        this.setPlaceholder(this.placeholder);
+        this.setChatTitle(this.chatTitle);
     }
 }
 </script>
