@@ -4,7 +4,7 @@
             <div class="message-input" name="" id="" :placeholder="placeholder" tabIndex="0" contenteditable="true" ref="userInput" @input="onType"></div>
         </div>
         <div class="container-send-message" @click.prevent="sendMessage">
-            <v-icon name="send" base-class="icon-send-message"></v-icon>
+            <v-icon name="send" base-class="icon-send-message" :style="{color: colors.submitIcon}"></v-icon>
         </div>
     </div>    
 </template>
@@ -22,7 +22,11 @@ export default {
             type: Function,
             required: false,
             default: () => false
-        }
+        },
+        colors: {
+            type: Object,
+            required: true
+        },
     },
     data(){
         return {
@@ -130,10 +134,16 @@ export default {
 }
 
 .icon-send-message{
-    color:#b91010;
+    /* color:#b91010; */
     width: 20px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: 0.3s;
+    border-radius: 11px;
+    padding: 8px;
 }
 .icon-send-message:hover{
-    color:rgb(238, 121, 121)
+    opacity: 1;
+    background: #eee;
 }
 </style>

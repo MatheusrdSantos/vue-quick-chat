@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="chat-container">
-      <Chat :participants="participants" :myself="myself" :messages="messages" :onType="onType" :onMessageSubmit="onMessageSubmit" :chatTitle="chatTitle" :placeholder="placeholder"/>
+      <Chat :participants="participants" :myself="myself" :messages="messages" :onType="onType" :onMessageSubmit="onMessageSubmit" :chatTitle="chatTitle" :placeholder="placeholder" :colors="colors"/>
     </div>
   </div>
 </template>
@@ -56,7 +56,21 @@ export default {
       chatTitle: 'My chat title',
       placeholder: 'send your message',
       colors:{
-        
+        header:{
+          bg: '#d30303',
+          text: '#fff'
+        },
+        message:{
+          myself: {
+            bg: '#fff',
+            text: '#bdb8b8'
+          },
+          others: {
+            bg: '#fb4141',
+            text: '#fff'
+          }
+        },
+        submitIcon: '#b91010'
       }
     }
   },

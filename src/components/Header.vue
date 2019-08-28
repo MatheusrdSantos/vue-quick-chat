@@ -1,7 +1,7 @@
 <template>
-    <div class="header-container">
+    <div class="header-container" :style="{background: colors.header.bg}">
         <div class="header-title">
-            <p class="header-title-text">{{ chatTitle }}</p>
+            <p class="header-title-text" :style="{color: colors.header.text}">{{ chatTitle }}</p>
             <p class="header-paticipants-text">
                 <span>
                     {{ `${myself.name}, ` }}
@@ -22,6 +22,12 @@
 * TODO: improve support for more than 10 participants (the names list may break in some cases)
 */
 export default {
+    props:{
+        colors: {
+            type: Object,
+            required: true
+        },
+    },
     computed: {
         participants: function(){
             return this.$store.state.participants;
@@ -38,7 +44,7 @@ export default {
 
 <style scoped>
 .header-container{
-    background: #d30303;
+    /* background: #d30303; */
     height: 70px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -56,7 +62,7 @@ export default {
 }
 
 .header-title-text{
-    color: #fff;
+    /* color: #fff; */
     margin-bottom: 0px;
 }
 

@@ -1,8 +1,8 @@
 <template>
     <div class="container">
-        <Header/>
-        <MessageDisplay/>
-        <MessageManager :onType="onType" :onMessageSubmit="onMessageSubmit"/>
+        <Header :colors="colors"/>
+        <MessageDisplay :colors="colors"/>
+        <MessageManager :onType="onType" :onMessageSubmit="onMessageSubmit" :colors="colors"/>
     </div>
 </template>
 <script>
