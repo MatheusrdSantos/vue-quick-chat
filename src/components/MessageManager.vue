@@ -137,7 +137,7 @@ export default {
     /* color:#b91010; */
     width: 20px;
     cursor: pointer;
-    opacity: 0.6;
+    opacity: 0.7;
     transition: 0.3s;
     border-radius: 11px;
     padding: 8px;

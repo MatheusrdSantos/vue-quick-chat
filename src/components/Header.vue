@@ -74,6 +74,8 @@ export default {
     color: #e4e4e4;
     font-size: 12px;
     margin-top: 5px;
+    max-height: 30px;
+    overflow: hidden;
 }
 
 .header-exit-button{
