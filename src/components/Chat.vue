@@ -2,7 +2,7 @@
     <div class="container">
         <Header/>
         <MessageDisplay/>
-        <MessageManager/>
+        <MessageManager :onType="onType"/>
     </div>
 </template>
 <script>
@@ -31,6 +31,11 @@ export default {
         myself: {
             type: Object,
             required: true
+        },
+        onType: {
+            type: Function,
+            required: false,
+            defalt: () => false
         }
     },
     methods: {

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="chat-container">
-      <Chat :participants="participants" :myself="myself" :messages="messages"/>
+      <Chat :participants="participants" :myself="myself" :messages="messages" :onType="onType"/>
     </div>
   </div>
 </template>
@@ -38,21 +38,26 @@ export default {
           content: 'testing style for received messages', 
           myself: false,
           participantId: 1,
-          timestamp: moment({ year :2012, month :3, day :5, hour :20, minute :10, second :3, millisecond :123})
+          timestamp: { year :2012, month :3, day :5, hour :20, minute :10, second :3, millisecond :123}
         },
         {
           content: 'testing style for sent messages', 
           myself: true,
           participantId: 3,
-          timestamp: moment({ year :2011, month: 0, day :5, hour :19, minute :10, second :3, millisecond :123})
+          timestamp: { year :2011, month: 0, day :5, hour :19, minute :10, second :3, millisecond :123}
         },
         {
           content: 'testing style for received messages', 
           myself: false,
           participantId: 2,
-          timestamp: moment({ year :2010, month :3, day :5, hour :10, minute :10, second :3, millisecond :123})
+          timestamp: { year :2010, month :3, day :5, hour :10, minute :10, second :3, millisecond :123}
         }
       ]
+    }
+  },
+  methods: {
+    onType: function (){
+      console.log('typing');
     }
   }
 }

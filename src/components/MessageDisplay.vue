@@ -79,7 +79,9 @@ export default {
 .other-message{
     justify-content: flex-start;
     padding-left: 15px;
+    align-items: flex-start;
 }
+
 .other-message >.message-text{
     background: #fb4141;
     color: #fff;

@@ -1,7 +1,7 @@
 <template>
     <div class="container-message-manager">
         <div class="message-text-box">
-            <div class="message-input" name="" id="" :placeholder="'type your message here'" tabIndex="0" contenteditable="true" ref="userInput"></div>
+            <div class="message-input" name="" id="" :placeholder="'type your message here'" tabIndex="0" contenteditable="true" ref="userInput" @input="onType"></div>
         </div>
         <div class="container-send-message" @click.prevent="sendMessage">
             <v-icon name="send" base-class="icon-send-message"></v-icon>
@@ -12,6 +12,13 @@
 import { mapMutations } from 'vuex'
 import moment from 'moment'
 export default {
+    props:{
+        onType:{
+            type: Function,
+            required: false,
+            default: () => false
+        }
+    },
     data(){
         return {
             textInput: ''
@@ -23,15 +30,13 @@ export default {
     computed: {
         myself: function (){
             return this.$store.state.myself;
-        }
+        },
     },
     methods: {
         ...mapMutations([
             'newMessage'
         ]),
         sendMessage: function(){
-            this.textInput = this.$refs.userInput.textContent;
-            this.$refs.userInput.textContent = '';
             if(this.textInput){
                 this.newMessage({
                     content: this.textInput, 
@@ -40,6 +45,7 @@ export default {
                     timestamp: moment()
                 })
             }
+            this.$refs.userInput.textContent = '';
         }
     }
 }
