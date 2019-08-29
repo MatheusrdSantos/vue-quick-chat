@@ -81,11 +81,11 @@ export default {
     }
   },
   methods: {
-    onType: function (){
+    onType: function (e){
       console.log('typing');
     },
-    onMessageSubmit: function(){
-      console.log('message submit')
+    onMessageSubmit: function(message){
+      console.log(message)
     }
   }
 }
@@ -107,6 +107,6 @@ export default {
   background: rgb(247, 243, 243);
   padding: 10px 0 10px 0;
   height: 500px;
-  width: 100%;
+  width: 350px;
 }
 </style>

@@ -63,7 +63,7 @@ export default {
             this.$refs.userInput.textContent = '';
 
             if(this.textInput){
-                this.onMessageSubmit()
+                this.onMessageSubmit(this.textInput)
                 this.newMessage({
                     content: this.textInput, 
                     myself: true, 
