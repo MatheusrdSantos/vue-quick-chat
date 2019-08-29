@@ -25,29 +25,29 @@ export default {
           id: 1
         },
         {
-          name: 'José',
+          name: 'Adam',
           id: 2
         }
       ],
       myself: {
-        name: 'Matheus S.',
+        name: 'John Doe',
         id: 3
       },
       messages: [
         {
-          content: 'testing style for received messages', 
+          content: "Really?! I don't care! Haha", 
           myself: false,
           participantId: 1,
           timestamp: { year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123 }
         },
         {
-          content: 'testing style for sent messages', 
+          content: "Hey, Adam! I'm feeling really fine this evening.", 
           myself: true,
           participantId: 3,
           timestamp: { year: 2011, month: 0, day: 5, hour: 19, minute: 10, second: 3, millisecond:123 }
         },
         {
-          content: 'testing style for received messages', 
+          content: 'Hey, John Doe! How are you today?', 
           myself: false,
           participantId: 2,
           timestamp: { year: 2010, month: 3, day: 5, hour: 10, minute: 10, second: 3, millisecond: 123 }
