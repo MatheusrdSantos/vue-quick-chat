@@ -117,16 +117,29 @@ export default {
 ## Component Props
 | name | type | required |default |description |
 |------|------|----------|--------|------------|
-| participants | Array | true |  | An array of participants. Each participant should be an Object with name and id|
+| participants | Array | true |  | An array of participants. Each [participant](#participant) should be an Object with name and id|
 | myself | Object | true |  | Object of my participant. "myself" should be an Object with name and id|
 | messages | Array | true |  | An array of messages. Each message should be an Object with content, myself, participantId and timestamp|
 | onType | Function | false | () => false | Event called when the user is typing |
-| onMessageSubmit | Function | false | () => false | Event called when the user sends a new message |
 | onMessageSubmit | Function | false | () => false | Event called when the user sends a new message |
 | chatTitle | String | false | Empty String | The title on chat header |
 | placeholder | String | false | 'type your message here' | The placeholder of message text input |
 | colors | Object | true |  | Object with the description of style properties |
 | borderStyle | Object | false | { topLeft: "10px", topRight: "10px", bottomLeft: "10px", bottomRight: "10px"}  | Object with the description of border style properties |
+
+### participant
+| name | type | description |
+|---------|--------|----------------|
+| id | int | The user id should be an unique value |
+| name | String | The user name tha will be displayed |
+
+Example
+```javascript
+{
+          name:  'Username',
+          id: 1
+},
+```
 ## Project setup
 ```
 npm install
