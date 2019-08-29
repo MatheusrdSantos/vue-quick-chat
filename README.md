@@ -63,22 +63,19 @@ export default {
           content: 'received messages', 
           myself: false,
           participantId: 1,
-          timestamp: { year: 2019, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123 },
-          id: 1
+          timestamp: { year: 2019, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123 }
         },
         {
           content: 'sent messages', 
           myself: true,
           participantId: 3,
-          timestamp: { year: 2019, month: 4, day: 5, hour: 19, minute: 10, second: 3, millisecond:123 },
-          id: 2
+          timestamp: { year: 2019, month: 4, day: 5, hour: 19, minute: 10, second: 3, millisecond:123 }
         },
         {
           content: 'other received messages', 
           myself: false,
           participantId: 2,
-          timestamp: { year: 2019, month: 5, day: 5, hour: 10, minute: 10, second: 3, millisecond: 123 },
-          id: 3
+          timestamp: { year: 2019, month: 5, day: 5, hour: 10, minute: 10, second: 3, millisecond: 123 }
         }
       ],
       chatTitle: 'My chat title',
@@ -109,10 +106,10 @@ export default {
     }
   },
   methods: {
-    onType: function (){
+    onType: function (event){
       //here you can set any behavior
     },
-    onMessageSubmit: function(){
+    onMessageSubmit: function(message){
       //here you can set any behavior
     }
   }
@@ -122,9 +119,14 @@ export default {
 |------|------|----------|--------|------------|
 | participants | Array | true |  | An array of participants. Each participant should be an Object with name and id|
 | myself | Object | true |  | Object of my participant. "myself" should be an Object with name and id|
-| messages | Array | true |  | An array of messages. Each message should be an Object with content, myself, participantId, timestamp and id |
+| messages | Array | true |  | An array of messages. Each message should be an Object with content, myself, participantId and timestamp|
 | onType | Function | false | () => false | Event called when the user is typing |
 | onMessageSubmit | Function | false | () => false | Event called when the user sends a new message |
+| onMessageSubmit | Function | false | () => false | Event called when the user sends a new message |
+| chatTitle | String | false | Empty String | The title on chat header |
+| placeholder | String | false | 'type your message here' | The placeholder of message text input |
+| colors | Object | true |  | Object with the description of style properties |
+| borderStyle | Object | false | { topLeft: "10px", topRight: "10px", bottomLeft: "10px", bottomRight: "10px"}  | Object with the description of border style properties |
 ## Project setup
 ```
 npm install
