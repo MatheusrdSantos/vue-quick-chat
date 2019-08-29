@@ -124,7 +124,7 @@ export default {
 | onMessageSubmit | Function | false | () => false | Event called when the user sends a new message |
 | chatTitle | String | false | Empty String | The title on chat header |
 | placeholder | String | false | 'type your message here' | The placeholder of message text input |
-| colors | Object | true |  | Object with the description of style properties |
+| colors | Object | true |  | Object with the [color's](#color) description of style properties |
 | borderStyle | Object | false | { topLeft: "10px", topRight: "10px", bottomLeft: "10px", bottomRight: "10px"}  | Object with the description of border style properties |
 
 ### participant
@@ -155,6 +155,33 @@ Example
           myself: false,
           participantId: 1,
           timestamp: { year: 2019, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123 }
+```
+### color
+| name | type | description |
+|---------|--------|----------------|
+| header | Object | Object containing the header background and text color |
+| message | Object | Object containing the message background and text color. The Object should contains the style for 'myself' and 'others' |
+| submitIcon | String | The color applied to the send message button icon |
+
+Example
+```javascript
+{
+  header:{
+    bg: '#d30303',
+    text: '#fff'
+  },
+  message:{
+    myself: {
+      bg: '#fff',
+      text: '#bdb8b8'
+    },
+    others: {
+      bg: '#fb4141',
+      text: '#fff'
+    }
+  },
+  submitIcon: '#b91010'
+}
 ```
 ## Project setup
 ```
