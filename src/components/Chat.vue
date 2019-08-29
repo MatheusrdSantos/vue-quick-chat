@@ -79,8 +79,10 @@ export default {
 <style scoped>
 .container{
     display: flex;
-    width: 350px;
-    height: 500px;
+    /* width: 350px;
+    height: 500px; */
+    width: 100%;
+    height: 100%;
     background: #f0eeee;
     flex-direction: column;
     align-items: stretch;

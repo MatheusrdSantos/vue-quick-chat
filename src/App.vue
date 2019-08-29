@@ -100,5 +100,7 @@ export default {
   justify-content: center;
   background: rgb(247, 243, 243);
   padding: 10px 0 10px 0;
+  height: 500px;
+  width: 100%;
 }
 </style>
