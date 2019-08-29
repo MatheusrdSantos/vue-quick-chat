@@ -5,6 +5,7 @@ This vue component is a simple chat that can be easily imported and used in your
 - Custom style
 - Handle on type event and on message submit 
 - Chat with multiple participants
+<img src="https://user-images.githubusercontent.com/42742621/63946619-c3eda480-ca4b-11e9-82f0-b7636eace98d.png"/>
 
 ## Instalation
 ```
