@@ -27,6 +27,16 @@ export default {
             type: Object,
             required: true
         },
+        borderStyle: {
+            type: Object,
+            required: false,
+            default: {
+                topLeft: "10px",
+                topRight: "10px",
+                bottomLeft: "10px",
+                bottomRight: "10px",
+            }
+        },
     },
     data(){
         return {
@@ -72,8 +82,6 @@ export default {
     display: flex;
     align-items: center;
     padding: 0 20px 0 20px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
     -webkit-box-shadow: 0px -2px 40px 0px rgba(186,186,186,0.67);
     box-shadow: 0px -2px 40px 0px rgba(186,186,186,0.67);
 }
@@ -99,7 +107,6 @@ export default {
     resize: none;
     border: none;
     outline: none;
-    border-bottom-left-radius: 10px;
     box-sizing: border-box;
     font-size: 15px;
     font-weight: 400;

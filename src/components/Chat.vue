@@ -1,8 +1,8 @@
 <template>
-    <div class="container">
-        <Header :colors="colors"/>
+    <div class="container" :style="{'border-bottom-left-radius': borderStyle.bottomLeft, 'border-bottom-right-radius': borderStyle.bottomRight, 'border-top-right-radius': borderStyle.topRight, 'border-top-left-radius': borderStyle.topLeft}">
+        <Header :colors="colors" :borderStyle="borderStyle"/>
         <MessageDisplay :colors="colors"/>
-        <MessageManager :onType="onType" :onMessageSubmit="onMessageSubmit" :colors="colors"/>
+        <MessageManager :onType="onType" :onMessageSubmit="onMessageSubmit" :colors="colors" :borderStyle="borderStyle"/>
     </div>
 </template>
 <script>
@@ -56,6 +56,16 @@ export default {
             type: Object,
             required: true
         },
+        borderStyle: {
+            type: Object,
+            required: false,
+            default: {
+                topLeft: "10px",
+                topRight: "10px",
+                bottomLeft: "10px",
+                bottomRight: "10px",
+            }
+        },
     },
     methods: {
         ...mapMutations([
@@ -88,9 +98,5 @@ export default {
     align-items: stretch;
     /*border: solid 1px #b6b2b2;*/
     overflow: hidden;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
 }
 </style>

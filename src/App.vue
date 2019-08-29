@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="chat-container">
-      <Chat :participants="participants" :myself="myself" :messages="messages" :onType="onType" :onMessageSubmit="onMessageSubmit" :chatTitle="chatTitle" :placeholder="placeholder" :colors="colors"/>
+      <Chat :participants="participants" :myself="myself" :messages="messages" :onType="onType" :onMessageSubmit="onMessageSubmit" :chatTitle="chatTitle" :placeholder="placeholder" :colors="colors" :borderStyle="borderStyle"/>
     </div>
   </div>
 </template>
@@ -71,6 +71,12 @@ export default {
           }
         },
         submitIcon: '#b91010'
+      },
+      borderStyle: {
+        topLeft: "10px",
+        topRight: "10px",
+        bottomLeft: "10px",
+        bottomRight: "10px",
       }
     }
   },

@@ -27,6 +27,16 @@ export default {
             type: Object,
             required: true
         },
+        borderStyle: {
+            type: Object,
+            required: false,
+            default: {
+                topLeft: "10px",
+                topRight: "10px",
+                bottomLeft: "10px",
+                bottomRight: "10px",
+            }
+        },
     },
     computed: {
         participants: function(){
@@ -46,8 +56,6 @@ export default {
 .header-container{
     /* background: #d30303; */
     height: 70px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
     display: flex;
     padding: 0 20px 0 10px;
     align-items: center;
