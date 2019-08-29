@@ -118,8 +118,8 @@ export default {
 | name | type | required |default |description |
 |------|------|----------|--------|------------|
 | participants | Array | true |  | An array of participants. Each [participant](#participant) should be an Object with name and id|
-| myself | Object | true |  | Object of my participant. "myself" should be an Object with name and id|
-| messages | Array | true |  | An array of messages. Each message should be an Object with content, myself, participantId and timestamp|
+| myself | Object | true |  | Object of my [participant](#participant). "myself" should be an Object with name and id|
+| messages | Array | true |  | An array of [messages](#message). Each message should be an Object with content, myself, participantId and timestamp|
 | onType | Function | false | () => false | Event called when the user is typing |
 | onMessageSubmit | Function | false | () => false | Event called when the user sends a new message |
 | chatTitle | String | false | Empty String | The title on chat header |
@@ -131,7 +131,7 @@ export default {
 | name | type | description |
 |---------|--------|----------------|
 | id | int | The user id should be an unique value |
-| name | String | The user name tha will be displayed |
+| name | String | The user name that will be displayed |
 
 Example
 ```javascript
@@ -139,6 +139,22 @@ Example
           name:  'Username',
           id: 1
 },
+```
+### message
+| name | type | description |
+|---------|--------|----------------|
+| content | String | The message text content |
+| myself | boolean | Wether the message was sent by myself participant or by other participant |
+| participantId | int | The participant's id who sent the message  |
+|timestamp| Object| Object describing the year, month, day, hour, minute, second and millisecond that the message was sent |
+
+Example
+```javascript
+{
+          content: 'received messages', 
+          myself: false,
+          participantId: 1,
+          timestamp: { year: 2019, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123 }
 ```
 ## Project setup
 ```
