@@ -63,19 +63,22 @@ export default {
           content: 'received messages', 
           myself: false,
           participantId: 1,
-          timestamp: { year: 2019, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123 }
+          timestamp: { year: 2019, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123 },
+          id: 1
         },
         {
           content: 'sent messages', 
           myself: true,
           participantId: 3,
-          timestamp: { year: 2019, month: 4, day: 5, hour: 19, minute: 10, second: 3, millisecond:123 }
+          timestamp: { year: 2019, month: 4, day: 5, hour: 19, minute: 10, second: 3, millisecond:123 },
+          id: 2
         },
         {
           content: 'other received messages', 
           myself: false,
           participantId: 2,
-          timestamp: { year: 2019, month: 5, day: 5, hour: 10, minute: 10, second: 3, millisecond: 123 }
+          timestamp: { year: 2019, month: 5, day: 5, hour: 10, minute: 10, second: 3, millisecond: 123 },
+          id: 3
         }
       ],
       chatTitle: 'My chat title',
@@ -115,7 +118,13 @@ export default {
   }
 ```
 ## Component Props
-
+| name | type | required |default |description |
+|------|------|----------|--------|------------|
+| participants | Array | true |  | An array of participants. Each participant should be an Object with name and id|
+| myself | Object | true |  | Object of my participant. "myself" should be an Object with name and id|
+| messages | Array | true |  | An array of messages. Each message should be an Object with content, myself, participantId, timestamp and id |
+| onType | Function | false | () => false | Event called when the user is typing |
+| onMessageSubmit | Function | false | () => false | Event called when the user sends a new message |
 ## Project setup
 ```
 npm install
