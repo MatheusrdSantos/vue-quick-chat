@@ -48,6 +48,7 @@ export default {
     display: flex;
     flex-direction: column-reverse;
     padding-bottom: 10px;
+    max-height: 100%;
 }
 .message-text{
     background: #fff;
@@ -57,6 +58,7 @@ export default {
     max-width: 70%;
     overflow-wrap: break-word;
     text-align: left;
+    white-space: pre-wrap;
 }
 
 .message-timestamp{

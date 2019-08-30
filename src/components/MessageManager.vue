@@ -1,7 +1,7 @@
 <template>
     <div class="container-message-manager">
         <div class="message-text-box">
-            <div class="message-input" name="" id="" :placeholder="placeholder" tabIndex="0" contenteditable="true" ref="userInput" @input="onType"></div>
+            <div class="message-input" name="" id="" :placeholder="placeholder" tabIndex="0" contenteditable="true" ref="userInput" @input="handleType"></div>
         </div>
         <div class="container-send-message" @click.prevent="sendMessage">
             <v-icon name="send" base-class="icon-send-message" :style="{color: colors.submitIcon, width: submitIconSize}"></v-icon>
@@ -78,6 +78,10 @@ export default {
                     timestamp: moment()
                 })
             }
+        },
+        handleType: function(e){
+            this.onType(e);
+            console.log(e)
         }
     }
 }
@@ -129,6 +133,7 @@ export default {
     overflow-y: auto;
     text-align: left;
     cursor: text;
+    display: inline-block;
 }
 
 .message-input:empty:before {
