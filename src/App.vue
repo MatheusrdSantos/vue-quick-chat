@@ -1,7 +1,19 @@
 <template>
   <div id="app">
     <div class="chat-container">
-      <Chat :participants="participants" :myself="myself" :messages="messages" :onType="onType" :onMessageSubmit="onMessageSubmit" :chatTitle="chatTitle" :placeholder="placeholder" :colors="colors" :borderStyle="borderStyle" :hideCloseButton="hideCloseButton" :closeButtonIconSize="closeButtonIconSize" :submitIconSize="submitIconSize"/>
+      <Chat 
+      :participants="participants"
+      :myself="myself"
+      :messages="messages"
+      :onType="onType"
+      :onMessageSubmit="onMessageSubmit"
+      :chatTitle="chatTitle"
+      :placeholder="placeholder"
+      :colors="colors"
+      :borderStyle="borderStyle"
+      :hideCloseButton="hideCloseButton"
+      :closeButtonIconSize="closeButtonIconSize"
+      :submitIconSize="submitIconSize"/>
     </div>
   </div>
 </template>

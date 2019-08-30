@@ -150,8 +150,8 @@ export default {
 Example
 ```javascript
 {
-          name:  'Username',
-          id: 1
+  name:  'Username',
+  id: 1
 },
 ```
 ### message
@@ -165,10 +165,11 @@ Example
 Example
 ```javascript
 {
-          content: 'received messages', 
-          myself: false,
-          participantId: 1,
-          timestamp: { year: 2019, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123 }
+  content: 'received messages', 
+  myself: false,
+  participantId: 1,
+  timestamp: { year: 2019, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123 }
+}
 ```
 ### color
 | name | type | description |

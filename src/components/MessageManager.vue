@@ -30,11 +30,13 @@ export default {
         borderStyle: {
             type: Object,
             required: false,
-            default: {
-                topLeft: "10px",
-                topRight: "10px",
-                bottomLeft: "10px",
-                bottomRight: "10px",
+            default: () =>{
+                return {
+                    topLeft: "10px",
+                    topRight: "10px",
+                    bottomLeft: "10px",
+                    bottomRight: "10px",
+                }
             }
         },
         submitIconSize: {

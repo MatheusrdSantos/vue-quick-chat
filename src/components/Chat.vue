@@ -1,5 +1,5 @@
 <template>
-    <div class="container" :style="{'border-bottom-left-radius': borderStyle.bottomLeft, 'border-bottom-right-radius': borderStyle.bottomRight, 'border-top-right-radius': borderStyle.topRight, 'border-top-left-radius': borderStyle.topLeft}">
+    <div class="quick-chat-container" :style="{'border-bottom-left-radius': borderStyle.bottomLeft, 'border-bottom-right-radius': borderStyle.bottomRight, 'border-top-right-radius': borderStyle.topRight, 'border-top-left-radius': borderStyle.topLeft}">
         <Header :colors="colors" :borderStyle="borderStyle" :hideCloseButton="hideCloseButton" :closeButtonIconSize="closeButtonIconSize"/>
         <MessageDisplay :colors="colors"/>
         <MessageManager :onType="onType" :onMessageSubmit="onMessageSubmit" :colors="colors" :borderStyle="borderStyle" :submitIconSize="submitIconSize"/>
@@ -59,11 +59,13 @@ export default {
         borderStyle: {
             type: Object,
             required: false,
-            default: {
-                topLeft: "10px",
-                topRight: "10px",
-                bottomLeft: "10px",
-                bottomRight: "10px",
+            default: () =>{
+                return {
+                    topLeft: "10px",
+                    topRight: "10px",
+                    bottomLeft: "10px",
+                    bottomRight: "10px",
+                }
             }
         },
         hideCloseButton: {
@@ -102,7 +104,7 @@ export default {
 </script>
 
 <style scoped>
-.container{
+.quick-chat-container{
     display: flex;
     /* width: 350px;
     height: 500px; */
