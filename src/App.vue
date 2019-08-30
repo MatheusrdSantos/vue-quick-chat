@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="chat-container">
-      <Chat :participants="participants" :myself="myself" :messages="messages" :onType="onType" :onMessageSubmit="onMessageSubmit" :chatTitle="chatTitle" :placeholder="placeholder" :colors="colors" :borderStyle="borderStyle" :hideCloseButton="hideCloseButton"/>
+      <Chat :participants="participants" :myself="myself" :messages="messages" :onType="onType" :onMessageSubmit="onMessageSubmit" :chatTitle="chatTitle" :placeholder="placeholder" :colors="colors" :borderStyle="borderStyle" :hideCloseButton="hideCloseButton" :closeButtonIconSize="closeButtonIconSize" :submitIconSize="submitIconSize"/>
     </div>
   </div>
 </template>
@@ -78,7 +78,9 @@ export default {
         bottomLeft: "10px",
         bottomRight: "10px",
       },
-      hideCloseButton: true
+      hideCloseButton: false,
+      submitIconSize: "20px",
+      closeButtonIconSize: "20px"
     }
   },
   methods: {

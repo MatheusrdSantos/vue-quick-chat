@@ -1,6 +1,6 @@
 {
   "name": "vue-quick-chat",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "private": false,
   "main": "./dist/vue-quick-chat.common.js",
   "files": [
@@ -16,7 +16,8 @@
     "vue",
     "vue-js-chat",
     "chat",
-    "vuejs"
+    "vuejs",
+    "simple-chat"
   ],
   "repository": "https://github.com/MatheusrdSantos/vue-quick-chat",
   "scripts": {

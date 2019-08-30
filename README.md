@@ -38,7 +38,9 @@ export default {
        :placeholder="placeholder"
        :colors="colors"
        :borderStyle="borderStyle"
-       :hideCloseButton="hideCloseButton"/>
+       :hideCloseButton="hideCloseButton"
+       :closeButtonIconSize="closeButtonIconSize"
+       :submitIconSize="submitIconSize"/>
    </div>
 </template>
 ```
@@ -109,7 +111,9 @@ export default {
         bottomLeft: "10px",
         bottomRight: "10px",
       },
-      hideCloseButton: false
+      hideCloseButton: false,
+      submitIconSize: "20px",
+      closeButtonIconSize: "20px"
     }
   },
   methods: {
@@ -134,6 +138,8 @@ export default {
 | colors | Object | true |  | Object with the [color's](#color) description of style properties |
 | borderStyle | Object | false | { topLeft: "10px", topRight: "10px", bottomLeft: "10px", bottomRight: "10px"}  | Object with the description of border style properties |
 | hideCloseButton | Boolean | false | false  | If true, the Close button will be hidden |
+| submitIconSize | String | false | "15px" | The submit icon size in pixels. |
+| closeButtonIconSize | String | false | "15px" | The close button icon size in pixels. |
 
 ### participant
 | name | type | description |

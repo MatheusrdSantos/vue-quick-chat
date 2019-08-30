@@ -1,15 +1,15 @@
 <template>
     <div class="container" :style="{'border-bottom-left-radius': borderStyle.bottomLeft, 'border-bottom-right-radius': borderStyle.bottomRight, 'border-top-right-radius': borderStyle.topRight, 'border-top-left-radius': borderStyle.topLeft}">
-        <Header :colors="colors" :borderStyle="borderStyle" :hideCloseButton="hideCloseButton"/>
+        <Header :colors="colors" :borderStyle="borderStyle" :hideCloseButton="hideCloseButton" :closeButtonIconSize="closeButtonIconSize"/>
         <MessageDisplay :colors="colors"/>
-        <MessageManager :onType="onType" :onMessageSubmit="onMessageSubmit" :colors="colors" :borderStyle="borderStyle"/>
+        <MessageManager :onType="onType" :onMessageSubmit="onMessageSubmit" :colors="colors" :borderStyle="borderStyle" :submitIconSize="submitIconSize"/>
     </div>
 </template>
 <script>
 import Header from './Header.vue'
 import MessageDisplay from './MessageDisplay.vue'
 import MessageManager from './MessageManager.vue'
-import { mapMutations } from 'vuex';
+import { mapMutations } from 'vuex'
 import store from '../store'
 export default {
     name: 'Chat',
@@ -70,6 +70,16 @@ export default {
             type: Boolean,
             required: false,
             default: false
+        },
+        submitIconSize: {
+            type: String,
+            required: false,
+            default: "15px"
+        },
+        closeButtonIconSize: {
+            type: String,
+            required: false,
+            default: "15px"
         }
     },
     methods: {

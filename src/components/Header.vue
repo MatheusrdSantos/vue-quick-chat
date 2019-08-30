@@ -13,7 +13,7 @@
         </div>
 
         <div v-if="!hideCloseButton" class="header-exit">
-            <a class="header-exit-button" href="#"><v-icon name="x" base-class="icon-close-chat"></v-icon></a>
+            <a class="header-exit-button" href="#"><v-icon name="x" base-class="icon-close-chat" :style="{width: closeButtonIconSize}"></v-icon></a>
         </div>
     </div>    
 </template>
@@ -41,6 +41,11 @@ export default {
             type: Boolean,
             required: false,
             default: false
+        },
+        closeButtonIconSize: {
+            type: String,
+            required: false,
+            default: "15px"
         }
     },
     computed: {
@@ -99,7 +104,7 @@ export default {
 
 .icon-close-chat{
     color:#fff;
-    width: 20px;
+    width: 100%;
 }
 .icon-close-chat:hover{
     color:rgb(238, 121, 121)

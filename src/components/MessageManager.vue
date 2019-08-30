@@ -4,7 +4,7 @@
             <div class="message-input" name="" id="" :placeholder="placeholder" tabIndex="0" contenteditable="true" ref="userInput" @input="onType"></div>
         </div>
         <div class="container-send-message" @click.prevent="sendMessage">
-            <v-icon name="send" base-class="icon-send-message" :style="{color: colors.submitIcon}"></v-icon>
+            <v-icon name="send" base-class="icon-send-message" :style="{color: colors.submitIcon, width: submitIconSize}"></v-icon>
         </div>
     </div>    
 </template>
@@ -36,6 +36,11 @@ export default {
                 bottomLeft: "10px",
                 bottomRight: "10px",
             }
+        },
+        submitIconSize: {
+            type: String,
+            required: false,
+            default: "15px"
         },
     },
     data(){
