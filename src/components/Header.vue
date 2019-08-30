@@ -12,7 +12,7 @@
             </p>
         </div>
 
-        <div class="header-exit">
+        <div v-if="!hideCloseButton" class="header-exit">
             <a class="header-exit-button" href="#"><v-icon name="x" base-class="icon-close-chat"></v-icon></a>
         </div>
     </div>    
@@ -37,6 +37,11 @@ export default {
                 bottomRight: "10px",
             }
         },
+        hideCloseButton: {
+            type: Boolean,
+            required: false,
+            default: false
+        }
     },
     computed: {
         participants: function(){

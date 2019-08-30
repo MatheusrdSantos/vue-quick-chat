@@ -1,6 +1,6 @@
 <template>
     <div class="container" :style="{'border-bottom-left-radius': borderStyle.bottomLeft, 'border-bottom-right-radius': borderStyle.bottomRight, 'border-top-right-radius': borderStyle.topRight, 'border-top-left-radius': borderStyle.topLeft}">
-        <Header :colors="colors" :borderStyle="borderStyle"/>
+        <Header :colors="colors" :borderStyle="borderStyle" :hideCloseButton="hideCloseButton"/>
         <MessageDisplay :colors="colors"/>
         <MessageManager :onType="onType" :onMessageSubmit="onMessageSubmit" :colors="colors" :borderStyle="borderStyle"/>
     </div>
@@ -66,6 +66,11 @@ export default {
                 bottomRight: "10px",
             }
         },
+        hideCloseButton: {
+            type: Boolean,
+            required: false,
+            default: false
+        }
     },
     methods: {
         ...mapMutations([

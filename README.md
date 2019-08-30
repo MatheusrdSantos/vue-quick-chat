@@ -19,7 +19,11 @@ npm install vue-quick-chat --save
 ## Usage
 ```javascript
 import { Chat } from 'vue-quick-chat'
-Vue.use(Chat)
+export default {
+  components: {
+    Chat
+  },
+}
 ```
 ```html
 <template>
@@ -33,7 +37,8 @@ Vue.use(Chat)
        :chatTitle="chatTitle"
        :placeholder="placeholder"
        :colors="colors"
-       :borderStyle="borderStyle"/>
+       :borderStyle="borderStyle"
+       :hideCloseButton="hideCloseButton"/>
    </div>
 </template>
 ```
@@ -103,7 +108,8 @@ export default {
         topRight: "10px",
         bottomLeft: "10px",
         bottomRight: "10px",
-      }
+      },
+      hideCloseButton: false
     }
   },
   methods: {
@@ -127,6 +133,7 @@ export default {
 | placeholder | String | false | 'type your message here' | The placeholder of message text input |
 | colors | Object | true |  | Object with the [color's](#color) description of style properties |
 | borderStyle | Object | false | { topLeft: "10px", topRight: "10px", bottomLeft: "10px", bottomRight: "10px"}  | Object with the description of border style properties |
+| hideCloseButton | Boolean | false | false  | If true, the Close button will be hidden |
 
 ### participant
 | name | type | description |
