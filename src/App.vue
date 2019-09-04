@@ -1,19 +1,34 @@
 <template>
   <div id="app">
-    <div class="chat-container">
-      <Chat 
-      :participants="participants"
-      :myself="myself"
-      :messages="messages"
-      :onType="onType"
-      :onMessageSubmit="onMessageSubmit"
-      :chatTitle="chatTitle"
-      :placeholder="placeholder"
-      :colors="colors"
-      :borderStyle="borderStyle"
-      :hideCloseButton="hideCloseButton"
-      :closeButtonIconSize="closeButtonIconSize"
-      :submitIconSize="submitIconSize"/>
+    <div class="content">
+
+      <div class="chat-container">
+        <Chat 
+        :participants="participants"
+        :myself="myself"
+        :messages="messages"
+        :onType="onType"
+        :onMessageSubmit="onMessageSubmit"
+        :chatTitle="chatTitle"
+        :placeholder="placeholder"
+        :colors="colors"
+        :borderStyle="borderStyle"
+        :hideCloseButton="hideCloseButton"
+        :closeButtonIconSize="closeButtonIconSize"
+        :submitIconSize="submitIconSize"/>
+      </div>
+      <div class="external-controller">
+        <div class="controller-btn-container">
+          <button class="btn-message" @click="addMessage">Adicionar mensagem</button>
+        </div>
+        <div class="message-list">
+          <ol>
+            <li v-for="(message, index) in messages" :key="index">
+              {{message.content}}  
+            </li>  
+          </ol>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -100,7 +115,17 @@ export default {
       console.log('typing');
     },
     onMessageSubmit: function(message){
-      console.log(message)
+      this.messages.push(message)
+    },
+    addMessage: function(){
+      this.messages.push(
+        {
+          content: "Update state", 
+          myself: false,
+          participantId: 1,
+          timestamp: { year: 2014, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123 }
+        }
+      )
     }
   }
 }
@@ -115,6 +140,12 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+.content{
+  width: 100%;
+  display: flex;
+  align-items:  center;
+  justify-content: space-evenly;
+}
 .chat-container{
   display: flex;
   align-items: center;
@@ -123,5 +154,33 @@ export default {
   padding: 10px 0 10px 0;
   height: 500px;
   width: 350px;
+}
+.external-controller{
+  background: #2c3e50;
+  height: 300px;
+  width: 600px;
+  display: flex;
+  color: #eee;
+}
+
+.controller-btn-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.btn-message{
+  cursor: pointer;
+  background: #eee;
+  border: none;
+  height: 40px;
+  color: #2c3e50;
+  border-radius: 5px;
+  outline: none;
+  transition: 0.3s;
+}
+.btn-message:hover{
+  background: rgb(255, 255, 255);
 }
 </style>

@@ -33,6 +33,9 @@ export default {
             return this.$store.state.myself;
         }
     },
+    updated(){
+        console.log('updated')
+    }
 }
 </script>
 
@@ -46,7 +49,7 @@ export default {
     overflow-y: scroll;
     overflow-x: hidden;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     padding-bottom: 10px;
     max-height: 100%;
 }

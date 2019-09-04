@@ -70,13 +70,14 @@ export default {
             this.$refs.userInput.textContent = '';
 
             if(this.textInput){
-                this.onMessageSubmit(this.textInput)
-                this.newMessage({
+                let message = {
                     content: this.textInput, 
                     myself: true, 
                     participantId: this.myself.id,
                     timestamp: moment()
-                })
+                }
+                this.onMessageSubmit(message)
+                this.newMessage(message)
             }
         },
         handleType: function(e){

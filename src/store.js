@@ -15,7 +15,7 @@ export default new Vuex.Store({
   },
   mutations: {
     newMessage: (state, message) => {
-      state.messages = [message, ...state.messages];
+      state.messages = [...state.messages, message];
     },
     setParticipants: (state, participants) => {
       state.participants = participants;  
@@ -24,7 +24,9 @@ export default new Vuex.Store({
       state.myself = myself;
     },
     setMessages: (state, messages) => {
-      messages.map(message => message.timestamp = moment(message.timestamp))
+      messages.map(message => {
+        message.timestamp = moment(message.timestamp)
+      })
       state.messages = messages;
     },
     setChatTitle: (state, title) => {

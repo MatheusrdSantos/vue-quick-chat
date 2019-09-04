@@ -93,13 +93,19 @@ export default {
             'setChatTitle'
         ])
     },
-    mounted(){
+    watch: {
+        messages: function(){
+            this.setMessages(this.messages);
+        }
+    },
+    created(){
+        console.log('mounted')
         this.setParticipants(this.participants);
         this.setMyself(this.myself);
         this.setMessages(this.messages);
         this.setPlaceholder(this.placeholder);
         this.setChatTitle(this.chatTitle);
-    }
+    },
 }
 </script>
 
