@@ -1,5 +1,5 @@
 <template>
-    <div class="contaier-message-display">
+    <div ref="contaierMessageDisplay" class="contaier-message-display">
         <div v-for="(message, index) in messages" :key="index" class="message-container" :class="{'my-message': message.myself, 'other-message': !message.myself}">
             <div class="message-text" :style="{background: !message.myself?colors.message.others.bg: colors.message.myself.bg}">
                 <p v-if="!message.myself" class="message-username">{{getParticipantById(message.participantId).name}}</p>
@@ -33,8 +33,19 @@ export default {
             return this.$store.state.myself;
         }
     },
+    watch:{
+        messages: {
+            handler: function(after, before){
+                console.log(after[after.length-1].participantId, this.myself.id)
+                if(after[after.length-1].participantId == this.myself.id){
+                    let scrollDiv = this.$refs.contaierMessageDisplay
+                    scrollDiv.scrollTop = scrollDiv.scrollHeight
+                }
+            }
+        }
+    },
     updated(){
-        console.log('updated')
+        
     }
 }
 </script>
