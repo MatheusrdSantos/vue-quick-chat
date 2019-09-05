@@ -20,6 +20,7 @@
       <div class="external-controller">
         <div class="controller-btn-container">
           <button class="btn-message" @click="addMessage">Adicionar mensagem</button>
+          <button class="btn-participant" @click="addParticipant">Adicionar participante</button>
         </div>
         <div class="message-list">
           <ol>
@@ -67,7 +68,7 @@ export default {
           participantId: 1,
           timestamp: { year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123 }
         },
-        {
+        /* {
           content: "Hey, Adam! I'm feeling really fine this evening.", 
           myself: true,
           participantId: 3,
@@ -78,7 +79,7 @@ export default {
           myself: false,
           participantId: 2,
           timestamp: { year: 2010, month: 3, day: 5, hour: 10, minute: 10, second: 3, millisecond: 123 }
-        }
+        } */
       ],
       chatTitle: 'My chat title',
       placeholder: 'send your message',
@@ -126,6 +127,13 @@ export default {
           timestamp: { year: 2014, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123 }
         }
       )
+    },
+    addParticipant: function(){
+      let participant = {
+          name: 'Karl', 
+          id: 4
+        }
+      this.participants.push(participant)
     }
   }
 }
@@ -169,8 +177,19 @@ export default {
   align-items: center;
   padding-left: 20px;
   padding-right: 20px;
+  flex-wrap: wrap;
 }
 .btn-message{
+  cursor: pointer;
+  background: #eee;
+  border: none;
+  height: 40px;
+  color: #2c3e50;
+  border-radius: 5px;
+  outline: none;
+  transition: 0.3s;
+}
+.btn-participant{
   cursor: pointer;
   background: #eee;
   border: none;
