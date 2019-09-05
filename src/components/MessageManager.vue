@@ -82,7 +82,7 @@ export default {
         },
         handleType: function(e){
             this.onType(e);
-            console.log(e)
+            //console.log(e)
         }
     }
 }

@@ -1,5 +1,5 @@
 <template>
-    <div ref="contaierMessageDisplay" class="contaier-message-display">
+    <div ref="contaierMessageDisplay" class="contaier-message-display" @scroll="updateScrollState">
         <div v-for="(message, index) in messages" :key="index" class="message-container" :class="{'my-message': message.myself, 'other-message': !message.myself}">
             <div class="message-text" :style="{background: !message.myself?colors.message.others.bg: colors.message.myself.bg}">
                 <p v-if="!message.myself" class="message-username">{{getParticipantById(message.participantId).name}}</p>
@@ -16,6 +16,11 @@
 <script>
 import { mapGetters } from 'vuex';
 export default {
+    data(){
+        return {
+            updateScroll: false
+        }
+    },
     props:{
         colors: {
             type: Object,
@@ -33,19 +38,21 @@ export default {
             return this.$store.state.myself;
         }
     },
-    watch:{
-        messages: {
-            handler: function(after, before){
-                console.log(after[after.length-1].participantId, this.myself.id)
-                if(after[after.length-1].participantId == this.myself.id){
-                    let scrollDiv = this.$refs.contaierMessageDisplay
-                    scrollDiv.scrollTop = scrollDiv.scrollHeight
-                }
-            }
+    updated(){
+        if(this.messages[this.messages.length-1].participantId == this.myself.id || this.updateScroll){
+            let scrollDiv = this.$refs.contaierMessageDisplay
+            scrollDiv.scrollTop = scrollDiv.scrollHeight
+            this.updateScroll = false;
         }
     },
-    updated(){
-        
+    methods:{
+        updateScrollState: function({ target: { scrollTop, clientHeight, scrollHeight }}){
+            if (scrollTop + clientHeight >= scrollHeight) {
+                this.updateScroll = true;
+            }else{
+                this.updateScroll = false;
+            }
+        }
     }
 }
 </script>
