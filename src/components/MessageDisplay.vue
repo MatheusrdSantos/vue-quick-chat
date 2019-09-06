@@ -73,13 +73,18 @@ export default {
 }
 .message-text{
     background: #fff;
-    padding: 2px 7px;
+    padding: 6px 10px;
     border-radius: 15px;
     margin: 5px 0 5px 0;
     max-width: 70%;
     overflow-wrap: break-word;
     text-align: left;
     white-space: pre-wrap;
+}
+
+.message-text > p {
+    margin: 5px 0 5px 0;
+    height: 100%;
 }
 
 .message-timestamp{

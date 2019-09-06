@@ -1,7 +1,7 @@
 <template>
     <div class="container-message-manager">
         <div class="message-text-box">
-            <div class="message-input" name="" id="" :placeholder="placeholder" tabIndex="0" contenteditable="true" ref="userInput" @input="handleType"></div>
+            <div class="message-input" name="" id="" :placeholder="placeholder" tabIndex="0" contenteditable="true" ref="userInput" @input="handleType"  @keyup.enter.exact="sendMessage"></div>
         </div>
         <div class="container-send-message" @click.prevent="sendMessage">
             <v-icon name="send" base-class="icon-send-message" :style="{color: colors.submitIcon, width: submitIconSize}"></v-icon>
@@ -103,18 +103,6 @@ export default {
     overflow: hidden;
 }
 .message-input{
-    /* border: solid 1px #b9b5b5; */
-    /* border: none;
-    border-radius: 5px;
-    overflow: hidden;
-    height: 40px;
-    resize: none;
-    width: 100%;
-    font-size: 15px;
-    line-height: 30px;
-    display: flex;
-    align-items: center;
-    text-align: left; */
     width: 100%;
     resize: none;
     border: none;

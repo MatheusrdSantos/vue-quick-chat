@@ -153,6 +153,7 @@ export default {
   display: flex;
   align-items:  center;
   justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 .chat-container{
   display: flex;
