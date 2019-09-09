@@ -44,6 +44,31 @@ export default {
    </div>
 </template>
 ```
+You can also use a slot to define the header content
+```html
+<div>
+	<Chat 
+        :participants="participants"
+        :myself="myself"
+        :messages="messages"
+        :onType="onType"
+        :onMessageSubmit="onMessageSubmit"
+        :chatTitle="chatTitle"
+        :placeholder="placeholder"
+        :colors="colors"
+        :borderStyle="borderStyle"
+        :hideCloseButton="hideCloseButton"
+        :closeButtonIconSize="closeButtonIconSize"
+        :submitIconSize="submitIconSize">
+        <template v-slot:header>
+          <div>
+            <p v-for="(participant, index) in participants" :key="index" class="custom-title">{{participant.name}}</p>
+          </div>
+        </template>
+        </Chat>
+</div>
+```
+Bellow we have an example of the component data structure
 ```javascript
 import { Chat } from 'vue-quick-chat'
 export default {
