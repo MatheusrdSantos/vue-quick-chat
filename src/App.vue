@@ -15,7 +15,13 @@
         :borderStyle="borderStyle"
         :hideCloseButton="hideCloseButton"
         :closeButtonIconSize="closeButtonIconSize"
-        :submitIconSize="submitIconSize"/>
+        :submitIconSize="submitIconSize">
+        <template v-slot:header>
+          <div>
+            <p v-for="(participant, index) in participants" :key="index" class="custom-title">{{participant.name}}</p>
+          </div>
+        </template>
+        </Chat>
       </div>
       <div class="external-controller">
         <div class="controller-btn-container">
@@ -202,5 +208,8 @@ export default {
 }
 .btn-message:hover{
   background: rgb(255, 255, 255);
+}
+.custom-title{
+  color: #eee;
 }
 </style>
