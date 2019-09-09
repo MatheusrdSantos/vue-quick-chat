@@ -1,6 +1,10 @@
 <template>
     <div class="quick-chat-container" :style="{'border-bottom-left-radius': borderStyle.bottomLeft, 'border-bottom-right-radius': borderStyle.bottomRight, 'border-top-right-radius': borderStyle.topRight, 'border-top-left-radius': borderStyle.topLeft}">
-        <Header :colors="colors" :borderStyle="borderStyle" :hideCloseButton="hideCloseButton" :closeButtonIconSize="closeButtonIconSize"/>
+        <Header :colors="colors" :borderStyle="borderStyle" :hideCloseButton="hideCloseButton" :closeButtonIconSize="closeButtonIconSize">
+            <template v-slot:header>
+                <slot name="header"></slot>
+            </template>
+        </Header>
         <MessageDisplay :colors="colors"/>
         <MessageManager :onType="onType" :onMessageSubmit="onMessageSubmit" :colors="colors" :borderStyle="borderStyle" :submitIconSize="submitIconSize"/>
     </div>
@@ -99,7 +103,6 @@ export default {
         }
     },
     created(){
-        console.log('mounted')
         this.setParticipants(this.participants);
         this.setMyself(this.myself);
         this.setMessages(this.messages);

@@ -1,6 +1,8 @@
 <template>
     <div class="header-container" :style="{background: colors.header.bg}">
-        <div class="header-title">
+        <slot name="header"></slot>
+        <div v-if="!hasHeaderSlot" class="header-title">
+            
             <p class="header-title-text" :style="{color: colors.header.text}">{{ chatTitle }}</p>
             <p class="header-paticipants-text">
                 <span>
@@ -12,7 +14,7 @@
             </p>
         </div>
 
-        <div v-if="!hideCloseButton" class="header-exit">
+        <div v-if="!hideCloseButton && !hasHeaderSlot" class="header-exit">
             <a class="header-exit-button" href="#"><v-icon name="x" base-class="icon-close-chat" :style="{width: closeButtonIconSize}"></v-icon></a>
         </div>
     </div>    
@@ -59,6 +61,9 @@ export default {
         },
         chatTitle: function(){
             return this.$store.state.chatTitle;
+        },
+        hasHeaderSlot: function(){
+            return !!this.$slots['header'];
         }
     }
 }
