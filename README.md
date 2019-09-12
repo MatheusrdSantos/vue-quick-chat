@@ -150,7 +150,12 @@ export default {
     },
     onMessageSubmit: function(message){
       //here you can set any behavior
-    }
+      
+      // example simulating an upload callback
+      setTimeout(() => {
+        message.uploaded = true
+      }, 2000)
+    },
   }
 ```
 ## Component Props

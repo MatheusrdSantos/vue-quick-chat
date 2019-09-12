@@ -72,7 +72,9 @@ export default {
           content: "Really?! I don't care! Haha", 
           myself: false,
           participantId: 1,
-          timestamp: { year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123 }
+          timestamp: { year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123 },
+          uploaded: true,
+          viewed: true
         },
         /* {
           content: "Hey, Adam! I'm feeling really fine this evening.", 
@@ -127,7 +129,11 @@ export default {
       console.log('typing');
     },
     onMessageSubmit: function(message){
-      this.messages.push(message)
+      // example simulating an upload callback
+      setTimeout(() => {
+        message.uploaded = true
+        this.messages.push(message)
+      }, 2000)
     },
     addMessage: function(){
       this.messages.push(
@@ -135,7 +141,9 @@ export default {
           content: "Update state", 
           myself: false,
           participantId: 1,
-          timestamp: { year: 2014, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123 }
+          timestamp: { year: 2014, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123 },
+          uploaded: true,
+          viewed: true
         }
       )
     },

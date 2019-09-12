@@ -74,7 +74,9 @@ export default {
                     content: this.textInput, 
                     myself: true, 
                     participantId: this.myself.id,
-                    timestamp: moment()
+                    timestamp: moment(),
+                    uploaded: false,
+                    viewed: false
                 }
                 this.onMessageSubmit(message)
                 this.newMessage(message)

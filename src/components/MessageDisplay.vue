@@ -6,8 +6,10 @@
                 <p v-else class="message-username">{{myself.name}}</p>
                 <p>{{message.content}}</p>
             </div>
-            <div class="message-timestamp">
+            <div class="message-timestamp" :style="{'justify-content': message.myself?'flex-end':'baseline'}">
                 {{ message.timestamp.format('LT') }}
+                <v-icon v-if="message.uploaded" name="check" base-class="icon-sent"></v-icon>
+                <div v-else class="message-loading"></div>
             </div>
         </div>
     </div>    
@@ -97,6 +99,8 @@ export default {
     font-size: 10px;
     color: #bdb8b8;
     width: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .my-message >.message-timestamp{
@@ -133,5 +137,24 @@ export default {
 .message-username{
     font-size: 10px;
     font-weight: bold;
+}
+.icon-sent{
+    width: 12px;
+    padding-left: 5px;
+    color: rgb(129, 127, 127);
+}
+.message-loading{
+    height: 8px;
+    width: 8px;
+    border: 1px solid rgb(187, 183, 183);
+    border-left-color: rgb(59, 59, 59);
+    border-radius: 50%;
+    margin-left: 5px;
+    animation: spin 1.3s ease 13;
+    
+}
+@keyframes spin{
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 </style>
