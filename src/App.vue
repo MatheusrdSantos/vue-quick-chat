@@ -132,7 +132,7 @@ export default {
       // example simulating an upload callback
       setTimeout(() => {
         message.uploaded = true
-        this.messages.push(message)
+        //this.messages.push(message)
       }, 2000)
     },
     addMessage: function(){
