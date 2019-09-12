@@ -102,6 +102,11 @@ export default {
           others: {
             bg: '#fb4141',
             text: '#fff'
+          },
+          messagesDisplay: {
+            //bg: 'rgb(247, 243, 243)',
+            //bg: '#f7f3f3'
+            bg: '#f7f3f3'
           }
         },
         submitIcon: '#b91010'

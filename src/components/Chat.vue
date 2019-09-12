@@ -86,7 +86,7 @@ export default {
             type: String,
             required: false,
             default: "15px"
-        }
+        },
     },
     methods: {
         ...mapMutations([

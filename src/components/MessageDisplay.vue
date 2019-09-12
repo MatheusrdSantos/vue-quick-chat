@@ -1,5 +1,5 @@
 <template>
-    <div ref="contaierMessageDisplay" class="contaier-message-display" @scroll="updateScrollState">
+    <div ref="contaierMessageDisplay" :style="{background: colors.message.messagesDisplay.bg}" class="contaier-message-display" @scroll="updateScrollState">
         <div v-for="(message, index) in messages" :key="index" class="message-container" :class="{'my-message': message.myself, 'other-message': !message.myself}">
             <div class="message-text" :style="{background: !message.myself?colors.message.others.bg: colors.message.myself.bg}">
                 <p v-if="!message.myself" class="message-username">{{getParticipantById(message.participantId).name}}</p>

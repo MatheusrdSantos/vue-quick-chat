@@ -128,6 +128,9 @@ export default {
             text: '#fff'
           }
         },
+        messagesDisplay: {
+            bg: '#f7f3f3'
+        },
         submitIcon: '#b91010'
       },
       borderStyle: {
@@ -201,6 +204,7 @@ Example
 |---------|--------|----------------|
 | header | Object | Object containing the header background and text color |
 | message | Object | Object containing the message background and text color. The Object should contains the style for 'myself' and 'others' |
+| messagesDisplay | Object | Object containing the  background color of mesages container. |
 | submitIcon | String | The color applied to the send message button icon |
 
 Example
@@ -219,6 +223,9 @@ Example
       bg: '#fb4141',
       text: '#fff'
     }
+  },
+  messagesDisplay: {
+    bg: '#f7f3f3'
   },
   submitIcon: '#b91010'
 }
