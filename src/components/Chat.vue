@@ -5,7 +5,7 @@
                 <slot name="header"></slot>
             </template>
         </Header>
-        <MessageDisplay :colors="colors"/>
+        <MessageDisplay :colors="colors" :asyncMode="asyncMode"/>
         <MessageManager :onType="onType" :onMessageSubmit="onMessageSubmit" :colors="colors" :borderStyle="borderStyle" :submitIconSize="submitIconSize"/>
     </div>
 </template>
@@ -86,6 +86,11 @@ export default {
             type: String,
             required: false,
             default: "15px"
+        },
+        asyncMode: {
+            type: Boolean,
+            required: false,
+            default: false
         }
     },
     methods: {

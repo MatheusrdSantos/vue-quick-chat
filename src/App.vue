@@ -15,7 +15,8 @@
         :borderStyle="borderStyle"
         :hideCloseButton="hideCloseButton"
         :closeButtonIconSize="closeButtonIconSize"
-        :submitIconSize="submitIconSize">
+        :submitIconSize="submitIconSize"
+        :asyncMode="asyncMode">
         <template v-slot:header>
           <div>
             <p v-for="(participant, index) in participants" :key="index" class="custom-title">{{participant.name}}</p>
@@ -72,7 +73,9 @@ export default {
           content: "Really?! I don't care! Haha", 
           myself: false,
           participantId: 1,
-          timestamp: { year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123 }
+          timestamp: { year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123 },
+          uploaded: true,
+          viewed: true
         },
         /* {
           content: "Hey, Adam! I'm feeling really fine this evening.", 
@@ -102,6 +105,11 @@ export default {
           others: {
             bg: '#fb4141',
             text: '#fff'
+          },
+          messagesDisplay: {
+            //bg: 'rgb(247, 243, 243)',
+            //bg: '#f7f3f3'
+            bg: '#f7f3f3'
           }
         },
         submitIcon: '#b91010'
@@ -114,7 +122,8 @@ export default {
       },
       hideCloseButton: false,
       submitIconSize: "20px",
-      closeButtonIconSize: "20px"
+      closeButtonIconSize: "20px",
+      asyncMode: false
     }
   },
   methods: {
@@ -122,7 +131,20 @@ export default {
       console.log('typing');
     },
     onMessageSubmit: function(message){
+      /*
+      * example simulating an upload callback. 
+      * It's important to notice that even when your message wasn't send 
+      * yet to the server you have to add the message into the array
+      */
       this.messages.push(message)
+      
+      /*
+      * you can update message state after the server response
+      */
+     // timeout simulating the request
+      setTimeout(() => {
+        message.uploaded = true
+      }, 2000)
     },
     addMessage: function(){
       this.messages.push(
@@ -130,7 +152,9 @@ export default {
           content: "Update state", 
           myself: false,
           participantId: 1,
-          timestamp: { year: 2014, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123 }
+          timestamp: { year: 2014, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123 },
+          uploaded: true,
+          viewed: true
         }
       )
     },

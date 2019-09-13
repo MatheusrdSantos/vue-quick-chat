@@ -5,6 +5,8 @@ This vue component is a simple chat that can be easily imported and used in your
 - Custom style
 - Handle on type event and on message submit 
 - Chat with multiple participants
+- Support for async actions like message uploaded status
+
 <img src="https://user-images.githubusercontent.com/42742621/63946619-c3eda480-ca4b-11e9-82f0-b7636eace98d.png"/>
 
 ## Instalation
@@ -128,6 +130,9 @@ export default {
             text: '#fff'
           }
         },
+        messagesDisplay: {
+            bg: '#f7f3f3'
+        },
         submitIcon: '#b91010'
       },
       borderStyle: {
@@ -138,7 +143,8 @@ export default {
       },
       hideCloseButton: false,
       submitIconSize: "20px",
-      closeButtonIconSize: "20px"
+      closeButtonIconSize: "20px",
+      asyncMode: false
     }
   },
   methods: {
@@ -146,8 +152,21 @@ export default {
       //here you can set any behavior
     },
     onMessageSubmit: function(message){
-      //here you can set any behavior
-    }
+      /*
+      * example simulating an upload callback. 
+      * It's important to notice that even when your message wasn't send 
+      * yet to the server you have to add the message into the array
+      */
+      this.messages.push(message)
+      
+      /*
+      * you can update message state after the server response
+      */
+      // timeout simulating the request
+      setTimeout(() => {
+        message.uploaded = true
+      }, 2000)
+    },
   }
 ```
 ## Component Props
@@ -165,6 +184,7 @@ export default {
 | hideCloseButton | Boolean | false | false  | If true, the Close button will be hidden |
 | submitIconSize | String | false | "15px" | The submit icon size in pixels. |
 | closeButtonIconSize | String | false | "15px" | The close button icon size in pixels. |
+| asyncMode | Boolean | false | false | If the value is ```true``` the component begins to watch message upload status and displays a visual feedback for each message. If the value is ```false``` the visual feedback is disabled |
 
 ### participant
 | name | type | description |
@@ -201,6 +221,7 @@ Example
 |---------|--------|----------------|
 | header | Object | Object containing the header background and text color |
 | message | Object | Object containing the message background and text color. The Object should contains the style for 'myself' and 'others' |
+| messagesDisplay | Object | Object containing the  background color of mesages container. |
 | submitIcon | String | The color applied to the send message button icon |
 
 Example
@@ -219,6 +240,9 @@ Example
       bg: '#fb4141',
       text: '#fff'
     }
+  },
+  messagesDisplay: {
+    bg: '#f7f3f3'
   },
   submitIcon: '#b91010'
 }
