@@ -15,7 +15,8 @@
         :borderStyle="borderStyle"
         :hideCloseButton="hideCloseButton"
         :closeButtonIconSize="closeButtonIconSize"
-        :submitIconSize="submitIconSize">
+        :submitIconSize="submitIconSize"
+        :asyncMode="asyncMode">
         <template v-slot:header>
           <div>
             <p v-for="(participant, index) in participants" :key="index" class="custom-title">{{participant.name}}</p>
@@ -121,7 +122,8 @@ export default {
       },
       hideCloseButton: false,
       submitIconSize: "20px",
-      closeButtonIconSize: "20px"
+      closeButtonIconSize: "20px",
+      asyncMode: false
     }
   },
   methods: {

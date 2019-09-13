@@ -8,8 +8,8 @@
             </div>
             <div class="message-timestamp" :style="{'justify-content': message.myself?'flex-end':'baseline'}">
                 {{ message.timestamp.format('LT') }}
-                <v-icon v-if="message.uploaded" name="check" base-class="icon-sent"></v-icon>
-                <div v-else class="message-loading"></div>
+                <v-icon v-if="asyncMode && message.uploaded" name="check" base-class="icon-sent"></v-icon>
+                <div v-else-if="asyncMode" class="message-loading"></div>
             </div>
         </div>
     </div>    
@@ -28,6 +28,11 @@ export default {
             type: Object,
             required: true
         },
+        asyncMode: {
+            type: Boolean,
+            required: false,
+            default: false
+        }
     },
     computed: {
         ...mapGetters([

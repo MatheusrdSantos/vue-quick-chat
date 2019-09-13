@@ -5,6 +5,8 @@ This vue component is a simple chat that can be easily imported and used in your
 - Custom style
 - Handle on type event and on message submit 
 - Chat with multiple participants
+- Support for async actions like message uploaded status
+
 <img src="https://user-images.githubusercontent.com/42742621/63946619-c3eda480-ca4b-11e9-82f0-b7636eace98d.png"/>
 
 ## Instalation
@@ -141,7 +143,8 @@ export default {
       },
       hideCloseButton: false,
       submitIconSize: "20px",
-      closeButtonIconSize: "20px"
+      closeButtonIconSize: "20px",
+      asyncMode: false
     }
   },
   methods: {
@@ -159,7 +162,7 @@ export default {
       /*
       * you can update message state after the server response
       */
-     // timeout simulating the request
+      // timeout simulating the request
       setTimeout(() => {
         message.uploaded = true
       }, 2000)
@@ -181,6 +184,7 @@ export default {
 | hideCloseButton | Boolean | false | false  | If true, the Close button will be hidden |
 | submitIconSize | String | false | "15px" | The submit icon size in pixels. |
 | closeButtonIconSize | String | false | "15px" | The close button icon size in pixels. |
+| asyncMode | Boolean | false | false | If the value is ```true``` the component begins to watch message upload status and displays a visual feedback for each message. If the value is ```false``` the visual feedback is disabled |
 
 ### participant
 | name | type | description |
