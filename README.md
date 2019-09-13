@@ -63,7 +63,7 @@ You can also use a slot to define the header content
         :hideCloseButton="hideCloseButton"
         :closeButtonIconSize="closeButtonIconSize"
         :submitIconSize="submitIconSize"
-	:asyncMode="asyncMode">
+        :asyncMode="asyncMode">
         <template v-slot:header>
           <div>
             <p v-for="(participant, index) in participants" :key="index" class="custom-title">{{participant.name}}</p>
@@ -208,6 +208,7 @@ Example
 | myself | boolean | Wether the message was sent by myself participant or by other participant |
 | participantId | int | The participant's id who sent the message  |
 |timestamp| Object| Object describing the year, month, day, hour, minute, second and millisecond that the message was sent |
+|uploaded| Boolean| If asyncMode is ```true``` and uploaded is ```true```, a visual feedback is displayed bollow the message. If asyncMode is ```true``` and uploaded is ```false```, a visual loading feedback is displayed bollow the message. If asyncMode is ```false```, this property is ignored.|
 
 Example
 ```javascript
@@ -223,7 +224,8 @@ Example
     minute: 10, 
     second: 3, 
     millisecond: 123 
-  }
+  },
+  uploaded: true,
 }
 ```
 ### color
