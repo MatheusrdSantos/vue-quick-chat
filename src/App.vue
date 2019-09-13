@@ -129,10 +129,19 @@ export default {
       console.log('typing');
     },
     onMessageSubmit: function(message){
-      // example simulating an upload callback
+      /*
+      * example simulating an upload callback. 
+      * It's important to notice that even when your message wasn't send 
+      * yet to the server you have to add the message into the array
+      */
+      this.messages.push(message)
+      
+      /*
+      * you can update message state after the server response
+      */
+     // timeout simulating the request
       setTimeout(() => {
         message.uploaded = true
-        //this.messages.push(message)
       }, 2000)
     },
     addMessage: function(){

@@ -149,9 +149,17 @@ export default {
       //here you can set any behavior
     },
     onMessageSubmit: function(message){
-      //here you can set any behavior
+      /*
+      * example simulating an upload callback. 
+      * It's important to notice that even when your message wasn't send 
+      * yet to the server you have to add the message into the array
+      */
+      this.messages.push(message)
       
-      // example simulating an upload callback
+      /*
+      * you can update message state after the server response
+      */
+     // timeout simulating the request
       setTimeout(() => {
         message.uploaded = true
       }, 2000)
