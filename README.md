@@ -42,7 +42,8 @@ export default {
        :borderStyle="borderStyle"
        :hideCloseButton="hideCloseButton"
        :closeButtonIconSize="closeButtonIconSize"
-       :submitIconSize="submitIconSize"/>
+       :submitIconSize="submitIconSize"
+       :asyncMode="asyncMode"/>
    </div>
 </template>
 ```
@@ -61,7 +62,8 @@ You can also use a slot to define the header content
         :borderStyle="borderStyle"
         :hideCloseButton="hideCloseButton"
         :closeButtonIconSize="closeButtonIconSize"
-        :submitIconSize="submitIconSize">
+        :submitIconSize="submitIconSize"
+	:asyncMode="asyncMode">
         <template v-slot:header>
           <div>
             <p v-for="(participant, index) in participants" :key="index" class="custom-title">{{participant.name}}</p>
