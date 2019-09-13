@@ -213,7 +213,15 @@ Example
   content: 'received messages', 
   myself: false,
   participantId: 1,
-  timestamp: { year: 2019, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123 }
+  timestamp: { 
+    year: 2019, 
+    month: 3, 
+    day: 5, 
+    hour: 20, 
+    minute: 10, 
+    second: 3, 
+    millisecond: 123 
+  }
 }
 ```
 ### color
