@@ -20,7 +20,8 @@ import { mapGetters } from 'vuex';
 export default {
     data(){
         return {
-            updateScroll: true //Update the scroll initially
+            updateScroll: false,
+            lastMessage: null
         }
     },
     props:{
@@ -46,20 +47,28 @@ export default {
             return this.$store.state.myself;
         }
     },
+    mounted() {
+        this.goToBottom();
+    },
     updated(){
-        if(this.messages[this.messages.length-1].participantId == this.myself.id || this.updateScroll){
-            let scrollDiv = this.$refs.containerMessageDisplay
-            scrollDiv.scrollTop = scrollDiv.scrollHeight
-            this.updateScroll = false;
+        if(this.messages.length && this.messages[this.messages.length-1] !== this.lastMessage || this.updateScroll){
+            this.goToBottom();
+            this.lastMessage = this.messages[this.messages.length-1]
         }
     },
     methods:{
-        updateScrollState: function({ target: { scrollTop, clientHeight, scrollHeight }}){
+        updateScrollState({ target: { scrollTop, clientHeight, scrollHeight }}) {
             if (scrollTop + clientHeight >= scrollHeight) {
                 this.updateScroll = true;
-            }else{
+            } else {
                 this.updateScroll = false;
             }
+        },
+        goToBottom() {
+            let scrollDiv = this.$refs.containerMessageDisplay
+            scrollDiv.scrollTop = scrollDiv.scrollHeight
+
+            this.updateScroll = false;
         }
     }
 }
