@@ -18,6 +18,7 @@
         :closeButtonIconSize="closeButtonIconSize"
         :submitIconSize="submitIconSize"
         :asyncMode="asyncMode">
+        
         </Chat>
       </div>
       <div class="external-controller">
@@ -127,7 +128,7 @@ export default {
     onType: (e) => {
       console.log(e);
     },
-    onMessageSubmit: (message) => {
+    onMessageSubmit(message){
       /*
       * example simulating an upload callback. 
       * It's important to notice that even when your message wasn't send 
@@ -146,7 +147,7 @@ export default {
     onClose() {
       this.visible = false;
     },
-    addMessage: () => {
+    addMessage(){
       this.messages.push(
         {
           content: "Update state", 
@@ -158,11 +159,11 @@ export default {
         }
       )
     },
-    addParticipant: () => {
+    addParticipant(){
       let participant = {
-          name: 'Karl', 
-          id: 4
-        }
+        name: 'Karl', 
+        id: 4
+      }
       this.participants.push(participant)
     }
   }
