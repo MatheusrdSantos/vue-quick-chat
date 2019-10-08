@@ -16,7 +16,7 @@
 
         <div v-if="!hideCloseButton && !hasHeaderSlot" class="header-exit">
             <slot name="close-button" :onClose="onClose">
-                <a class="header-exit-button" @click="onClose" :style="{fontSize: closeButtonIconSize}">✕</a>
+                <a class="header-exit-button" href="#" @click="onClose" :style="{fontSize: closeButtonIconSize}">✕</a>
             </slot>
         </div>
     </div>
@@ -83,8 +83,8 @@
         display: flex;
         padding: 0 20px 0 10px;
         align-items: center;
-        -webkit-box-shadow:  0px 2px 20px 2px rgba(90, 90, 90, 0.47);
-        box-shadow: 0px 2px 20px 2px rgba(90, 90, 90, 0.47);
+        -webkit-box-shadow:  0 2px 20px 2px rgba(90, 90, 90, 0.47);
+        box-shadow: 0 2px 20px 2px rgba(90, 90, 90, 0.47);
         z-index: 5;
     }
     .header-title{
@@ -95,11 +95,7 @@
 
     .header-title-text{
         /* color: #fff; */
-        margin-bottom: 0px;
-    }
-
-    .header-exit{
-
+        margin-bottom: 0;
     }
 
     .header-paticipants-text{
@@ -113,7 +109,7 @@
     .header-exit-button{
         text-decoration: none;
         color: #fff;
-        width: 20px;
+        font-size: 20px;
     }
 
     .icon-close-chat{
