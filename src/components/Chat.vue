@@ -1,7 +1,7 @@
 <template>
     <div class="quick-chat-container" :style="{'border-bottom-left-radius': borderStyle.bottomLeft, 'border-bottom-right-radius': borderStyle.bottomRight, 'border-top-right-radius': borderStyle.topRight, 'border-top-left-radius': borderStyle.topLeft}">
-        <Header :colors="colors" :borderStyle="borderStyle" :hideCloseButton="hideCloseButton" :closeButtonIconSize="closeButtonIconSize">
-            <template v-slot:header>
+        <Header :colors="colors" :borderStyle="borderStyle" :hideCloseButton="hideCloseButton" :closeButtonIconSize="closeButtonIconSize" :onClose="onClose">
+            <template #header>
                 <slot name="header"></slot>
             </template>
         </Header>
@@ -86,6 +86,11 @@ export default {
             type: String,
             required: false,
             default: "15px"
+        },
+        onClose: {
+            type: Function,
+            required: false,
+            default: () => false
         },
         asyncMode: {
             type: Boolean,

@@ -1,5 +1,5 @@
 <template>
-    <div ref="contaierMessageDisplay" :style="{background: colors.message.messagesDisplay.bg}" class="contaier-message-display" @scroll="updateScrollState">
+    <div ref="containerMessageDisplay" :style="{background: colors.message.messagesDisplay.bg}" class="container-message-display" @scroll="updateScrollState">
         <div v-for="(message, index) in messages" :key="index" class="message-container" :class="{'my-message': message.myself, 'other-message': !message.myself}">
             <div class="message-text" :style="{background: !message.myself?colors.message.others.bg: colors.message.myself.bg}">
                 <p v-if="!message.myself" class="message-username">{{getParticipantById(message.participantId).name}}</p>
@@ -12,7 +12,7 @@
                 <div v-else-if="asyncMode" class="message-loading"></div>
             </div>
         </div>
-    </div>    
+    </div>
 </template>
 
 <script>
@@ -20,7 +20,8 @@ import { mapGetters } from 'vuex';
 export default {
     data(){
         return {
-            updateScroll: false
+            updateScroll: false,
+            lastMessage: null
         }
     },
     props:{
@@ -32,7 +33,8 @@ export default {
             type: Boolean,
             required: false,
             default: false
-        }
+        },
+
     },
     computed: {
         ...mapGetters([
@@ -45,27 +47,35 @@ export default {
             return this.$store.state.myself;
         }
     },
+    mounted() {
+        this.goToBottom();
+    },
     updated(){
-        if(this.messages[this.messages.length-1].participantId == this.myself.id || this.updateScroll){
-            let scrollDiv = this.$refs.contaierMessageDisplay
-            scrollDiv.scrollTop = scrollDiv.scrollHeight
-            this.updateScroll = false;
+        if(this.messages.length && this.messages[this.messages.length-1] !== this.lastMessage || this.updateScroll){
+            this.goToBottom();
+            this.lastMessage = this.messages[this.messages.length-1]
         }
     },
     methods:{
-        updateScrollState: function({ target: { scrollTop, clientHeight, scrollHeight }}){
+        updateScrollState({ target: { scrollTop, clientHeight, scrollHeight }}) {
             if (scrollTop + clientHeight >= scrollHeight) {
                 this.updateScroll = true;
-            }else{
+            } else {
                 this.updateScroll = false;
             }
+        },
+        goToBottom() {
+            let scrollDiv = this.$refs.containerMessageDisplay
+            scrollDiv.scrollTop = scrollDiv.scrollHeight
+
+            this.updateScroll = false;
         }
     }
 }
 </script>
 
 <style scoped>
-.contaier-message-display{
+.container-message-display{
     /* display: flex;
     flex-direction: column;
     justify-content: flex-end; */

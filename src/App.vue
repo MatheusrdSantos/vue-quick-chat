@@ -3,7 +3,7 @@
     <div class="content">
 
       <div class="chat-container">
-        <Chat 
+        <Chat v-if="visible"
         :participants="participants"
         :myself="myself"
         :messages="messages"
@@ -13,15 +13,11 @@
         :placeholder="placeholder"
         :colors="colors"
         :borderStyle="borderStyle"
+        :onClose="onClose"
         :hideCloseButton="hideCloseButton"
         :closeButtonIconSize="closeButtonIconSize"
         :submitIconSize="submitIconSize"
         :asyncMode="asyncMode">
-        <template v-slot:header>
-          <div>
-            <p v-for="(participant, index) in participants" :key="index" class="custom-title">{{participant.name}}</p>
-          </div>
-        </template>
         </Chat>
       </div>
       <div class="external-controller">
@@ -54,6 +50,7 @@ export default {
   },
   data(){
     return {
+      visible: true,
       participants: [
         {
           name: 'Arnaldo',
@@ -127,16 +124,16 @@ export default {
     }
   },
   methods: {
-    onType: function (e){
-      console.log('typing');
+    onType: (e) => {
+      console.log(e);
     },
-    onMessageSubmit: function(message){
+    onMessageSubmit: (message) => {
       /*
       * example simulating an upload callback. 
       * It's important to notice that even when your message wasn't send 
       * yet to the server you have to add the message into the array
       */
-      this.messages.push(message)
+      this.messages.push(message);
       
       /*
       * you can update message state after the server response
@@ -146,7 +143,10 @@ export default {
         message.uploaded = true
       }, 2000)
     },
-    addMessage: function(){
+    onClose() {
+      this.visible = false;
+    },
+    addMessage: () => {
       this.messages.push(
         {
           content: "Update state", 
@@ -158,7 +158,7 @@ export default {
         }
       )
     },
-    addParticipant: function(){
+    addParticipant: () => {
       let participant = {
           name: 'Karl', 
           id: 4
