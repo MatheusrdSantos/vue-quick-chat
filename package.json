@@ -1,38 +1,48 @@
 {
-  "name": "vue-quick-chat",
-  "version": "0.3.1",
-  "private": false,
-  "main": "./dist/vue-quick-chat.common.js",
-  "files": [
-    "dist/*",
-    "src/*",
-    "public/*",
-    "*.json",
-    "*.js"
-  ],
-  "author": "Matheus Santos <matheus.r.d.s10@hotmail.com>",
-  "license": "MIT",
-  "keywords": [
-    "vue",
-    "vue-js-chat",
-    "chat",
-    "vuejs",
-    "simple-chat"
-  ],
-  "repository": "https://github.com/MatheusrdSantos/vue-quick-chat",
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "build-bundle": "vue-cli-service build --target lib --name vue-quick-chat ./src/index.js",
-    "lint": "vue-cli-service lint"
+  "_from": "vue-quick-chat",
+  "_id": "vue-quick-chat@0.3.1",
+  "_inBundle": false,
+  "_integrity": "sha512-SDAvKgsxpbGk5by1yCtbYCYIv3/SXRP1LT0uAx6PW6Z4cAn6IY04S8VTf85bNGtBxhZ6GoUnPBWZZSNFbDDJDA==",
+  "_location": "/vue-quick-chat",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "vue-quick-chat",
+    "name": "vue-quick-chat",
+    "escapedName": "vue-quick-chat",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
   },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/vue-quick-chat/-/vue-quick-chat-0.3.1.tgz",
+  "_shasum": "624dc5842102693dd236a5a062eec33f62979d4e",
+  "_spec": "vue-quick-chat",
+  "_where": "/media/Bibliotheques/Tukan/arc-en-chine.test.tk/wp-content/plugins/bookly-staff-profile/bookly-staff-profile",
+  "author": {
+    "name": "Matheus Santos",
+    "email": "matheus.r.d.s10@hotmail.com"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
+  "bugs": {
+    "url": "https://github.com/MatheusrdSantos/vue-quick-chat/issues"
+  },
+  "bundleDependencies": false,
   "dependencies": {
     "core-js": "^2.6.5",
     "moment": "^2.24.0",
     "vue": "^2.6.10",
-    "vue-icon": "^2.1.1",
     "vuex": "^3.0.1"
   },
+  "deprecated": false,
+  "description": "This vue component is a simple chat that can be easily imported and used in your project.",
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-plugin-eslint": "^3.11.0",
@@ -57,13 +67,39 @@
       "parser": "babel-eslint"
     }
   },
+  "files": [
+    "dist/*",
+    "src/*",
+    "public/*",
+    "*.json",
+    "*.js"
+  ],
+  "homepage": "https://github.com/MatheusrdSantos/vue-quick-chat#readme",
+  "keywords": [
+    "vue",
+    "vue-js-chat",
+    "chat",
+    "vuejs",
+    "simple-chat"
+  ],
+  "license": "MIT",
+  "main": "./dist/vue-quick-chat.common.js",
+  "name": "vue-quick-chat",
   "postcss": {
     "plugins": {
       "autoprefixer": {}
     }
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions"
-  ]
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatheusrdSantos/vue-quick-chat.git"
+  },
+  "scripts": {
+    "build": "vue-cli-service build",
+    "build-bundle": "vue-cli-service build --target lib --name vue-quick-chat ./src/index.js",
+    "lint": "vue-cli-service lint",
+    "serve": "vue-cli-service serve"
+  },
+  "version": "0.3.1"
 }

@@ -42,6 +42,7 @@ export default {
        :borderStyle="borderStyle"
        :hideCloseButton="hideCloseButton"
        :closeButtonIconSize="closeButtonIconSize"
+       :onClose="onClose"
        :submitIconSize="submitIconSize"
        :asyncMode="asyncMode"/>
    </div>
@@ -81,6 +82,7 @@ export default {
   },
   data(){
     return {
+      visible: true,
       participants: [
         {
           name: 'Arnaldo',
@@ -169,6 +171,9 @@ export default {
         message.uploaded = true
       }, 2000)
     },
+    onClose() {
+      this.visible = false;
+    }
   }
 ```
 ## Component Props
@@ -179,6 +184,7 @@ export default {
 | messages | Array | true |  | An array of [messages](#message). Each message should be an Object with content, myself, participantId and timestamp|
 | onType | Function | false | () => false | Event called when the user is typing |
 | onMessageSubmit | Function | false | () => false | Event called when the user sends a new message |
+| onClose | Function | false | () => false | Event called when the user presses the close icon |
 | chatTitle | String | false | Empty String | The title on chat header |
 | placeholder | String | false | 'type your message here' | The placeholder of message text input |
 | colors | Object | true |  | Object with the [color's](#color) description of style properties |
