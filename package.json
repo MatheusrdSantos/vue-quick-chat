@@ -1,6 +1,6 @@
 {
   "name": "vue-quick-chat",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "private": false,
   "main": "./dist/vue-quick-chat.common.js",
   "files": [
@@ -30,7 +30,6 @@
     "core-js": "^2.6.5",
     "moment": "^2.24.0",
     "vue": "^2.6.10",
-    "vue-icon": "^2.1.1",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
@@ -41,7 +40,8 @@
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "vue-cli-plugin-moment": "^0.1.1",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.10",
+    "vue-icon": "^2.1.1"
   },
   "eslintConfig": {
     "root": true,

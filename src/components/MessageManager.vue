@@ -42,7 +42,7 @@ export default {
         submitIconSize: {
             type: String,
             required: false,
-            default: "15px"
+            default: "35px"
         },
     },
     data(){

@@ -42,7 +42,9 @@ export default {
        :borderStyle="borderStyle"
        :hideCloseButton="hideCloseButton"
        :closeButtonIconSize="closeButtonIconSize"
-       :submitIconSize="submitIconSize"/>
+       :onClose="onClose"
+       :submitIconSize="submitIconSize"
+       :asyncMode="asyncMode"/>
    </div>
 </template>
 ```
@@ -61,7 +63,8 @@ You can also use a slot to define the header content
         :borderStyle="borderStyle"
         :hideCloseButton="hideCloseButton"
         :closeButtonIconSize="closeButtonIconSize"
-        :submitIconSize="submitIconSize">
+        :submitIconSize="submitIconSize"
+        :asyncMode="asyncMode">
         <template v-slot:header>
           <div>
             <p v-for="(participant, index) in participants" :key="index" class="custom-title">{{participant.name}}</p>
@@ -79,6 +82,7 @@ export default {
   },
   data(){
     return {
+      visible: true,
       participants: [
         {
           name: 'Arnaldo',
@@ -167,6 +171,9 @@ export default {
         message.uploaded = true
       }, 2000)
     },
+    onClose() {
+      this.visible = false;
+    }
   }
 ```
 ## Component Props
@@ -177,6 +184,7 @@ export default {
 | messages | Array | true |  | An array of [messages](#message). Each message should be an Object with content, myself, participantId and timestamp|
 | onType | Function | false | () => false | Event called when the user is typing |
 | onMessageSubmit | Function | false | () => false | Event called when the user sends a new message |
+| onClose | Function | false | () => false | Event called when the user presses the close icon |
 | chatTitle | String | false | Empty String | The title on chat header |
 | placeholder | String | false | 'type your message here' | The placeholder of message text input |
 | colors | Object | true |  | Object with the [color's](#color) description of style properties |
@@ -206,6 +214,7 @@ Example
 | myself | boolean | Wether the message was sent by myself participant or by other participant |
 | participantId | int | The participant's id who sent the message  |
 |timestamp| Object| Object describing the year, month, day, hour, minute, second and millisecond that the message was sent |
+|uploaded| Boolean| If asyncMode is ```true``` and uploaded is ```true```, a visual feedback is displayed bollow the message. If asyncMode is ```true``` and uploaded is ```false```, a visual loading feedback is displayed bollow the message. If asyncMode is ```false```, this property is ignored.|
 
 Example
 ```javascript
@@ -213,7 +222,16 @@ Example
   content: 'received messages', 
   myself: false,
   participantId: 1,
-  timestamp: { year: 2019, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123 }
+  timestamp: { 
+    year: 2019, 
+    month: 3, 
+    day: 5, 
+    hour: 20, 
+    minute: 10, 
+    second: 3, 
+    millisecond: 123 
+  },
+  uploaded: true,
 }
 ```
 ### color
