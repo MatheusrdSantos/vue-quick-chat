@@ -70,8 +70,13 @@ export default {
             this.$refs.userInput.textContent = '';
 
             if(this.textInput){
+                let inputLen = this.textInput.length
+                let inputText = this.textInput
+                if(this.textInput[inputLen-1] == '\n'){
+                    inputText = inputText.slice(0, inputLen-1)
+                }
                 let message = {
-                    content: this.textInput, 
+                    content: inputText, 
                     myself: true, 
                     participantId: this.myself.id,
                     timestamp: moment(),

@@ -36,11 +36,12 @@ export default {
     },
     computed: {
         ...mapGetters([
-            'getParticipantById'
+            'getParticipantById',
+            'messages'
         ]),
-        messages: function(){
+        /* messages: function(){
             return this.$store.state.messages;
-        },
+        }, */
         myself: function(){
             return this.$store.state.myself;
         }

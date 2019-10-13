@@ -18,8 +18,8 @@
         :submitIconSize="submitIconSize"
         :asyncMode="asyncMode">
         <template v-slot:header>
-          <div>
-            <p v-for="(participant, index) in participants" :key="index" class="custom-title">{{participant.name}}</p>
+          <div class="header-slot">
+            <a v-for="(participant, index) in participants" :key="index" class="custom-title">{{`${participant.name}, `}}</a>
           </div>
         </template>
         </Chat>
@@ -50,7 +50,7 @@ export default {
     Chat
   },
   created(){
-    moment.locale('pt-br')
+    //moment.locale('pt-br')
   },
   data(){
     return {
@@ -123,11 +123,13 @@ export default {
       hideCloseButton: false,
       submitIconSize: "20px",
       closeButtonIconSize: "20px",
-      asyncMode: false
+      asyncMode: true
     }
   },
   methods: {
+    // eslint-disable-next-line 
     onType: function (e){
+      // eslint-disable-next-line 
       console.log('typing');
     },
     onMessageSubmit: function(message){
@@ -235,5 +237,8 @@ export default {
 }
 .custom-title{
   color: #eee;
+}
+.header-slot{
+  max-height: 100%;
 }
 </style>
