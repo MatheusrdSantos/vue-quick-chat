@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import moment from 'moment'
 
 Vue.use(Vuex)
-moment.locale('pt-br')
+//moment.locale('pt-br')
 
 export default new Vuex.Store({
   state: {
@@ -15,6 +15,7 @@ export default new Vuex.Store({
   },
   mutations: {
     newMessage: (state, message) => {
+      message.timestamp = message.timestamp.toISOString();
       state.messages = [...state.messages, message];
     },
     setParticipants: (state, participants) => {
@@ -25,7 +26,7 @@ export default new Vuex.Store({
     },
     setMessages: (state, messages) => {
       messages.map(message => {
-        message.timestamp = moment(message.timestamp)
+        message.timestamp = moment(message.timestamp).toISOString();
       })
       state.messages = messages;
     },
@@ -49,6 +50,15 @@ export default new Vuex.Store({
       })
 
       return curr_participant;
+    },
+    messages: (state) => {
+      let messages = [];
+      state.messages.forEach(message => {
+          let newMessage = { ...message };
+          newMessage.timestamp = moment(newMessage.timestamp);
+          messages.push(newMessage);
+      })
+      return messages;
     }
   }
 })
