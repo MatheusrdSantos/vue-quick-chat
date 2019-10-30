@@ -102,7 +102,6 @@ export default {
 
 .message-text > p {
     margin: 5px 0 5px 0;
-    height: 100%;
 }
 
 .message-timestamp{
