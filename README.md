@@ -132,10 +132,10 @@ export default {
           others: {
             bg: '#fb4141',
             text: '#fff'
-          }
-        },
-        messagesDisplay: {
+          },
+          messagesDisplay: {
             bg: '#f7f3f3'
+          }
         },
         submitIcon: '#b91010'
       },
