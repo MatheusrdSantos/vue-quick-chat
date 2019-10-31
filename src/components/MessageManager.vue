@@ -95,7 +95,7 @@ export default {
 }
 </script>
 <style scoped>
-.container-message-manager{
+.container-message-manager {
     height: 65px;
     background: #fff;
     display: flex;
@@ -104,12 +104,12 @@ export default {
     -webkit-box-shadow: 0px -2px 40px 0px rgba(186,186,186,0.67);
     box-shadow: 0px -2px 40px 0px rgba(186,186,186,0.67);
 }
-.message-text-box{
+.message-text-box {
     padding: 0 10px 0 10px;
     flex: 1;
     overflow: hidden;
 }
-.message-input{
+.message-input {
     width: 100%;
     resize: none;
     border: none;
@@ -140,15 +140,20 @@ export default {
   outline: none;
 }
 
-.message-input:focus{
+.message-input:focus {
     outline: none;
 }
 
-.container-send-message{
+.container-send-message {
     margin-left: 10px;
 }
+    
+.container-send-message svg {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
 
-.icon-send-message{
+.icon-send-message {
     /* color:#b91010; */
     width: 20px;
     cursor: pointer;
@@ -157,7 +162,7 @@ export default {
     border-radius: 11px;
     padding: 8px;
 }
-.icon-send-message:hover{
+.icon-send-message:hover {
     opacity: 1;
     background: #eee;
 }
