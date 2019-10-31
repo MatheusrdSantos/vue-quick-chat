@@ -15,7 +15,7 @@ import MessageDisplay from './MessageDisplay.vue'
 import MessageManager from './MessageManager.vue'
 import { mapMutations } from 'vuex'
 import store from '../store'
-export default {
+export default () => ({
     name: 'Chat',
     store: store(),
     components:{
@@ -119,7 +119,7 @@ export default {
         this.setPlaceholder(this.placeholder);
         this.setChatTitle(this.chatTitle);
     },
-}
+})
 </script>
 
 <style scoped>
