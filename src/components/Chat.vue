@@ -17,7 +17,7 @@ import { mapMutations } from 'vuex'
 import store from '../store'
 export default {
     name: 'Chat',
-    store,
+    store: store(),
     components:{
         Header,
         MessageDisplay,
