@@ -15,9 +15,8 @@ import MessageDisplay from './MessageDisplay.vue'
 import MessageManager from './MessageManager.vue'
 import { mapMutations } from 'vuex'
 import store from '../store'
-export default () => ({
+export default {
     name: 'Chat',
-    store: store(),
     components:{
         Header,
         MessageDisplay,
@@ -98,6 +97,9 @@ export default () => ({
             default: false
         }
     },
+    beforeCreate() {
+          this.$store = store();
+    },
     methods: {
         ...mapMutations([
             'setParticipants',
@@ -119,7 +121,7 @@ export default () => ({
         this.setPlaceholder(this.placeholder);
         this.setChatTitle(this.chatTitle);
     },
-})
+}
 </script>
 
 <style scoped>
