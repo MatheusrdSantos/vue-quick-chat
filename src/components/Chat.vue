@@ -17,7 +17,6 @@ import { mapMutations } from 'vuex'
 import store from '../store'
 export default {
     name: 'Chat',
-    store,
     components:{
         Header,
         MessageDisplay,
@@ -97,6 +96,9 @@ export default {
             required: false,
             default: false
         }
+    },
+    beforeCreate() {
+          this.$store = store();
     },
     methods: {
         ...mapMutations([
