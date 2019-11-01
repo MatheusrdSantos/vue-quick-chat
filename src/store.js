@@ -5,60 +5,62 @@ import moment from 'moment'
 Vue.use(Vuex)
 //moment.locale('pt-br')
 
-export default new Vuex.Store({
-  state: {
-    messages: [],
-    myself:{},
-    participants: [],
-    chatTitle: '',
-    placeholder: ''
-  },
-  mutations: {
-    newMessage: (state, message) => {
-      message.timestamp = message.timestamp.toISOString();
-      state.messages = [...state.messages, message];
-    },
-    setParticipants: (state, participants) => {
-      state.participants = participants;  
-    },
-    setMyself: (state, myself) => {
-      state.myself = myself;
-    },
-    setMessages: (state, messages) => {
-      messages.map(message => {
-        message.timestamp = moment(message.timestamp).toISOString();
-      })
-      state.messages = messages;
-    },
-    setChatTitle: (state, title) => {
-      state.chatTitle = title;
-    },
-    setPlaceholder: (state, placeholder) => {
-      state.placeholder = placeholder;
-    }
-  },
-  actions: {
-
-  },
-  getters: {
-    getParticipantById: (state) => (id) => {
-      let curr_participant;
-      state.participants.forEach(participant => {
-        if(participant.id == id){
-          curr_participant = participant;
+export default () => {
+    return new Vuex.Store({
+      state: {
+        messages: [],
+        myself:{},
+        participants: [],
+        chatTitle: '',
+        placeholder: ''
+      },
+      mutations: {
+        newMessage: (state, message) => {
+          message.timestamp = message.timestamp.toISOString();
+          state.messages = [...state.messages, message];
+        },
+        setParticipants: (state, participants) => {
+          state.participants = participants;  
+        },
+        setMyself: (state, myself) => {
+          state.myself = myself;
+        },
+        setMessages: (state, messages) => {
+          messages.map(message => {
+            message.timestamp = moment(message.timestamp).toISOString();
+          })
+          state.messages = messages;
+        },
+        setChatTitle: (state, title) => {
+          state.chatTitle = title;
+        },
+        setPlaceholder: (state, placeholder) => {
+          state.placeholder = placeholder;
         }
-      })
+      },
+      actions: {
 
-      return curr_participant;
-    },
-    messages: (state) => {
-      let messages = [];
-      state.messages.forEach(message => {
-          let newMessage = { ...message };
-          newMessage.timestamp = moment(newMessage.timestamp);
-          messages.push(newMessage);
-      })
-      return messages;
-    }
-  }
-})
+      },
+      getters: {
+        getParticipantById: (state) => (id) => {
+          let curr_participant;
+          state.participants.forEach(participant => {
+            if(participant.id == id){
+              curr_participant = participant;
+            }
+          })
+
+          return curr_participant;
+        },
+        messages: (state) => {
+          let messages = [];
+          state.messages.forEach(message => {
+              let newMessage = { ...message };
+              newMessage.timestamp = moment(newMessage.timestamp);
+              messages.push(newMessage);
+          })
+          return messages;
+        }
+      }
+    })
+}

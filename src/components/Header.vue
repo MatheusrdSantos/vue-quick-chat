@@ -16,7 +16,7 @@
 
         <div v-if="!hideCloseButton && !hasHeaderSlot" class="header-exit">
             <slot name="close-button" :onClose="onClose">
-                <a class="header-exit-button" href="#" @click="onClose" :style="{fontSize: closeButtonIconSize}">✕</a>
+                <a class="header-exit-button" href="#" @click.prevent="onClose" :style="{fontSize: closeButtonIconSize}">✕</a>
             </slot>
         </div>
     </div>
