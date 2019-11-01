@@ -65,8 +65,9 @@ export default {
         ...mapMutations([
             'newMessage'
         ]),
-        sendMessage: function(){
-            this.textInput = this.$refs.userInput.textContent;
+        sendMessage: function(e){
+            e.preventDefault();
+            this.textInput = this.$refs.userInput.innerText;
             this.$refs.userInput.textContent = '';
 
             if(this.textInput){
