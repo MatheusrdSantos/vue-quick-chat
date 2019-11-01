@@ -1,7 +1,7 @@
 <template>
     <div ref="containerMessageDisplay" :style="{background: colors.message.messagesDisplay.bg}" class="container-message-display" @scroll="updateScrollState">
         <div v-for="(message, index) in messages" :key="index" class="message-container" :class="{'my-message': message.myself, 'other-message': !message.myself}">
-            <div class="message-text" :style="{background: !message.myself?colors.message.others.bg: colors.message.myself.bg}">
+            <div class="message-text" :style="{background: !message.myself?colors.message.others.bg: colors.message.myself.bg, color: !message.myself?colors.message.others.text: colors.message.myself.text}">
                 <p v-if="!message.myself" class="message-username">{{getParticipantById(message.participantId).name}}</p>
                 <p v-else class="message-username">{{myself.name}}</p>
                 <p>{{message.content}}</p>
