@@ -21,6 +21,9 @@ npm install vue-quick-chat --save
 ## Usage
 ```javascript
 import { Chat } from 'vue-quick-chat'
+import 'vue-quick-chat/dist/vue-quick-chat.css';
+
+
 export default {
   components: {
     Chat
