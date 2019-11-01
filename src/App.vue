@@ -123,7 +123,7 @@ export default {
         bottomRight: "10px",
       },
       hideCloseButton: false,
-      submitIconSize: "20px",
+      submitIconSize: "30px",
       closeButtonIconSize: "20px",
       asyncMode: true
     }

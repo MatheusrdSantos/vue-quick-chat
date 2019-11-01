@@ -109,7 +109,7 @@
     .header-exit-button{
         text-decoration: none;
         color: #fff;
-        font-size: 20px;
+        font-size: 30px;
     }
 
     .icon-close-chat{
