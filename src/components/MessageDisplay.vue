@@ -1,12 +1,14 @@
 <template>
     <div ref="containerMessageDisplay" :style="{background: colors.message.messagesDisplay.bg}"
          class="container-message-display" @scroll="updateScrollState">
+        <div v-if="loading" class="loader">
+            <div class="message-loading"></div>
+        </div>
         <div v-for="(message, index) in messages" :key="index" class="message-container"
              :class="{'my-message': message.myself, 'other-message': !message.myself}">
             <div class="message-text"
                  :style="{background: !message.myself?colors.message.others.bg: colors.message.myself.bg, color: !message.myself?colors.message.others.text: colors.message.myself.text}">
-                <p v-if="!message.myself" class="message-username">
-                    {{getParticipantById(message.participantId).name}}</p>
+                <p v-if="!message.myself" class="message-username">{{getParticipantById(message.participantId).name}}</p>
                 <p v-else class="message-username">{{myself.name}}</p>
                 <p>{{message.content}}</p>
             </div>
@@ -20,7 +22,7 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex';
+    import {mapGetters, mapMutations} from 'vuex';
 
     export default {
         props: {
@@ -33,38 +35,54 @@
                 required: false,
                 default: false
             },
-
+            loadMoreMessages: {
+                type: Function,
+                required: false,
+                default: null
+            }
         },
         data() {
             return {
-                updateScroll: false,
-                lastMessage: null
+                updateScroll: true,
+                lastMessage: null,
+                loading: false
             }
         },
         computed: {
             ...mapGetters([
                 'getParticipantById',
-                'messages'
+                'messages',
+                'myself'
             ]),
-            /* messages: function(){
-                return this.$store.state.messages;
-            }, */
-            myself: function () {
-                return this.$store.state.myself;
-            }
         },
         mounted() {
             this.goToBottom();
+            this.$refs.containerMessageDisplay.dispatchEvent(new CustomEvent('scroll'));
         },
         updated() {
-            if (this.messages.length && this.messages[this.messages.length - 1] !== this.lastMessage || this.updateScroll) {
+            if (this.messages.length && this.messages[this.messages.length - 1] !== this.lastMessage && this.updateScroll) {
                 this.goToBottom();
-                this.lastMessage = this.messages[this.messages.length - 1]
+                if (this.messages.length) {
+                    this.lastMessage = this.messages[this.messages.length - 1]
+                }
             }
         },
         methods: {
+            ...mapMutations([
+                'setMessages',
+            ]),
             updateScrollState({target: {scrollTop, clientHeight, scrollHeight}}) {
                 this.updateScroll = scrollTop + clientHeight >= scrollHeight;
+
+                if (typeof this.loadMoreMessages === 'function' && scrollTop < 20) {
+                    this.loading = true;
+                    this.loadMoreMessages((messages) => {
+                        if (Array.isArray(messages) && messages.length > 0) {
+                            this.setMessages([...messages, ...this.messages]);
+                        }
+                        this.loading = false;
+                    });
+                }
             },
             goToBottom() {
                 let scrollDiv = this.$refs.containerMessageDisplay;
@@ -166,7 +184,14 @@
             border-left-color: rgb(59, 59, 59);
             border-radius: 50%;
             margin-left: 5px;
+            display: inline-block;
             animation: spin 1.3s ease infinite;
+        }
+
+        .loader .message-loading {
+            width: 16px;
+            height: 16px;
+            margin: 5px 0 0 0;
         }
     }
 

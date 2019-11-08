@@ -1,16 +1,13 @@
 <template>
     <div class="header-container" :style="{background: colors.header.bg}">
-        <slot name="header" :colors="colors" :chatTitle="chatTitle" :participants="participants"
+        <slot name="header" :colors="colors" :chatTitle="chatTitle"
+              :participants="participants"
               :myself="myself"></slot>
         <div v-if="!hasHeaderSlot" class="header-title">
             <p class="header-title-text" :style="{color: colors.header.text}">{{chatTitle}}</p>
             <p class="header-paticipants-text">
-                <span>
-                    {{`${myself.name}, `}}
-                </span>
-                <span v-for="(participant, index) in participants" :key="participant.id">
-                    {{participants.length-1 != index?`${participant.name}, ` : participant.name}}
-                </span>
+                <span>{{myself.name}}, </span>
+                <span v-for="(participant, index) in participants" :key="participant.id">{{participant.name}}{{participants.length - index - 1 ? ', ' : ''}}</span>
             </p>
         </div>
 
@@ -62,13 +59,13 @@
             }
         },
         computed: {
-            participants: function () {
+            participants() {
                 return this.$store.state.participants;
             },
-            myself: function () {
+            myself() {
                 return this.$store.state.myself;
             },
-            chatTitle: function () {
+            chatTitle() {
                 return this.$store.state.chatTitle;
             },
             hasHeaderSlot: function () {

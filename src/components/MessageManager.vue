@@ -56,10 +56,10 @@
             }
         },
         computed: {
-            myself: function () {
+            myself() {
                 return this.$store.state.myself;
             },
-            placeholder: function () {
+            placeholder() {
                 return this.$store.state.placeholder;
             }
         },
@@ -70,14 +70,14 @@
             ...mapMutations([
                 'newMessage'
             ]),
-            sendMessage: function () {
+            sendMessage() {
                 this.textInput = this.$refs.userInput.textContent;
                 this.$refs.userInput.textContent = '';
 
                 if (this.textInput) {
                     let inputLen = this.textInput.length;
                     let inputText = this.textInput;
-                    if (this.textInput[inputLen - 1] == '\n') {
+                    if (this.textInput[inputLen - 1] === '\n') {
                         inputText = inputText.slice(0, inputLen - 1)
                     }
                     let message = {

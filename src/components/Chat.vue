@@ -7,7 +7,7 @@
                 <slot name="header"></slot>
             </template>
         </Header>
-        <MessageDisplay :colors="colors" :async-mode="asyncMode"/>
+        <MessageDisplay :colors="colors" :async-mode="asyncMode" :load-more-messages="loadMoreMessages"/>
         <MessageManager :on-type="onType" :on-message-submit="onMessageSubmit" :colors="colors"
                         :border-style="borderStyle" :submit-icon-size="submitIconSize"/>
     </div>
@@ -100,10 +100,15 @@
                 type: Boolean,
                 required: false,
                 default: false
+            },
+            loadMoreMessages: {
+                type: Function,
+                required: false,
+                default: null
             }
         },
         watch: {
-            messages: function () {
+            messages() {
                 this.setMessages(this.messages);
             }
         },

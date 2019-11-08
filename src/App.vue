@@ -16,6 +16,7 @@
                       :hide-close-button="hideCloseButton"
                       :close-button-icon-size="closeButtonIconSize"
                       :submit-icon-size="submitIconSize"
+                      :load-more-messages="toLoad.length > 0 ? loadMoreMessages : null"
                       :async-mode="asyncMode"/>
             </div>
             <div class="external-controller">
@@ -69,18 +70,46 @@
                         uploaded: true,
                         viewed: true
                     },
-                    /* {
-                      content: "Hey, Adam! I'm feeling really fine this evening.",
-                      myself: true,
-                      participantId: 3,
-                      timestamp: { year: 2011, month: 0, day: 5, hour: 19, minute: 10, second: 3, millisecond:123 }
+                    {
+                        content: "Really?! I don't care! Haha",
+                        myself: false,
+                        participantId: 1,
+                        timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
+                        uploaded: true,
+                        viewed: true
                     },
                     {
-                      content: 'Hey, John Doe! How are you today?',
-                      myself: false,
-                      participantId: 2,
-                      timestamp: { year: 2010, month: 3, day: 5, hour: 10, minute: 10, second: 3, millisecond: 123 }
-                    } */
+                        content: "Really?! I don't care! Haha",
+                        myself: false,
+                        participantId: 1,
+                        timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
+                        uploaded: true,
+                        viewed: true
+                    },
+                    {
+                        content: "Really?! I don't care! Haha",
+                        myself: false,
+                        participantId: 1,
+                        timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
+                        uploaded: true,
+                        viewed: true
+                    },
+                    {
+                        content: "Really?! I don't care! Haha",
+                        myself: false,
+                        participantId: 1,
+                        timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
+                        uploaded: true,
+                        viewed: true
+                    },
+                    {
+                        content: "Really?! I don't care! Haha",
+                        myself: false,
+                        participantId: 1,
+                        timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
+                        uploaded: true,
+                        viewed: true
+                    },
                 ],
                 chatTitle: 'My chat title',
                 placeholder: 'send your message',
@@ -115,12 +144,25 @@
                 hideCloseButton: false,
                 submitIconSize: "20px",
                 closeButtonIconSize: "20px",
-                asyncMode: true
-            }
-        },
-        computed: {
-            names() {
-                return this.participants.map((p) => p.name).join(', ');
+                asyncMode: true,
+                toLoad: [
+                    {
+                        content: 'Hey, John Doe! How are you today?',
+                        myself: false,
+                        participantId: 2,
+                        timestamp: { year: 2011, month: 3, day: 5, hour: 10, minute: 10, second: 3, millisecond: 123 },
+                        uploaded: true,
+                        viewed: true
+                    },
+                    {
+                        content: "Hey, Adam! I'm feeling really fine this evening.",
+                        myself: true,
+                        participantId: 3,
+                        timestamp: { year: 2010, month: 0, day: 5, hour: 19, minute: 10, second: 3, millisecond:123 },
+                        uploaded: true,
+                        viewed: true
+                    },
+                ]
             }
         },
         created() {
@@ -128,9 +170,17 @@
         },
         methods: {
             // eslint-disable-next-line
-            onType: function (e) {
+            onType: function () {
                 // eslint-disable-next-line
                 console.log('typing');
+            },
+            loadMoreMessages(resolve) {
+                setTimeout(() => {
+                    resolve(this.toLoad);
+                    //Make sure the loaded messages are also added to our local messages copy or they will be lost
+                    this.messages.unshift(...this.toLoad);
+                    this.toLoad = [];
+                }, 1000);
             },
             onMessageSubmit(message) {
                 /*
@@ -245,11 +295,4 @@
         background: rgb(255, 255, 255);
     }
 
-    .custom-title {
-        color: #eee;
-    }
-
-    .header-slot {
-        max-height: 100%;
-    }
 </style>
