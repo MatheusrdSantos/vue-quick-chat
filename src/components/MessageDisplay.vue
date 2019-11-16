@@ -103,6 +103,15 @@
         flex-direction: column;
         padding-bottom: 10px;
         max-height: 100%;
+                /************** Safari 10.1+ ********************/
+        @media not all and (min-resolution:.001dpcm)
+        { @supports (-webkit-appearance:none) {
+
+            .message-container{
+                display:-webkit-box !important;
+            }
+            
+        }}
 
         .message-text {
             background: #fff;
