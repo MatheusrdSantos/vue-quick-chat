@@ -6,8 +6,7 @@
                  @input="handleType" @keyup.enter.exact="sendMessage"></div>
         </div>
         <div class="container-send-message" @click.prevent="sendMessage">
-            <v-icon name="send" base-class="icon-send-message"
-                    :style="{color: colors.submitIcon, width: submitIconSize}"/>
+            <v-feather-icon name="send" base-class="icon-send-message" :style="{color: colors.submitIcon, width: submitIconSize}"/>
         </div>
     </div>
 </template>

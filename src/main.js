@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import feather from 'vue-icon'
 Vue.config.productionTip = false
-Vue.use(feather, 'v-icon')
+Vue.use(feather, 'v-feather-icon')
 
 new Vue({
   render: h => h(App)

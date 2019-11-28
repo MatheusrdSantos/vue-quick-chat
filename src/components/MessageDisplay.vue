@@ -14,7 +14,7 @@
             </div>
             <div class="message-timestamp" :style="{'justify-content': message.myself?'flex-end':'baseline'}">
                 {{message.timestamp.format('LT')}}
-                <v-icon v-if="asyncMode && message.uploaded" name="check" base-class="icon-sent"/>
+                <v-feather-icon v-if="asyncMode && message.uploaded" name="check" base-class="icon-sent"/>
                 <div v-else-if="asyncMode" class="message-loading"></div>
             </div>
         </div>
