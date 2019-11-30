@@ -108,8 +108,20 @@
             }
         },
         watch: {
+            participants() {
+                this.setParticipants(this.participants);
+            },
+            myself() {
+                this.setMyself(this.myself);
+            },
             messages() {
                 this.setMessages(this.messages);
+            },
+            placeholder() {
+                this.setPlaceholder(this.placeholder);
+            },
+            chatTitle() {
+                this.setChatTitle(this.chatTitle);
             }
         },
         beforeCreate() {
