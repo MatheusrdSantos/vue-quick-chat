@@ -23,6 +23,7 @@
                 <div class="controller-btn-container">
                     <button class="btn-message" @click="addMessage">Adicionar mensagem</button>
                     <button class="btn-participant" @click="addParticipant">Adicionar participante</button>
+                    <button class="btn-participant" @click="changeAllProps">Change All Props</button>
                 </div>
                 <div class="message-list">
                     <ol>
@@ -219,6 +220,50 @@
                     id: 4
                 };
                 this.participants.push(participant)
+            },
+            changeAllProps() {
+                this.myself = {
+                    name: 'I Qanah',
+                    id: 3
+                };
+                this.participants = [
+                    {
+                        name: 'Ibrahim',
+                        id: 5
+                    },
+                    {
+                        name: 'Ana',
+                        id: 6
+                    }
+                ];
+                this.messages = [
+                    {
+                        content: "Really?! I don't care! Haha",
+                        myself: false,
+                        participantId: 5,
+                        timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
+                        uploaded: true,
+                        viewed: true
+                    },
+                    {
+                        content: "Really?! I don't care! Haha",
+                        myself: false,
+                        participantId: 6,
+                        timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
+                        uploaded: true,
+                        viewed: true
+                    },
+                    {
+                        content: "Really?! I don't care! Haha",
+                        myself: true,
+                        participantId: 3,
+                        timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
+                        uploaded: true,
+                        viewed: true
+                    }
+                ];
+                this.chatTitle = 'Change All Participants';
+                this.placeholder = 'اكتب رسالتك هنا'
             }
         }
     }
