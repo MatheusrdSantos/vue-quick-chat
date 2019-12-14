@@ -262,8 +262,28 @@
                         viewed: true
                     }
                 ];
+
+                this.toLoad = [
+                    {
+                        content: 'Hey, John Doe! How are you today?',
+                        myself: false,
+                        participantId: 6,
+                        timestamp: { year: 2011, month: 3, day: 5, hour: 10, minute: 10, second: 3, millisecond: 123 },
+                        uploaded: true,
+                        viewed: true
+                    },
+                    {
+                        content: "Hey, Adam! I'm feeling really fine this evening.",
+                        myself: true,
+                        participantId: 3,
+                        timestamp: { year: 2010, month: 0, day: 5, hour: 19, minute: 10, second: 3, millisecond:123 },
+                        uploaded: true,
+                        viewed: true
+                    },
+                ];
+
                 this.chatTitle = 'Change All Participants';
-                this.placeholder = 'اكتب رسالتك هنا'
+                this.placeholder = 'اكتب رسالتك هنا';
             }
         }
     }
