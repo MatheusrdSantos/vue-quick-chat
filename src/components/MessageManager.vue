@@ -81,7 +81,7 @@
                     }
                     let message = {
                         content: inputText,
-                        myself: true,
+                        // myself: true,
                         participantId: this.myself.id,
                         timestamp: moment(),
                         uploaded: false,
