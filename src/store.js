@@ -15,7 +15,7 @@ export default () => {
         },
         mutations: {
             newMessage: (state, message) => {
-                message.timestamp = moment(message.timestamp);
+                message.timestamp = message.timestamp.toISOString();
                 message.myself = message.participantId === state.myself.id;
                 state.messages = [...state.messages, message];
             },
@@ -27,7 +27,7 @@ export default () => {
             },
             setMessages: (state, messages) => {
                 messages.map(message => {
-                    message.timestamp = moment(message.timestamp);
+                    message.timestamp = moment(message.timestamp).toISOString();
                     message.myself = message.participantId === state.myself.id;
                 });
                 state.messages = messages;
@@ -52,7 +52,13 @@ export default () => {
                 return curr_participant;
             },
             messages: (state) => {
-                return state.messages;
+                let messages = [];
+                state.messages.forEach(message => {
+                    let newMessage = {...message};
+                    newMessage.timestamp = moment(newMessage.timestamp);
+                    messages.push(newMessage);
+                });
+                return messages;
             },
             myself: (state) => {
                 return state.myself;
