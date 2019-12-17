@@ -7,7 +7,7 @@
                 <slot name="header"></slot>
             </template>
         </Header>
-        <MessageDisplay :colors="colors" :async-mode="asyncMode" :load-more-messages="loadMoreMessages"/>
+        <MessageDisplay :colors="colors" :async-mode="asyncMode" :load-more-messages="loadMoreMessages" :scroll-bottom="scrollBottom"/>
         <MessageManager :on-type="onType" :on-message-submit="onMessageSubmit" :colors="colors"
                         :border-style="borderStyle" :submit-icon-size="submitIconSize"/>
     </div>
@@ -105,6 +105,16 @@
                 type: Function,
                 required: false,
                 default: null
+            },
+            scrollBottom:{
+                type: Object,
+                required: false,
+                default: () => {
+                    return {
+                        messageSent: true,
+                        messageReceived: false
+                    }
+                }
             }
         },
         watch: {
