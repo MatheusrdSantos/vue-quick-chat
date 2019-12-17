@@ -39,6 +39,10 @@
                 type: Function,
                 required: false,
                 default: null
+            },
+            scrollBottom: {
+                type: Object,
+                required: true
             }
         },
         data() {
@@ -60,10 +64,13 @@
             this.$refs.containerMessageDisplay.dispatchEvent(new CustomEvent('scroll'));
         },
         updated() {
-            if (this.messages.length && this.messages[this.messages.length - 1] !== this.lastMessage && this.updateScroll) {
-                this.goToBottom();
-                if (this.messages.length) {
-                    this.lastMessage = this.messages[this.messages.length - 1]
+            if (this.messages.length && !this.messageCompare(this.messages[this.messages.length - 1], this.lastMessage)) {
+                
+                if(this.updateScroll || (this.scrollBottom.messageSent && this.messages[this.messages.length - 1].participantId == this.myself.id) || (this.scrollBottom.messageReceived && this.messages[this.messages.length - 1].participantId != this.myself.id)){
+                    this.goToBottom();
+                    if (this.messages.length) {
+                        this.lastMessage = this.messages[this.messages.length - 1]
+                    }
                 }
             }
         },
@@ -71,6 +78,29 @@
             ...mapMutations([
                 'setMessages',
             ]),
+            /**
+             * This function compare two messages without looking at the uploaded propertie.
+             * This function has been implemented to prevent chat scrolling down after changing the message from 'uploaded = false' to 'uploaded = true'.
+             * @param {Object} message1 the first message object 
+             * @param {Object} message2 the second message object
+             * @return {Boolean} true if the messages are equal and false if they are different
+             */
+            messageCompare(message1, message2){
+                /**
+                 * if one of the messages are null, you can safely compare the messages with '==='
+                 */
+                if(!message2 || !message1){
+                    return message1 === message2
+                }
+                /**
+                 * compare the immutable properties of a message
+                 */
+                let participant_equal = message1.participantId == message2.participantId;
+                let content_equal = message1.content == message2.content;
+                let timestamp_equal = message1.timestamp.isSame(message2.timestamp);
+
+                return  participant_equal && content_equal && timestamp_equal
+            },
             updateScrollState({target: {scrollTop, clientHeight, scrollHeight}}) {
                 this.updateScroll = scrollTop + clientHeight >= scrollHeight;
 

@@ -17,7 +17,8 @@
                       :close-button-icon-size="closeButtonIconSize"
                       :submit-icon-size="submitIconSize"
                       :load-more-messages="toLoad.length > 0 ? loadMoreMessages : null"
-                      :async-mode="asyncMode"/>
+                      :async-mode="asyncMode"
+                      :scroll-bottom="scrollBottom"/>
             </div>
             <div class="external-controller">
                 <div class="controller-btn-container">
@@ -163,7 +164,11 @@
                         uploaded: true,
                         viewed: true
                     },
-                ]
+                ],
+                scrollBottom: {
+                    messageSent: true,
+                    messageReceived: true
+                }
             }
         },
         created() {
