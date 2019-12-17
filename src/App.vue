@@ -65,7 +65,7 @@
                 messages: [
                     {
                         content: "Really?! I don't care! Haha",
-                        myself: false,
+                        // myself: false,
                         participantId: 1,
                         timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
                         uploaded: true,
@@ -73,7 +73,7 @@
                     },
                     {
                         content: "Really?! I don't care! Haha",
-                        myself: false,
+                        // myself: false,
                         participantId: 1,
                         timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
                         uploaded: true,
@@ -81,7 +81,7 @@
                     },
                     {
                         content: "Really?! I don't care! Haha",
-                        myself: false,
+                        // myself: false,
                         participantId: 1,
                         timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
                         uploaded: true,
@@ -89,7 +89,7 @@
                     },
                     {
                         content: "Really?! I don't care! Haha",
-                        myself: false,
+                        // myself: false,
                         participantId: 1,
                         timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
                         uploaded: true,
@@ -97,7 +97,7 @@
                     },
                     {
                         content: "Really?! I don't care! Haha",
-                        myself: false,
+                        // myself: false,
                         participantId: 1,
                         timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
                         uploaded: true,
@@ -105,7 +105,7 @@
                     },
                     {
                         content: "Really?! I don't care! Haha",
-                        myself: false,
+                        // myself: false,
                         participantId: 1,
                         timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
                         uploaded: true,
@@ -149,7 +149,7 @@
                 toLoad: [
                     {
                         content: 'Hey, John Doe! How are you today?',
-                        myself: false,
+                        // myself: false,
                         participantId: 2,
                         timestamp: { year: 2011, month: 3, day: 5, hour: 10, minute: 10, second: 3, millisecond: 123 },
                         uploaded: true,
@@ -157,7 +157,7 @@
                     },
                     {
                         content: "Hey, Adam! I'm feeling really fine this evening.",
-                        myself: true,
+                        // myself: true,
                         participantId: 3,
                         timestamp: { year: 2010, month: 0, day: 5, hour: 19, minute: 10, second: 3, millisecond:123 },
                         uploaded: true,
@@ -206,7 +206,7 @@
                 this.messages.push(
                     {
                         content: "Update state",
-                        myself: false,
+                        // myself: false,
                         participantId: 1,
                         timestamp: {year: 2014, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
                         uploaded: true,
@@ -239,7 +239,7 @@
                 this.messages = [
                     {
                         content: "Really?! I don't care! Haha",
-                        myself: false,
+                        // myself: false,
                         participantId: 5,
                         timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
                         uploaded: true,
@@ -247,7 +247,7 @@
                     },
                     {
                         content: "Really?! I don't care! Haha",
-                        myself: false,
+                        // myself: false,
                         participantId: 6,
                         timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
                         uploaded: true,
@@ -255,7 +255,7 @@
                     },
                     {
                         content: "Really?! I don't care! Haha",
-                        myself: true,
+                        // myself: true,
                         participantId: 3,
                         timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
                         uploaded: true,
