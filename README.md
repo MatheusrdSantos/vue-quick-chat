@@ -48,7 +48,8 @@ export default {
        :on-close="onClose"
        :submit-icon-size="submitIconSize"
        :load-more-messages="toLoad.length > 0 ? loadMoreMessages : null"
-       :async-mode="asyncMode"/>
+       :async-mode="asyncMode"
+       :scroll-bottom="scrollBottom"/>
    </div>
 </template>
 ```
@@ -68,7 +69,9 @@ You can also use a slot to define the header content
         :hideCloseButton="hideCloseButton"
         :closeButtonIconSize="closeButtonIconSize"
         :submitIconSize="submitIconSize"
-        :asyncMode="asyncMode">
+        :load-more-messages="toLoad.length > 0 ? loadMoreMessages : null"
+        :asyncMode="asyncMode"
+        :scroll-bottom="scrollBottom">
         <template v-slot:header>
           <div>
             <p v-for="(participant, index) in participants" :key="index" class="custom-title">{{participant.name}}</p>
@@ -172,7 +175,11 @@ export default {
                     uploaded: true,
                     viewed: true
                 },
-            ]
+            ],
+            scrollBottom: {
+                messageSent: true,
+                messageReceived: false
+            }
         }
     },
     methods: {
@@ -226,7 +233,8 @@ export default {
 | submitIconSize | String | false | "15px" | The submit icon size in pixels. |
 | closeButtonIconSize | String | false | "15px" | The close button icon size in pixels. |
 | asyncMode | Boolean | false | false | If the value is ```true``` the component begins to watch message upload status and displays a visual feedback for each message. If the value is ```false``` the visual feedback is disabled |
-| loadMoreMessages | Function | false | null | If this function is passed and you reach the top of the messages, it will be called and a loading state will be displayed until you resolve it by calling the only parameter passed to it
+| loadMoreMessages | Function | false | null | If this function is passed and you reach the top of the messages, it will be called and a loading state will be displayed until you resolve it by calling the only parameter passed to it |
+| scrollBottom | Object | false | { messageSent: true, messageReceived: false} | This object describes the chat scroll behavior. The two options represent the moment when the chat should scroll to the bottom. If 'messageSent' is ```true```, the chat will scroll to bottom aways you send a new message. If 'messageReceived' is ```true```, the chat will scroll to bottom always you receive a new message.  |
 
 ### participant
 | name | type | description |
@@ -245,7 +253,7 @@ Example
 | name | type | description |
 |---------|--------|----------------|
 | content | String | The message text content |
-| myself | boolean | Wether the message was sent by myself participant or by other participant |
+| myself | boolean | (REMOVED) Whether the message was sent by myself or by other participants. Since version 1.0.8 this property is automatically set by the chat |
 | participantId | int | The participant's id who sent the message  |
 |timestamp| Object| Object describing the year, month, day, hour, minute, second and millisecond that the message was sent |
 |uploaded| Boolean| If asyncMode is ```true``` and uploaded is ```true```, a visual feedback is displayed bollow the message. If asyncMode is ```true``` and uploaded is ```false```, a visual loading feedback is displayed bollow the message. If asyncMode is ```false```, this property is ignored.|
@@ -254,7 +262,7 @@ Example
 ```javascript
 {
   content: 'received messages', 
-  myself: false,
+  //myself: false,
   participantId: 1,
   timestamp: { 
     year: 2019, 
