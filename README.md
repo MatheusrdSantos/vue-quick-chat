@@ -49,7 +49,8 @@ export default {
        :submit-icon-size="submitIconSize"
        :load-more-messages="toLoad.length > 0 ? loadMoreMessages : null"
        :async-mode="asyncMode"
-       :scroll-bottom="scrollBottom"/>
+       :scroll-bottom="scrollBottom"
+       :display-header="displayHeader"/>
    </div>
 </template>
 ```
@@ -179,7 +180,8 @@ export default {
             scrollBottom: {
                 messageSent: true,
                 messageReceived: false
-            }
+            },
+            displayHeader:true
         }
     },
     methods: {
@@ -235,6 +237,7 @@ export default {
 | asyncMode | Boolean | false | false | If the value is ```true``` the component begins to watch message upload status and displays a visual feedback for each message. If the value is ```false``` the visual feedback is disabled |
 | loadMoreMessages | Function | false | null | If this function is passed and you reach the top of the messages, it will be called and a loading state will be displayed until you resolve it by calling the only parameter passed to it |
 | scrollBottom | Object | false | { messageSent: true, messageReceived: false} | This object describes the chat scroll behavior. The two options represent the moment when the chat should scroll to the bottom. If 'messageSent' is ```true```, the chat will scroll to bottom aways you send a new message. If 'messageReceived' is ```true```, the chat will scroll to bottom always you receive a new message.  |
+| displayHeader | Boolean | false | true | This prop describes whether the header should be displayed or not |
 
 ### participant
 | name | type | description |
