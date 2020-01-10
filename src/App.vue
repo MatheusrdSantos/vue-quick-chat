@@ -18,7 +18,8 @@
                       :submit-icon-size="submitIconSize"
                       :load-more-messages="toLoad.length > 0 ? loadMoreMessages : null"
                       :async-mode="asyncMode"
-                      :scroll-bottom="scrollBottom"/>
+                      :scroll-bottom="scrollBottom"
+                      :display-header="false"/>
             </div>
             <div class="external-controller">
                 <div class="controller-btn-container">

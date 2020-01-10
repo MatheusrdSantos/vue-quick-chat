@@ -1,8 +1,8 @@
 <template>
     <div class="quick-chat-container"
          :style="{'border-bottom-left-radius': borderStyle.bottomLeft, 'border-bottom-right-radius': borderStyle.bottomRight, 'border-top-right-radius': borderStyle.topRight, 'border-top-left-radius': borderStyle.topLeft}">
-        <Header :colors="colors" :border-style="borderStyle" :hide-close-button="hideCloseButton"
-                :close-button-icon-size="closeButtonIconSize" :on-close="onClose">
+        <Header v-if="displayHeader" :colors="colors" :border-style="borderStyle" 
+                :hide-close-button="hideCloseButton" :close-button-icon-size="closeButtonIconSize" :on-close="onClose">
             <template #header>
                 <slot name="header"></slot>
             </template>
@@ -115,6 +115,11 @@
                         messageReceived: false
                     }
                 }
+            },
+            displayHeader: {
+                type: Boolean,
+                required: false,
+                default: true
             }
         },
         watch: {
