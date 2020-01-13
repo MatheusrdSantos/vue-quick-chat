@@ -14,7 +14,7 @@
             </div>
             <div class="message-timestamp" :style="{'justify-content': message.myself?'flex-end':'baseline'}">
                 {{message.timestamp.format('LT')}}
-                <v-feather-icon v-if="asyncMode && message.uploaded" name="check" base-class="icon-sent"/>
+                <CheckIcon v-if="asyncMode && message.uploaded" :size="14" class="icon-sent"/>
                 <div v-else-if="asyncMode" class="message-loading"></div>
             </div>
         </div>
@@ -23,8 +23,11 @@
 
 <script>
     import {mapGetters, mapMutations} from 'vuex';
-
+    import CheckIcon from 'vue-material-design-icons/Check';
     export default {
+        components:{
+            CheckIcon
+        },
         props: {
             colors: {
                 type: Object,
@@ -211,7 +214,6 @@
         }
 
         .icon-sent {
-            width: 12px;
             padding-left: 5px;
             color: rgb(129, 127, 127);
         }

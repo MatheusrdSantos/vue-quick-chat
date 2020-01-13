@@ -82,9 +82,9 @@
                 default: false
             },
             submitIconSize: {
-                type: String,
+                type: Number,
                 required: false,
-                default: "15px"
+                default: 24
             },
             closeButtonIconSize: {
                 type: String,

@@ -5,17 +5,21 @@
                  tabIndex="0" contenteditable="true"
                  @input="handleType" @keyup.enter.exact="sendMessage"></div>
         </div>
-        <div class="container-send-message" @click.prevent="sendMessage">
-            <v-feather-icon name="send" base-class="icon-send-message" :style="{color: colors.submitIcon, width: submitIconSize}"/>
+        <div class="container-send-message icon-send-message" @click.prevent="sendMessage">
+            <SendIcon :size="submitIconSize" :fill-color="colors.submitIcon"/>
         </div>
     </div>
 </template>
 
 <script>
+    //import 'vue-material-design-icons/styles.css';
     import {mapMutations} from 'vuex'
     import moment from 'moment'
-
+    import SendIcon from 'vue-material-design-icons/Send';
     export default {
+        components: {
+            SendIcon
+        },
         props: {
             onType: {
                 type: Function,
@@ -44,9 +48,9 @@
                 }
             },
             submitIconSize: {
-                type: String,
+                type: Number,
                 required: false,
-                default: "20px"
+                default: 24
             },
         },
         data() {
@@ -158,7 +162,6 @@
         }
 
         .icon-send-message {
-            width: 20px;
             cursor: pointer;
             opacity: 0.7;
             transition: 0.3s;

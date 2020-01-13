@@ -19,7 +19,7 @@
                       :load-more-messages="toLoad.length > 0 ? loadMoreMessages : null"
                       :async-mode="asyncMode"
                       :scroll-bottom="scrollBottom"
-                      :display-header="false"/>
+                      :display-header="true"/>
             </div>
             <div class="external-controller">
                 <div class="controller-btn-container">
@@ -139,7 +139,7 @@
                     bottomRight: "10px",
                 },
                 hideCloseButton: false,
-                submitIconSize: "20px",
+                submitIconSize: 24,
                 closeButtonIconSize: "20px",
                 asyncMode: true,
                 toLoad: [

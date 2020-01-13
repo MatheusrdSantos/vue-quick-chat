@@ -30,6 +30,7 @@
     "core-js": "^2.6.5",
     "moment": "^2.24.0",
     "vue": "^2.6.10",
+    "vue-material-design-icons": "^4.4.0",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
@@ -42,7 +43,6 @@
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "vue-cli-plugin-moment": "^0.1.1",
-    "vue-icon": "^2.1.1",
     "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {
