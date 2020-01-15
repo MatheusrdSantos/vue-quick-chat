@@ -146,14 +146,14 @@
                     {
                         content: 'Hey, John Doe! How are you today?',
                         participantId: 2,
-                        timestamp: { year: 2011, month: 3, day: 5, hour: 10, minute: 10, second: 3, millisecond: 123 },
+                        timestamp: { year: 2016, month: 3, day: 5, hour: 10, minute: 10, second: 3, millisecond: 123 },
                         uploaded: true,
                         viewed: true
                     },
                     {
                         content: "Hey, Adam! I'm feeling really fine this evening.",
                         participantId: 3,
-                        timestamp: { year: 2010, month: 0, day: 5, hour: 19, minute: 10, second: 3, millisecond:123 },
+                        timestamp: { year: 2016, month: 1, day: 5, hour: 19, minute: 10, second: 3, millisecond:123 },
                         uploaded: true,
                         viewed: true
                     },
@@ -163,9 +163,6 @@
                     messageReceived: false
                 }
             }
-        },
-        created() {
-            //moment.locale('pt-br')
         },
         methods: {
             // eslint-disable-next-line
@@ -262,14 +259,14 @@
                     {
                         content: 'Hey, John Doe! How are you today?',
                         participantId: 6,
-                        timestamp: { year: 2011, month: 3, day: 5, hour: 10, minute: 10, second: 3, millisecond: 123 },
+                        timestamp: { year: 2016, month: 3, day: 5, hour: 10, minute: 10, second: 3, millisecond: 123 },
                         uploaded: true,
                         viewed: true
                     },
                     {
                         content: "Hey, Adam! I'm feeling really fine this evening.",
                         participantId: 3,
-                        timestamp: { year: 2010, month: 0, day: 5, hour: 19, minute: 10, second: 3, millisecond:123 },
+                        timestamp: { year: 2016, month: 10, day: 5, hour: 19, minute: 10, second: 3, millisecond:123 },
                         uploaded: true,
                         viewed: true
                     },

@@ -156,7 +156,7 @@ export default {
                 bottomRight: "10px",
             },
             hideCloseButton: false,
-            submitIconSize: "30px",
+            submitIconSize: 25,
             closeButtonIconSize: "20px",
             asyncMode: false,
             toLoad: [
@@ -232,7 +232,7 @@ export default {
 | colors | Object | true |  | Object with the [color's](#color) description of style properties |
 | borderStyle | Object | false | { topLeft: "10px", topRight: "10px", bottomLeft: "10px", bottomRight: "10px"}  | Object with the description of border style properties |
 | hideCloseButton | Boolean | false | false  | If true, the Close button will be hidden |
-| submitIconSize | String | false | "15px" | The submit icon size in pixels. |
+| submitIconSize | int | false | 24 | The submit icon size in pixels. |
 | closeButtonIconSize | String | false | "15px" | The close button icon size in pixels. |
 | asyncMode | Boolean | false | false | If the value is ```true``` the component begins to watch message upload status and displays a visual feedback for each message. If the value is ```false``` the visual feedback is disabled |
 | loadMoreMessages | Function | false | null | If this function is passed and you reach the top of the messages, it will be called and a loading state will be displayed until you resolve it by calling the only parameter passed to it |

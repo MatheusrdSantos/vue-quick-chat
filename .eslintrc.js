@@ -36,7 +36,7 @@ module.exports = {
         "vue/singleline-html-element-content-newline": ["warning", {
             "ignoreWhenNoAttributes": true,
             "ignoreWhenEmpty": true,
-            "ignores": ["pre", "textarea", "v-btn", 'v-feather-icon']
+            "ignores": ["pre", "textarea", "v-btn"]
         }],
         "vue/html-self-closing": ["error", {
             "html": {

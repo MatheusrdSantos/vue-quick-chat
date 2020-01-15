@@ -13,7 +13,7 @@
                 <p>{{message.content}}</p>
             </div>
             <div class="message-timestamp" :style="{'justify-content': message.myself?'flex-end':'baseline'}">
-                {{message.timestamp.format('LT')}}
+                {{message.timestamp.toFormat('HH:mm')}}
                 <CheckIcon v-if="asyncMode && message.uploaded" :size="14" class="icon-sent"/>
                 <div v-else-if="asyncMode" class="message-loading"></div>
             </div>
@@ -24,6 +24,7 @@
 <script>
     import {mapGetters, mapMutations} from 'vuex';
     import CheckIcon from 'vue-material-design-icons/Check';
+    import { DateTime } from "luxon";
     export default {
         components:{
             CheckIcon
@@ -52,7 +53,7 @@
             return {
                 updateScroll: true,
                 lastMessage: null,
-                loading: false
+                loading: false,
             }
         },
         computed: {
@@ -100,7 +101,7 @@
                  */
                 let participant_equal = message1.participantId == message2.participantId;
                 let content_equal = message1.content == message2.content;
-                let timestamp_equal = message1.timestamp.isSame(message2.timestamp);
+                let timestamp_equal = message1.timestamp.valueOf() === message2.timestamp.valueOf();
 
                 return  participant_equal && content_equal && timestamp_equal
             },
@@ -110,9 +111,16 @@
                 if (typeof this.loadMoreMessages === 'function' && scrollTop < 20) {
                     this.loading = true;
                     this.loadMoreMessages((messages) => {
-                        if (Array.isArray(messages) && messages.length > 0) {
-                            this.setMessages([...messages, ...this.messages]);
-                        }
+                        //if (Array.isArray(messages) && messages.length > 0) {
+                            /** 
+                             * this code will be removed before the next release
+                             * 
+                             * this line is commented because the setMessages is already called
+                             * when 'this.messages.unshift(...this.toLoad)' is executed at App.vue line 177
+                             * it was executing the same function twice, causing unexpected behavior with Luxon date objects
+                            */
+                            //this.setMessages([...messages, ...this.messages]);
+                        //}
                         this.loading = false;
                     });
                 }

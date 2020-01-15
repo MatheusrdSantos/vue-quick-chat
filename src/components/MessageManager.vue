@@ -14,7 +14,7 @@
 <script>
     //import 'vue-material-design-icons/styles.css';
     import {mapMutations} from 'vuex'
-    import moment from 'moment'
+    import { DateTime } from "luxon";
     import SendIcon from 'vue-material-design-icons/Send';
     export default {
         components: {
@@ -66,9 +66,6 @@
                 return this.$store.state.placeholder;
             }
         },
-        created() {
-            moment.locale('pt-br')
-        },
         methods: {
             ...mapMutations([
                 'newMessage'
@@ -87,7 +84,7 @@
                         content: inputText,
                         // myself: true,
                         participantId: this.myself.id,
-                        timestamp: moment(),
+                        timestamp: DateTime.local(),
                         uploaded: false,
                         viewed: false
                     };
