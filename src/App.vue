@@ -19,7 +19,8 @@
                       :load-more-messages="toLoad.length > 0 ? loadMoreMessages : null"
                       :async-mode="asyncMode"
                       :scroll-bottom="scrollBottom"
-                      :display-header="true"/>
+                      :display-header="true"
+                      :on-image-selected="onImageSelected"/>
             </div>
             <div class="external-controller">
                 <div class="controller-btn-container">
@@ -274,6 +275,14 @@
 
                 this.chatTitle = 'Change All Participants';
                 this.placeholder = 'اكتب رسالتك هنا';
+            },
+            async onImageSelected(files){
+                let src = ''
+                await setTimeout(() => {
+                    src = 'https://149364066.v2.pressablecdn.com/wp-content/uploads/2017/03/vue.jpg'
+                }, 3000);
+
+                return src;
             }
         }
     }

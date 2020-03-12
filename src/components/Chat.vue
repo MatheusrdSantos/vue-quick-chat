@@ -9,7 +9,8 @@
         </Header>
         <MessageDisplay :colors="colors" :async-mode="asyncMode" :load-more-messages="loadMoreMessages" :scroll-bottom="scrollBottom"/>
         <MessageManager :on-type="onType" :on-message-submit="onMessageSubmit" :colors="colors"
-                        :border-style="borderStyle" :submit-icon-size="submitIconSize"/>
+                        :border-style="borderStyle" :submit-icon-size="submitIconSize"
+                        :on-image-selected="onImageSelected"/>
     </div>
 </template>
 
@@ -50,16 +51,6 @@
                 required: false,
                 default: 'type your message here'
             },
-            onType: {
-                type: Function,
-                required: false,
-                default: () => false
-            },
-            onMessageSubmit: {
-                type: Function,
-                required: false,
-                default: () => false
-            },
             colors: {
                 type: Object,
                 required: true
@@ -91,11 +82,6 @@
                 required: false,
                 default: "15px"
             },
-            onClose: {
-                type: Function,
-                required: false,
-                default: () => false
-            },
             asyncMode: {
                 type: Boolean,
                 required: false,
@@ -120,7 +106,32 @@
                 type: Boolean,
                 required: false,
                 default: true
-            }
+            },
+            onType: {
+                type: Function,
+                required: false,
+                default: () => false
+            },
+            onMessageSubmit: {
+                type: Function,
+                required: false,
+                default: () => false
+            },
+            onClose: {
+                type: Function,
+                required: false,
+                default: () => false
+            },
+            onImageSelected: {
+                type: Function,
+                required: false,
+                default: () => false
+            },
+            /* onImageButtonClick: {
+                type: Function,
+                required: false,
+                default: () => false
+            } */
         },
         watch: {
             participants() {

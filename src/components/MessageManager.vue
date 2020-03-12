@@ -8,6 +8,10 @@
         <div class="container-send-message icon-send-message" @click.prevent="sendMessage">
             <SendIcon :size="submitIconSize" :fill-color="colors.submitIcon"/>
         </div>
+        <div class="container-send-message icon-send-message" @click="pickImage">
+            <input ref="inputImage" accept="image/*" type="file" style="display: none;" @input="handleImageChange">
+            <ImageIcon :size="submitIconSize" :fill-color="colors.submitIcon"/>
+        </div>
     </div>
 </template>
 
@@ -16,9 +20,11 @@
     import {mapMutations} from 'vuex'
     import { DateTime } from "luxon";
     import SendIcon from 'vue-material-design-icons/Send';
+    import ImageIcon from 'vue-material-design-icons/Image';
     export default {
         components: {
-            SendIcon
+            SendIcon,
+            ImageIcon
         },
         props: {
             onType: {
@@ -52,6 +58,11 @@
                 required: false,
                 default: 24
             },
+            onImageSelected: {
+                type: Function,
+                required: false,
+                default: () => false
+            },
         },
         data() {
             return {
@@ -70,7 +81,7 @@
             ...mapMutations([
                 'newMessage'
             ]),
-            sendMessage() {
+            sendMessage(e) {
                 this.textInput = this.$refs.userInput.textContent;
                 this.$refs.userInput.textContent = '';
 
@@ -94,6 +105,17 @@
             },
             handleType: function (e) {
                 this.onType(e);
+            },
+            pickImage: function(){
+                this.$refs.inputImage.click()
+            },
+            handleImageChange: async function(e){
+                const files = e.target.files
+                let url = ''
+                console.log(files)
+                
+                url = this.onImageSelected(files)
+                console.log('chat image url:', url)
             }
         }
     }
