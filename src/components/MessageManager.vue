@@ -112,9 +112,22 @@
             handleImageChange: async function(e){
                 const files = e.target.files
                 let url = ''
-                console.log(files)
+                let message = {
+                    type: 'image',
+                    preview: files[0],
+                    url:'',
+                    content: 'image',
+                    // myself: true,
+                    participantId: this.myself.id,
+                    timestamp: DateTime.local(),
+                    uploaded: false,
+                    viewed: false
+                };
+
+                this.onImageSelected(files, message)
+                this.newMessage(message)
                 
-                url = this.onImageSelected(files)
+                
                 console.log('chat image url:', url)
             }
         }

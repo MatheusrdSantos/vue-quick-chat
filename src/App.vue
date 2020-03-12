@@ -276,13 +276,15 @@
                 this.chatTitle = 'Change All Participants';
                 this.placeholder = 'اكتب رسالتك هنا';
             },
-            async onImageSelected(files){
+            onImageSelected(files, message){
                 let src = ''
-                await setTimeout(() => {
+                this.messages.push(message);
+                setTimeout(() => {
                     src = 'https://149364066.v2.pressablecdn.com/wp-content/uploads/2017/03/vue.jpg'
+                    message.uploaded = true
+                    message.content = src
+                    message.src = src
                 }, 3000);
-
-                return src;
             }
         }
     }
