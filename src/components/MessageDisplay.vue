@@ -6,12 +6,19 @@
         </div>
         <div v-for="(message, index) in messages" :key="index" class="message-container"
              :class="{'my-message': message.myself, 'other-message': !message.myself}">
-            <div class="message-text"
-                 :style="{background: !message.myself?colors.message.others.bg: colors.message.myself.bg, color: !message.myself?colors.message.others.text: colors.message.myself.text}">
-                <p v-if="!message.myself" class="message-username">{{getParticipantById(message.participantId).name}}</p>
-                <p v-else class="message-username">{{myself.name}}</p>
-                <p>{{message.content}}</p>
-            </div>
+            <template v-if="message.type == 'image'">
+                <div class="message-image">
+                    <img class="message-image-display" :src="message.src" alt="">
+                </div>
+            </template>
+            <template v-else>
+                <div class="message-text"
+                     :style="{background: !message.myself?colors.message.others.bg: colors.message.myself.bg, color: !message.myself?colors.message.others.text: colors.message.myself.text}">
+                    <p v-if="!message.myself" class="message-username">{{getParticipantById(message.participantId).name}}</p>
+                    <p v-else class="message-username">{{myself.name}}</p>
+                    <p>{{message.content}}</p>
+                </div>
+            </template>
             <div class="message-timestamp" :style="{'justify-content': message.myself?'flex-end':'baseline'}">
                 {{message.timestamp.toFormat('HH:mm')}}
                 <CheckIcon v-if="asyncMode && message.uploaded" :size="14" class="icon-sent"/>
@@ -164,6 +171,18 @@
             overflow-wrap: break-word;
             text-align: left;
             white-space: pre-wrap;
+        }
+
+        .message-image{
+            padding: 6px 10px;
+            border-radius: 15px;
+            margin: 5px 0 5px 0;
+            max-width: 70%;
+        }
+
+        .message-image-display{
+            width: 100%;
+            border-radius: 5px;
         }
 
         .message-text > p {

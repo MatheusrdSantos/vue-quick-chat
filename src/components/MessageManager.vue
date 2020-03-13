@@ -115,7 +115,7 @@
                 let message = {
                     type: 'image',
                     preview: files[0],
-                    url:'',
+                    src:'',
                     content: 'image',
                     // myself: true,
                     participantId: this.myself.id,
