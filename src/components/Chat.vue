@@ -10,7 +10,8 @@
         <MessageDisplay :colors="colors" :async-mode="asyncMode" :load-more-messages="loadMoreMessages" :scroll-bottom="scrollBottom"/>
         <MessageManager :on-type="onType" :on-message-submit="onMessageSubmit" :colors="colors"
                         :border-style="borderStyle" :submit-icon-size="submitIconSize"
-                        :on-image-selected="onImageSelected"/>
+                        :on-image-selected="onImageSelected"
+                        :send-images="sendImages"/>
     </div>
 </template>
 
@@ -127,6 +128,11 @@
                 required: false,
                 default: () => false
             },
+            sendImages: {
+                type: Boolean,
+                required: false,
+                default: true
+            }
             /* onImageButtonClick: {
                 type: Function,
                 required: false,

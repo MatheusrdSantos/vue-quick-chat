@@ -20,7 +20,8 @@
                       :async-mode="asyncMode"
                       :scroll-bottom="scrollBottom"
                       :display-header="true"
-                      :on-image-selected="onImageSelected"/>
+                      :on-image-selected="onImageSelected"
+                      :send-images="true"/>
             </div>
             <div class="external-controller">
                 <div class="controller-btn-container">
@@ -199,7 +200,7 @@
                 this.visible = false;
             },
             addMessage() {
-                this.messages.push(
+                /* this.messages.push(
                     {
                         content: "Update state",
                         // myself: false,
@@ -207,6 +208,18 @@
                         timestamp: {year: 2014, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
                         uploaded: true,
                         viewed: true
+                    }
+                ) */
+                this.messages.push(
+                    {
+                        type: 'image',
+                        preview: null,
+                        src: 'https://149364066.v2.pressablecdn.com/wp-content/uploads/2017/03/vue.jpg',
+                        content: 'image',
+                        participantId: 1,
+                        timestamp: {year: 2014, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
+                        uploaded: true,
+                        viewed: false
                     }
                 )
             },
@@ -277,14 +290,17 @@
                 this.placeholder = 'اكتب رسالتك هنا';
             },
             onImageSelected(files, message){
-                let src = ''
+                let src = 'https://149364066.v2.pressablecdn.com/wp-content/uploads/2017/03/vue.jpg'
                 this.messages.push(message);
-                setTimeout(() => {
-                    src = 'https://149364066.v2.pressablecdn.com/wp-content/uploads/2017/03/vue.jpg'
+                /**
+                 * This timeout simulates a requisition that uploads the image file to the server.
+                 * It's up to you implement the request and deal with the response in order to
+                 * update the message status and the message URL
+                 */
+                setTimeout((res) => {
                     message.uploaded = true
-                    message.content = src
-                    message.src = src
-                }, 3000);
+                    message.src = res.src
+                }, 3000, {src});
             }
         }
     }

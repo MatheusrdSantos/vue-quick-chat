@@ -8,7 +8,7 @@
              :class="{'my-message': message.myself, 'other-message': !message.myself}">
             <template v-if="message.type == 'image'">
                 <div class="message-image">
-                    <img class="message-image-display" :src="message.src" alt="">
+                    <img class="message-image-display" :src="message.uploaded?message.src:message.preview" alt="">
                 </div>
             </template>
             <template v-else>

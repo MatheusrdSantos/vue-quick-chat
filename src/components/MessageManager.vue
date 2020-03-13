@@ -8,7 +8,7 @@
         <div class="container-send-message icon-send-message" @click.prevent="sendMessage">
             <SendIcon :size="submitIconSize" :fill-color="colors.submitIcon"/>
         </div>
-        <div class="container-send-message icon-send-message" @click="pickImage">
+        <div v-if="sendImages" class="container-send-message icon-send-message" @click="pickImage">
             <input ref="inputImage" accept="image/*" type="file" style="display: none;" @input="handleImageChange">
             <ImageIcon :size="submitIconSize" :fill-color="colors.submitIcon"/>
         </div>
@@ -63,6 +63,11 @@
                 required: false,
                 default: () => false
             },
+            sendImages: {
+                type: Boolean,
+                required: false,
+                default: true
+            }
         },
         data() {
             return {
@@ -111,24 +116,18 @@
             },
             handleImageChange: async function(e){
                 const files = e.target.files
-                let url = ''
                 let message = {
                     type: 'image',
-                    preview: files[0],
-                    src:'',
+                    preview: URL.createObjectURL(files[0]),
+                    src: '',
                     content: 'image',
-                    // myself: true,
                     participantId: this.myself.id,
                     timestamp: DateTime.local(),
                     uploaded: false,
                     viewed: false
                 };
-
                 this.onImageSelected(files, message)
                 this.newMessage(message)
-                
-                
-                console.log('chat image url:', url)
             }
         }
     }
