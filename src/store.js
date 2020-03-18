@@ -28,7 +28,8 @@ export default () => {
             setMessages: (state, messages) => {
                 messages.map(message => {
                     message.timestamp = moment(message.timestamp).toISOString();
-                    message.myself = message.participantId === state.myself.id;
+                    if (!("myself" in message))
+                        message.myself = message.participantId === state.myself.id;
                 });
                 state.messages = messages;
             },
