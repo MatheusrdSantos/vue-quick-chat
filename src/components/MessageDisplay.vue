@@ -7,8 +7,12 @@
         <div v-for="(message, index) in messages" :key="index" class="message-container"
              :class="{'my-message': message.myself, 'other-message': !message.myself}">
             <template v-if="message.type == 'image'">
-                <div class="message-image">
-                    <img class="message-image-display" :src="message.uploaded?message.src:message.preview" alt="">
+                <div v-if="message.uploaded" class="message-image">
+                    <img class="message-image-display" :src="message.src" alt="">
+                </div>
+                <div v-else class="message-image">
+                    <img class="message-image-display img-overlay" :src="message.preview" alt="">
+                    <div class="img-loading"></div>
                 </div>
             </template>
             <template v-else>
@@ -178,6 +182,10 @@
             border-radius: 15px;
             margin: 5px 0 5px 0;
             max-width: 70%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .message-image-display{
@@ -260,6 +268,24 @@
             width: 16px;
             height: 16px;
             margin: 5px 0 0 0;
+        }
+
+        .img-loading{
+            height: 20px;
+            width: 20px;
+            border: 3px solid #ffffff00;
+            border-left-color: #847f7f;
+            border-top-color: #847f7f;
+            border-radius: 50%;
+            margin-left: 5px;
+            display: inline-block;
+            -webkit-animation: spin 1.0s ease infinite;
+            animation: spin 1.0s ease infinite;
+            position: absolute;
+        }
+        
+        .img-overlay{
+            opacity: 0.4;
         }
     }
 
