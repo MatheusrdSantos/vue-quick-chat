@@ -21,6 +21,7 @@
                       :scroll-bottom="scrollBottom"
                       :display-header="true"
                       :on-image-selected="onImageSelected"
+                      :on-image-clicked="onImageClicked"
                       :send-images="true"/>
             </div>
             <div class="external-controller">
@@ -301,6 +302,13 @@
                     message.uploaded = true
                     message.src = res.src
                 }, 3000, {src});
+            },
+            onImageClicked(message){
+                /**
+                 * This is the callback function that is going to be executed when some image is clicked.
+                 * You can add your code here to do whatever you need with the image clicked. A common situation is to display the image clicked in full screen.
+                 */
+                console.log('Image clicked', message.src)
             }
         }
     }

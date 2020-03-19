@@ -8,7 +8,7 @@
              :class="{'my-message': message.myself, 'other-message': !message.myself}">
             <template v-if="message.type == 'image'">
                 <div v-if="message.uploaded" class="message-image">
-                    <img class="message-image-display" :src="message.src" alt="">
+                    <img class="message-image-display" :src="message.src" alt="" @click="onImageClicked(message)">
                 </div>
                 <div v-else class="message-image">
                     <img class="message-image-display img-overlay" :src="message.preview" alt="">
@@ -51,6 +51,11 @@
                 default: false
             },
             loadMoreMessages: {
+                type: Function,
+                required: false,
+                default: null
+            },
+            onImageClicked: {
                 type: Function,
                 required: false,
                 default: null
@@ -191,6 +196,12 @@
         .message-image-display{
             width: 100%;
             border-radius: 5px;
+            cursor:pointer;
+            transition: 0.3s ease;
+        }
+
+        .message-image-display:hover{
+            opacity: 0.8;
         }
 
         .message-text > p {

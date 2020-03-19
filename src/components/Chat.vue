@@ -7,7 +7,7 @@
                 <slot name="header"></slot>
             </template>
         </Header>
-        <MessageDisplay :colors="colors" :async-mode="asyncMode" :load-more-messages="loadMoreMessages" :scroll-bottom="scrollBottom"/>
+        <MessageDisplay :colors="colors" :async-mode="asyncMode" :load-more-messages="loadMoreMessages" :scroll-bottom="scrollBottom" :on-image-clicked="onImageClicked"/>
         <MessageManager :on-type="onType" :on-message-submit="onMessageSubmit" :colors="colors"
                         :border-style="borderStyle" :submit-icon-size="submitIconSize"
                         :on-image-selected="onImageSelected"
@@ -124,6 +124,11 @@
                 default: () => false
             },
             onImageSelected: {
+                type: Function,
+                required: false,
+                default: () => false
+            },
+            onImageClicked: {
                 type: Function,
                 required: false,
                 default: () => false
