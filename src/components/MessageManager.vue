@@ -10,7 +10,7 @@
         </div>
         <div v-if="sendImages" class="container-send-message icon-send-message" @click="pickImage">
             <input ref="inputImage" accept="image/*" type="file" style="display: none;" @input="handleImageChange">
-            <ImageIcon :size="submitIconSize" :fill-color="colors.submitIcon"/>
+            <ImageIcon :size="submitImageIconSize" :fill-color="colors.submitImageIcon"/>
         </div>
     </div>
 </template>
@@ -54,6 +54,11 @@
                 }
             },
             submitIconSize: {
+                type: Number,
+                required: false,
+                default: 24
+            },
+            submitImageIconSize: {
                 type: Number,
                 required: false,
                 default: 24

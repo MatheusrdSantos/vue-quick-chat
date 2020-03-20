@@ -16,6 +16,7 @@
                       :hide-close-button="hideCloseButton"
                       :close-button-icon-size="closeButtonIconSize"
                       :submit-icon-size="submitIconSize"
+                      :submit-image-icon-size="submitImageIconSize"
                       :load-more-messages="toLoad.length > 0 ? loadMoreMessages : null"
                       :async-mode="asyncMode"
                       :scroll-bottom="scrollBottom"
@@ -26,8 +27,8 @@
             </div>
             <div class="external-controller">
                 <div class="controller-btn-container">
-                    <button class="btn-message" @click="addMessage">Adicionar mensagem</button>
-                    <button class="btn-participant" @click="addParticipant">Adicionar participante</button>
+                    <button class="btn-message" @click="addMessage">Add menssage</button>
+                    <button class="btn-participant" @click="addParticipant">Add participant</button>
                     <button class="btn-participant" @click="changeAllProps">Change All Props</button>
                 </div>
                 <div class="message-list">
@@ -133,7 +134,8 @@
                             bg: '#f7f3f3'
                         }
                     },
-                    submitIcon: '#b91010'
+                    submitIcon: '#b91010',
+                    submitImageIcon: '#b91010',
                 },
                 borderStyle: {
                     topLeft: "10px",
@@ -143,6 +145,7 @@
                 },
                 hideCloseButton: false,
                 submitIconSize: 24,
+                submitImageIconSize: 24,
                 closeButtonIconSize: "20px",
                 asyncMode: true,
                 toLoad: [

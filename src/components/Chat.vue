@@ -10,6 +10,7 @@
         <MessageDisplay :colors="colors" :async-mode="asyncMode" :load-more-messages="loadMoreMessages" :scroll-bottom="scrollBottom" :on-image-clicked="onImageClicked"/>
         <MessageManager :on-type="onType" :on-message-submit="onMessageSubmit" :colors="colors"
                         :border-style="borderStyle" :submit-icon-size="submitIconSize"
+                        :submit-image-icon-size="submitImageIconSize"
                         :on-image-selected="onImageSelected"
                         :send-images="sendImages"/>
     </div>
@@ -74,6 +75,11 @@
                 default: false
             },
             submitIconSize: {
+                type: Number,
+                required: false,
+                default: 24
+            },
+            submitImageIconSize: {
                 type: Number,
                 required: false,
                 default: 24
