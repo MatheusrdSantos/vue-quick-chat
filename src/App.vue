@@ -91,15 +91,15 @@
                         viewed: true
                     },
                     {
-                        content: "Really?! I don't care! Haha",
+                        content: "Hey, Jhon Doe! How are you today",
                         participantId: 1,
                         timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
                         uploaded: true,
                         viewed: true
                     },
                     {
-                        content: "Really?! I don't care! Haha",
-                        participantId: 1,
+                        content: "Hey, Adam! I'm felling really fine this evening.",
+                        participantId: 3,
                         timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
                         uploaded: true,
                         viewed: true
@@ -122,7 +122,7 @@
                     message: {
                         myself: {
                             bg: '#fff',
-                            text: '#bdb8b8'
+                            text: '#525252'
                         },
                         others: {
                             bg: '#fb4141',
@@ -294,7 +294,7 @@
                 this.placeholder = 'اكتب رسالتك هنا';
             },
             onImageSelected(files, message){
-                let src = 'https://149364066.v2.pressablecdn.com/wp-content/uploads/2017/03/vue.jpg'
+                let src = 'blob:http://localhost:8080/2b415c03-f7ac-4104-ac91-ab46cb05efc3'
                 this.messages.push(message);
                 /**
                  * This timeout simulates a requisition that uploads the image file to the server.
