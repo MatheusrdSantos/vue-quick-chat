@@ -7,9 +7,12 @@
                 <slot name="header"></slot>
             </template>
         </Header>
-        <MessageDisplay :colors="colors" :async-mode="asyncMode" :load-more-messages="loadMoreMessages" :scroll-bottom="scrollBottom"/>
+        <MessageDisplay :colors="colors" :async-mode="asyncMode" :load-more-messages="loadMoreMessages" :scroll-bottom="scrollBottom" :on-image-clicked="onImageClicked"/>
         <MessageManager :on-type="onType" :on-message-submit="onMessageSubmit" :colors="colors"
-                        :border-style="borderStyle" :submit-icon-size="submitIconSize"/>
+                        :border-style="borderStyle" :submit-icon-size="submitIconSize"
+                        :submit-image-icon-size="submitImageIconSize"
+                        :on-image-selected="onImageSelected"
+                        :send-images="sendImages"/>
     </div>
 </template>
 
@@ -50,16 +53,6 @@
                 required: false,
                 default: 'type your message here'
             },
-            onType: {
-                type: Function,
-                required: false,
-                default: () => false
-            },
-            onMessageSubmit: {
-                type: Function,
-                required: false,
-                default: () => false
-            },
             colors: {
                 type: Object,
                 required: true
@@ -86,15 +79,15 @@
                 required: false,
                 default: 24
             },
+            submitImageIconSize: {
+                type: Number,
+                required: false,
+                default: 24
+            },
             closeButtonIconSize: {
                 type: String,
                 required: false,
                 default: "15px"
-            },
-            onClose: {
-                type: Function,
-                required: false,
-                default: () => false
             },
             asyncMode: {
                 type: Boolean,
@@ -120,7 +113,42 @@
                 type: Boolean,
                 required: false,
                 default: true
+            },
+            onType: {
+                type: Function,
+                required: false,
+                default: () => false
+            },
+            onMessageSubmit: {
+                type: Function,
+                required: false,
+                default: () => false
+            },
+            onClose: {
+                type: Function,
+                required: false,
+                default: () => false
+            },
+            onImageSelected: {
+                type: Function,
+                required: false,
+                default: () => false
+            },
+            onImageClicked: {
+                type: Function,
+                required: false,
+                default: () => false
+            },
+            sendImages: {
+                type: Boolean,
+                required: false,
+                default: true
             }
+            /* onImageButtonClick: {
+                type: Function,
+                required: false,
+                default: () => false
+            } */
         },
         watch: {
             participants() {

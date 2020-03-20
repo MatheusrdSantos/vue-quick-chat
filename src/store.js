@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import moment from 'moment'
+import { DateTime } from "luxon";
 
 Vue.use(Vuex);
 
@@ -15,7 +15,7 @@ export default () => {
         },
         mutations: {
             newMessage: (state, message) => {
-                message.timestamp = message.timestamp.toISOString();
+                message.timestamp = message.timestamp.toISO();
                 message.myself = message.participantId === state.myself.id;
                 state.messages = [...state.messages, message];
             },
@@ -27,7 +27,9 @@ export default () => {
             },
             setMessages: (state, messages) => {
                 messages.map(message => {
-                    message.timestamp = moment(message.timestamp).toISOString();
+                    if(typeof message.timestamp == 'object'){
+                        message.timestamp = DateTime.fromObject(message.timestamp).toISO();
+                    }
                     if (!("myself" in message))
                         message.myself = message.participantId === state.myself.id;
                 });
@@ -56,7 +58,7 @@ export default () => {
                 let messages = [];
                 state.messages.forEach(message => {
                     let newMessage = {...message};
-                    newMessage.timestamp = moment(newMessage.timestamp);
+                    newMessage.timestamp = DateTime.fromISO(newMessage.timestamp);
                     messages.push(newMessage);
                 });
                 return messages;

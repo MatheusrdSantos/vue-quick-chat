@@ -6,14 +6,26 @@
         </div>
         <div v-for="(message, index) in messages" :key="index" class="message-container"
              :class="{'my-message': message.myself, 'other-message': !message.myself}">
-            <div class="message-text"
-                 :style="{background: !message.myself?colors.message.others.bg: colors.message.myself.bg, color: !message.myself?colors.message.others.text: colors.message.myself.text}">
-                <p v-if="!message.myself" class="message-username">{{getParticipantById(message.participantId).name}}</p>
-                <p v-else class="message-username">{{myself.name}}</p>
-                <p>{{message.content}}</p>
-            </div>
+            <template v-if="message.type == 'image'">
+                <p class="message-username-image">{{message.myself?myself.name:getParticipantById(message.participantId).name}}</p>
+                <div v-if="message.uploaded" class="message-image">
+                    <img class="message-image-display" :src="message.src" alt="" @click="onImageClicked(message)">
+                </div>
+                <div v-else class="message-image">
+                    <img class="message-image-display img-overlay" :src="message.preview" alt="">
+                    <div class="img-loading"></div>
+                </div>
+            </template>
+            <template v-else>
+                <div class="message-text"
+                     :style="{background: !message.myself?colors.message.others.bg: colors.message.myself.bg, color: !message.myself?colors.message.others.text: colors.message.myself.text}">
+                    <p v-if="!message.myself" class="message-username">{{getParticipantById(message.participantId).name}}</p>
+                    <p v-else class="message-username">{{myself.name}}</p>
+                    <p>{{message.content}}</p>
+                </div>
+            </template>
             <div class="message-timestamp" :style="{'justify-content': message.myself?'flex-end':'baseline'}">
-                {{message.timestamp.format('LT')}}
+                {{message.timestamp.toFormat('HH:mm')}}
                 <CheckIcon v-if="asyncMode && message.uploaded" :size="14" class="icon-sent"/>
                 <div v-else-if="asyncMode" class="message-loading"></div>
             </div>
@@ -24,6 +36,7 @@
 <script>
     import {mapGetters, mapMutations} from 'vuex';
     import CheckIcon from 'vue-material-design-icons/Check';
+    import { DateTime } from "luxon";
     export default {
         components:{
             CheckIcon
@@ -43,6 +56,11 @@
                 required: false,
                 default: null
             },
+            onImageClicked: {
+                type: Function,
+                required: false,
+                default: null
+            },
             scrollBottom: {
                 type: Object,
                 required: true
@@ -52,7 +70,7 @@
             return {
                 updateScroll: true,
                 lastMessage: null,
-                loading: false
+                loading: false,
             }
         },
         computed: {
@@ -100,7 +118,7 @@
                  */
                 let participant_equal = message1.participantId == message2.participantId;
                 let content_equal = message1.content == message2.content;
-                let timestamp_equal = message1.timestamp.isSame(message2.timestamp);
+                let timestamp_equal = message1.timestamp.valueOf() === message2.timestamp.valueOf();
 
                 return  participant_equal && content_equal && timestamp_equal
             },
@@ -110,9 +128,16 @@
                 if (typeof this.loadMoreMessages === 'function' && scrollTop < 20) {
                     this.loading = true;
                     this.loadMoreMessages((messages) => {
-                        if (Array.isArray(messages) && messages.length > 0) {
-                            this.setMessages([...messages, ...this.messages]);
-                        }
+                        //if (Array.isArray(messages) && messages.length > 0) {
+                            /** 
+                             * this code will be removed before the next release
+                             * 
+                             * this line is commented because the setMessages is already called
+                             * when 'this.messages.unshift(...this.toLoad)' is executed at App.vue line 177
+                             * it was executing the same function twice, causing unexpected behavior with Luxon date objects
+                            */
+                            //this.setMessages([...messages, ...this.messages]);
+                        //}
                         this.loading = false;
                     });
                 }
@@ -156,6 +181,28 @@
             overflow-wrap: break-word;
             text-align: left;
             white-space: pre-wrap;
+        }
+
+        .message-image{
+            padding: 6px 10px;
+            border-radius: 15px;
+            margin: 5px 0 5px 0;
+            max-width: 70%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .message-image-display{
+            width: 100%;
+            border-radius: 5px;
+            cursor:pointer;
+            transition: 0.3s ease;
+        }
+
+        .message-image-display:hover{
+            opacity: 0.8;
         }
 
         .message-text > p {
@@ -233,6 +280,30 @@
             width: 16px;
             height: 16px;
             margin: 5px 0 0 0;
+        }
+
+        .img-loading{
+            height: 20px;
+            width: 20px;
+            border: 3px solid #ffffff00;
+            border-left-color: #847f7f;
+            border-top-color: #847f7f;
+            border-radius: 50%;
+            margin-left: 5px;
+            display: inline-block;
+            -webkit-animation: spin 1.0s ease infinite;
+            animation: spin 1.0s ease infinite;
+            position: absolute;
+        }
+        
+        .img-overlay{
+            opacity: 0.4;
+        }
+
+        .message-username-image{
+            margin: 10px 10px 0px 10px;
+            font-size: 12px;
+            font-weight: bold;
         }
     }
 

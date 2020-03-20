@@ -6,8 +6,10 @@ This vue component is a simple chat that can be easily imported and used in your
 - Handle on type event and on message submit 
 - Chat with multiple participants
 - Support for async actions like message uploaded status
+- Send images (released at version 1.1.0)
 
-<img src="https://user-images.githubusercontent.com/42742621/63946619-c3eda480-ca4b-11e9-82f0-b7636eace98d.png"/>
+<img src="https://user-images.githubusercontent.com/42742621/63946619-c3eda480-ca4b-11e9-82f0-b7636eace98d.png" style="height:500px"/>
+<img src="https://user-images.githubusercontent.com/42742621/77126981-a1dc6380-6a29-11ea-9087-45f62765a57d.png" style="height:500px; margin-left: 10px;"/>
 
 ## Instalation
 ```
@@ -34,23 +36,27 @@ export default {
 <template>
   <div>
       <Chat 
-       :participants="participants"
-       :myself="myself"
-       :messages="messages"
-       :on-type="onType"
-       :on-message-submit="onMessageSubmit"
-       :chat-title="chatTitle"
-       :placeholder="placeholder"
-       :colors="colors"
-       :border-style="borderStyle"
-       :hide-close-button="hideCloseButton"
-       :close-button-icon-size="closeButtonIconSize"
-       :on-close="onClose"
-       :submit-icon-size="submitIconSize"
-       :load-more-messages="toLoad.length > 0 ? loadMoreMessages : null"
-       :async-mode="asyncMode"
-       :scroll-bottom="scrollBottom"
-       :display-header="displayHeader"/>
+        :participants="participants"
+        :myself="myself"
+        :messages="messages"
+        :on-type="onType"
+        :on-message-submit="onMessageSubmit"
+        :chat-title="chatTitle"
+        :placeholder="placeholder"
+        :colors="colors"
+        :border-style="borderStyle"
+        :hide-close-button="hideCloseButton"
+        :close-button-icon-size="closeButtonIconSize"
+        :on-close="onClose"
+        :submit-icon-size="submitIconSize"
+        :submit-image-icon-size="submitImageIconSize"
+        :load-more-messages="toLoad.length > 0 ? loadMoreMessages : null"
+        :async-mode="asyncMode"
+        :scroll-bottom="scrollBottom"
+        :display-header="displayHeader"
+        :on-image-selected="onImageSelected"
+        :on-image-clicked="onImageClicked"
+        :send-images="true"/>
    </div>
 </template>
 ```
@@ -72,7 +78,11 @@ You can also use a slot to define the header content
         :submitIconSize="submitIconSize"
         :load-more-messages="toLoad.length > 0 ? loadMoreMessages : null"
         :asyncMode="asyncMode"
-        :scroll-bottom="scrollBottom">
+        :scroll-bottom="scrollBottom"
+        :display-header="displayHeader"
+        :on-image-selected="onImageSelected"
+        :on-image-clicked="onImageClicked"
+        :send-images="true">
         <template v-slot:header>
           <div>
             <p v-for="(participant, index) in participants" :key="index" class="custom-title">{{participant.name}}</p>
@@ -113,18 +123,21 @@ export default {
                     myself: false,
                     participantId: 1,
                     timestamp: {year: 2019, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123}
+                    type: 'text'
                 },
                 {
                     content: 'sent messages',
                     myself: true,
                     participantId: 3,
                     timestamp: {year: 2019, month: 4, day: 5, hour: 19, minute: 10, second: 3, millisecond: 123}
+                    type: 'text'
                 },
                 {
                     content: 'other received messages',
                     myself: false,
                     participantId: 2,
                     timestamp: {year: 2019, month: 5, day: 5, hour: 10, minute: 10, second: 3, millisecond: 123}
+                    type: 'text'
                 }
             ],
             chatTitle: 'My chat title',
@@ -147,7 +160,8 @@ export default {
                         bg: '#f7f3f3'
                     }
                 },
-                submitIcon: '#b91010'
+                submitIcon: '#b91010',
+                submitImageIcon: '#b91010',
             },
             borderStyle: {
                 topLeft: "10px",
@@ -156,7 +170,7 @@ export default {
                 bottomRight: "10px",
             },
             hideCloseButton: false,
-            submitIconSize: "30px",
+            submitIconSize: 25,
             closeButtonIconSize: "20px",
             asyncMode: false,
             toLoad: [
@@ -166,7 +180,8 @@ export default {
                     participantId: 2,
                     timestamp: {year: 2011, month: 3, day: 5, hour: 10, minute: 10, second: 3, millisecond: 123},
                     uploaded: true,
-                    viewed: true
+                    viewed: true,
+                    type: 'text'
                 },
                 {
                     content: "Hey, Adam! I'm feeling really fine this evening.",
@@ -174,7 +189,8 @@ export default {
                     participantId: 3,
                     timestamp: {year: 2010, month: 0, day: 5, hour: 19, minute: 10, second: 3, millisecond: 123},
                     uploaded: true,
-                    viewed: true
+                    viewed: true,
+                    type: 'text'
                 },
             ],
             scrollBottom: {
@@ -214,6 +230,26 @@ export default {
         },
         onClose() {
             this.visible = false;
+        },
+        onImageSelected(files, message){
+            let src = 'https://149364066.v2.pressablecdn.com/wp-content/uploads/2017/03/vue.jpg'
+            this.messages.push(message);
+            /**
+             * This timeout simulates a requisition that uploads the image file to the server.
+             * It's up to you implement the request and deal with the response in order to
+             * update the message status and the message URL
+             */
+            setTimeout((res) => {
+                message.uploaded = true
+                message.src = res.src
+            }, 3000, {src});
+        },
+        onImageClicked(message){
+            /**
+             * This is the callback function that is going to be executed when some image is clicked.
+             * You can add your code here to do whatever you need with the image clicked. A common situation is to display the image clicked in full screen.
+             */
+            console.log('Image clicked', message.src)
         }
     }
 }
@@ -231,13 +267,16 @@ export default {
 | placeholder | String | false | 'type your message here' | The placeholder of message text input |
 | colors | Object | true |  | Object with the [color's](#color) description of style properties |
 | borderStyle | Object | false | { topLeft: "10px", topRight: "10px", bottomLeft: "10px", bottomRight: "10px"}  | Object with the description of border style properties |
-| hideCloseButton | Boolean | false | false  | If true, the Close button will be hidden |
-| submitIconSize | String | false | "15px" | The submit icon size in pixels. |
+| hideCloseButton | Boolean | false | false  | If true, the 'Close' button will be hidden |
+| submitIconSize | int | false | 24 | The submit icon size in pixels. |
+| submitImageIconSize | int | false | 24 | The image submit icon size in pixels. |
 | closeButtonIconSize | String | false | "15px" | The close button icon size in pixels. |
 | asyncMode | Boolean | false | false | If the value is ```true``` the component begins to watch message upload status and displays a visual feedback for each message. If the value is ```false``` the visual feedback is disabled |
-| loadMoreMessages | Function | false | null | If this function is passed and you reach the top of the messages, it will be called and a loading state will be displayed until you resolve it by calling the only parameter passed to it |
+| loadMoreMessages | Function | false | () => false | If this function is passed and you reach the top of the messages, it will be called and a loading state will be displayed until you resolve it by calling the only parameter passed to it |
 | scrollBottom | Object | false | { messageSent: true, messageReceived: false} | This object describes the chat scroll behavior. The two options represent the moment when the chat should scroll to the bottom. If 'messageSent' is ```true```, the chat will scroll to bottom aways you send a new message. If 'messageReceived' is ```true```, the chat will scroll to bottom always you receive a new message.  |
 | displayHeader | Boolean | false | true | This prop describes whether the header should be displayed or not |
+| onImageSelected | Function | false | () => false | This prop is a callback function that is called after the user selects an image from the computer. This is the function that should upload the image to the server and update the message status to uploaded and the src to the uploaded image URL. |
+| onImageClicked | Function | false | () => false |  This prop is a callback function that is called after the user clicks on an image. This function may receive the message that represents the image clicked. You have many possibilities of implementations, one of them, is to display the clicked image on full-screen mode. |
 
 ### participant
 | name | type | description |
@@ -258,8 +297,11 @@ Example
 | content | String | The message text content |
 | myself | boolean | (REMOVED) Whether the message was sent by myself or by other participants. Since version 1.0.8 this property is automatically set by the chat |
 | participantId | int | The participant's id who sent the message  |
-|timestamp| Object| Object describing the year, month, day, hour, minute, second and millisecond that the message was sent |
-|uploaded| Boolean| If asyncMode is ```true``` and uploaded is ```true```, a visual feedback is displayed bollow the message. If asyncMode is ```true``` and uploaded is ```false```, a visual loading feedback is displayed bollow the message. If asyncMode is ```false```, this property is ignored.|
+| timestamp | Object| Object describing the year, month, day, hour, minute, second and millisecond that the message was sent |
+| uploaded | Boolean| If asyncMode is ```true``` and uploaded is ```true```, a visual feedback is displayed bollow the message. If asyncMode is ```true``` and uploaded is ```false```, a visual loading feedback is displayed bollow the message. If asyncMode is ```false```, this property is ignored.|
+| preview | String | (ONLY FOR IMAGES) This prop is automatically set by the chat. It represents the preview image URL while the image is being uploaded to the server. |
+| src | String | (ONLY FOR IMAGES) This prop should be set by you after the image is uploaded. You should do it in the callback function onImageSelected. The prop represents the image URL of the uploaded image. |
+| type | String | This prop should be set by you in case a new message is received, otherwise, the chat will automatically set this prop. |
 
 Example
 ```javascript
@@ -277,6 +319,11 @@ Example
     millisecond: 123 
   },
   uploaded: true,
+  type: 'text' // or 'image'
+  // generated by URL.createObjectURL(file)
+  // (ONLY NEEDED FOR IMAGES)
+  preview: 'blob:http://mydomain/11999c0j-4abc-4e56-acc7-fb0bbd616ea7',
+  src: 'myurl.com/images/image.png',
 }
 ```
 ### color
@@ -286,6 +333,7 @@ Example
 | message | Object | Object containing the message background and text color. The Object should contains the style for 'myself' and 'others' |
 | messagesDisplay | Object | Object containing the  background color of mesages container. |
 | submitIcon | String | The color applied to the send message button icon |
+| submitImageIcon | String | The color applied to the send image button icon |
 
 Example
 ```javascript
@@ -308,6 +356,7 @@ Example
     bg: '#f7f3f3'
   },
   submitIcon: '#b91010'
+  submitImageIcon: '#b91010'
 }
 ```
 ## Project setup

@@ -8,17 +8,23 @@
         <div class="container-send-message icon-send-message" @click.prevent="sendMessage">
             <SendIcon :size="submitIconSize" :fill-color="colors.submitIcon"/>
         </div>
+        <div v-if="sendImages" class="container-send-message icon-send-message" @click="pickImage">
+            <input ref="inputImage" accept="image/*" type="file" style="display: none;" @input="handleImageChange">
+            <ImageIcon :size="submitImageIconSize" :fill-color="colors.submitImageIcon"/>
+        </div>
     </div>
 </template>
 
 <script>
     //import 'vue-material-design-icons/styles.css';
     import {mapMutations} from 'vuex'
-    import moment from 'moment'
+    import { DateTime } from "luxon";
     import SendIcon from 'vue-material-design-icons/Send';
+    import ImageIcon from 'vue-material-design-icons/Image';
     export default {
         components: {
-            SendIcon
+            SendIcon,
+            ImageIcon
         },
         props: {
             onType: {
@@ -52,6 +58,21 @@
                 required: false,
                 default: 24
             },
+            submitImageIconSize: {
+                type: Number,
+                required: false,
+                default: 24
+            },
+            onImageSelected: {
+                type: Function,
+                required: false,
+                default: () => false
+            },
+            sendImages: {
+                type: Boolean,
+                required: false,
+                default: true
+            }
         },
         data() {
             return {
@@ -66,14 +87,11 @@
                 return this.$store.state.placeholder;
             }
         },
-        created() {
-            moment.locale('pt-br')
-        },
         methods: {
             ...mapMutations([
                 'newMessage'
             ]),
-            sendMessage() {
+            sendMessage(e) {
                 this.textInput = this.$refs.userInput.textContent;
                 this.$refs.userInput.textContent = '';
 
@@ -87,9 +105,10 @@
                         content: inputText,
                         // myself: true,
                         participantId: this.myself.id,
-                        timestamp: moment(),
+                        timestamp: DateTime.local(),
                         uploaded: false,
-                        viewed: false
+                        viewed: false,
+                        type: 'text'
                     };
                     this.onMessageSubmit(message);
                     this.newMessage(message)
@@ -97,6 +116,24 @@
             },
             handleType: function (e) {
                 this.onType(e);
+            },
+            pickImage: function(){
+                this.$refs.inputImage.click()
+            },
+            handleImageChange: async function(e){
+                const files = e.target.files
+                let message = {
+                    type: 'image',
+                    preview: URL.createObjectURL(files[0]),
+                    src: '',
+                    content: 'image',
+                    participantId: this.myself.id,
+                    timestamp: DateTime.local(),
+                    uploaded: false,
+                    viewed: false
+                };
+                this.onImageSelected(files, message)
+                this.newMessage(message)
             }
         }
     }

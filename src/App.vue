@@ -16,15 +16,19 @@
                       :hide-close-button="hideCloseButton"
                       :close-button-icon-size="closeButtonIconSize"
                       :submit-icon-size="submitIconSize"
+                      :submit-image-icon-size="submitImageIconSize"
                       :load-more-messages="toLoad.length > 0 ? loadMoreMessages : null"
                       :async-mode="asyncMode"
                       :scroll-bottom="scrollBottom"
-                      :display-header="true"/>
+                      :display-header="true"
+                      :on-image-selected="onImageSelected"
+                      :on-image-clicked="onImageClicked"
+                      :send-images="true"/>
             </div>
             <div class="external-controller">
                 <div class="controller-btn-container">
-                    <button class="btn-message" @click="addMessage">Adicionar mensagem</button>
-                    <button class="btn-participant" @click="addParticipant">Adicionar participante</button>
+                    <button class="btn-message" @click="addMessage">Add menssage</button>
+                    <button class="btn-participant" @click="addParticipant">Add participant</button>
                     <button class="btn-participant" @click="changeAllProps">Change All Props</button>
                 </div>
                 <div class="message-list">
@@ -70,42 +74,48 @@
                         participantId: 1,
                         timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
                         uploaded: true,
-                        viewed: true
+                        viewed: true,
+                        type: 'text'
                     },
                     {
                         content: "Really?! I don't care! Haha",
                         participantId: 1,
                         timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
                         uploaded: true,
-                        viewed: true
+                        viewed: true,
+                        type: 'text'
                     },
                     {
                         content: "Really?! I don't care! Haha",
                         participantId: 1,
                         timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
                         uploaded: true,
-                        viewed: true
+                        viewed: true,
+                        type: 'text'
+                    },
+                    {
+                        content: "Hey, Jhon Doe! How are you today",
+                        participantId: 1,
+                        timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
+                        uploaded: true,
+                        viewed: true,
+                        type: 'text'
+                    },
+                    {
+                        content: "Hey, Adam! I'm felling really fine this evening.",
+                        participantId: 3,
+                        timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
+                        uploaded: true,
+                        viewed: true,
+                        type: 'text'
                     },
                     {
                         content: "Really?! I don't care! Haha",
                         participantId: 1,
                         timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
                         uploaded: true,
-                        viewed: true
-                    },
-                    {
-                        content: "Really?! I don't care! Haha",
-                        participantId: 1,
-                        timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
-                        uploaded: true,
-                        viewed: true
-                    },
-                    {
-                        content: "Really?! I don't care! Haha",
-                        participantId: 1,
-                        timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
-                        uploaded: true,
-                        viewed: true
+                        viewed: true,
+                        type: 'text'
                     },
                 ],
                 chatTitle: 'My chat title',
@@ -118,7 +128,7 @@
                     message: {
                         myself: {
                             bg: '#fff',
-                            text: '#bdb8b8'
+                            text: '#525252'
                         },
                         others: {
                             bg: '#fb4141',
@@ -130,7 +140,8 @@
                             bg: '#f7f3f3'
                         }
                     },
-                    submitIcon: '#b91010'
+                    submitIcon: '#b91010',
+                    submitImageIcon: '#b91010',
                 },
                 borderStyle: {
                     topLeft: "10px",
@@ -140,20 +151,21 @@
                 },
                 hideCloseButton: false,
                 submitIconSize: 24,
+                submitImageIconSize: 24,
                 closeButtonIconSize: "20px",
                 asyncMode: true,
                 toLoad: [
                     {
                         content: 'Hey, John Doe! How are you today?',
                         participantId: 2,
-                        timestamp: { year: 2011, month: 3, day: 5, hour: 10, minute: 10, second: 3, millisecond: 123 },
+                        timestamp: { year: 2016, month: 3, day: 5, hour: 10, minute: 10, second: 3, millisecond: 123 },
                         uploaded: true,
                         viewed: true
                     },
                     {
                         content: "Hey, Adam! I'm feeling really fine this evening.",
                         participantId: 3,
-                        timestamp: { year: 2010, month: 0, day: 5, hour: 19, minute: 10, second: 3, millisecond:123 },
+                        timestamp: { year: 2016, month: 1, day: 5, hour: 19, minute: 10, second: 3, millisecond:123 },
                         uploaded: true,
                         viewed: true
                     },
@@ -163,9 +175,6 @@
                     messageReceived: false
                 }
             }
-        },
-        created() {
-            //moment.locale('pt-br')
         },
         methods: {
             // eslint-disable-next-line
@@ -201,7 +210,7 @@
                 this.visible = false;
             },
             addMessage() {
-                this.messages.push(
+                /* this.messages.push(
                     {
                         content: "Update state",
                         // myself: false,
@@ -209,6 +218,18 @@
                         timestamp: {year: 2014, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
                         uploaded: true,
                         viewed: true
+                    }
+                ) */
+                this.messages.push(
+                    {
+                        type: 'image',
+                        preview: null,
+                        src: 'https://149364066.v2.pressablecdn.com/wp-content/uploads/2017/03/vue.jpg',
+                        content: 'image',
+                        participantId: 1,
+                        timestamp: {year: 2014, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
+                        uploaded: true,
+                        viewed: false
                     }
                 )
             },
@@ -262,14 +283,14 @@
                     {
                         content: 'Hey, John Doe! How are you today?',
                         participantId: 6,
-                        timestamp: { year: 2011, month: 3, day: 5, hour: 10, minute: 10, second: 3, millisecond: 123 },
+                        timestamp: { year: 2016, month: 3, day: 5, hour: 10, minute: 10, second: 3, millisecond: 123 },
                         uploaded: true,
                         viewed: true
                     },
                     {
                         content: "Hey, Adam! I'm feeling really fine this evening.",
                         participantId: 3,
-                        timestamp: { year: 2010, month: 0, day: 5, hour: 19, minute: 10, second: 3, millisecond:123 },
+                        timestamp: { year: 2016, month: 10, day: 5, hour: 19, minute: 10, second: 3, millisecond:123 },
                         uploaded: true,
                         viewed: true
                     },
@@ -277,6 +298,26 @@
 
                 this.chatTitle = 'Change All Participants';
                 this.placeholder = 'اكتب رسالتك هنا';
+            },
+            onImageSelected(files, message){
+                let src = 'https://149364066.v2.pressablecdn.com/wp-content/uploads/2017/03/vue.jpg'
+                this.messages.push(message);
+                /**
+                 * This timeout simulates a requisition that uploads the image file to the server.
+                 * It's up to you implement the request and deal with the response in order to
+                 * update the message status and the message URL
+                 */
+                setTimeout((res) => {
+                    message.uploaded = true
+                    message.src = res.src
+                }, 3000, {src});
+            },
+            onImageClicked(message){
+                /**
+                 * This is the callback function that is going to be executed when some image is clicked.
+                 * You can add your code here to do whatever you need with the image clicked. A common situation is to display the image clicked in full screen.
+                 */
+                console.log('Image clicked', message.src)
             }
         }
     }
