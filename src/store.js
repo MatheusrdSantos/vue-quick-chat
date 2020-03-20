@@ -30,7 +30,8 @@ export default () => {
                     if(typeof message.timestamp == 'object'){
                         message.timestamp = DateTime.fromObject(message.timestamp).toISO();
                     }
-                    message.myself = message.participantId === state.myself.id;
+                    if (!("myself" in message))
+                        message.myself = message.participantId === state.myself.id;
                 });
                 state.messages = messages;
             },
