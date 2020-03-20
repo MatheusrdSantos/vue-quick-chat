@@ -107,7 +107,8 @@
                         participantId: this.myself.id,
                         timestamp: DateTime.local(),
                         uploaded: false,
-                        viewed: false
+                        viewed: false,
+                        type: 'text'
                     };
                     this.onMessageSubmit(message);
                     this.newMessage(message)

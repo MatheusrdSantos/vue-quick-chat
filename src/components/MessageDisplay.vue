@@ -7,6 +7,7 @@
         <div v-for="(message, index) in messages" :key="index" class="message-container"
              :class="{'my-message': message.myself, 'other-message': !message.myself}">
             <template v-if="message.type == 'image'">
+                <p class="message-username-image">{{message.myself?myself.name:getParticipantById(message.participantId).name}}</p>
                 <div v-if="message.uploaded" class="message-image">
                     <img class="message-image-display" :src="message.src" alt="" @click="onImageClicked(message)">
                 </div>
@@ -297,6 +298,12 @@
         
         .img-overlay{
             opacity: 0.4;
+        }
+
+        .message-username-image{
+            margin: 10px 10px 0px 10px;
+            font-size: 12px;
+            font-weight: bold;
         }
     }
 

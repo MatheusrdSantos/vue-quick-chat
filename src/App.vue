@@ -74,42 +74,48 @@
                         participantId: 1,
                         timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
                         uploaded: true,
-                        viewed: true
+                        viewed: true,
+                        type: 'text'
                     },
                     {
                         content: "Really?! I don't care! Haha",
                         participantId: 1,
                         timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
                         uploaded: true,
-                        viewed: true
+                        viewed: true,
+                        type: 'text'
                     },
                     {
                         content: "Really?! I don't care! Haha",
                         participantId: 1,
                         timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
                         uploaded: true,
-                        viewed: true
+                        viewed: true,
+                        type: 'text'
                     },
                     {
                         content: "Hey, Jhon Doe! How are you today",
                         participantId: 1,
                         timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
                         uploaded: true,
-                        viewed: true
+                        viewed: true,
+                        type: 'text'
                     },
                     {
                         content: "Hey, Adam! I'm felling really fine this evening.",
                         participantId: 3,
                         timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
                         uploaded: true,
-                        viewed: true
+                        viewed: true,
+                        type: 'text'
                     },
                     {
                         content: "Really?! I don't care! Haha",
                         participantId: 1,
                         timestamp: {year: 2012, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
                         uploaded: true,
-                        viewed: true
+                        viewed: true,
+                        type: 'text'
                     },
                 ],
                 chatTitle: 'My chat title',
@@ -294,7 +300,7 @@
                 this.placeholder = 'اكتب رسالتك هنا';
             },
             onImageSelected(files, message){
-                let src = 'blob:http://localhost:8080/2b415c03-f7ac-4104-ac91-ab46cb05efc3'
+                let src = 'https://149364066.v2.pressablecdn.com/wp-content/uploads/2017/03/vue.jpg'
                 this.messages.push(message);
                 /**
                  * This timeout simulates a requisition that uploads the image file to the server.
