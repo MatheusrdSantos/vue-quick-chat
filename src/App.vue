@@ -204,6 +204,7 @@
                 // timeout simulating the request
                 setTimeout(() => {
                     message.uploaded = true
+                    message.viewed = true
                 }, 2000)
             },
             onClose() {

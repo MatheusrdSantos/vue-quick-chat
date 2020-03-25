@@ -26,7 +26,8 @@
             </template>
             <div class="message-timestamp" :style="{'justify-content': message.myself?'flex-end':'baseline'}">
                 {{message.timestamp.toFormat('HH:mm')}}
-                <CheckIcon v-if="asyncMode && message.uploaded" :size="14" class="icon-sent"/>
+                <CheckIcon v-if="asyncMode && message.uploaded && !message.viewed" :size="14" class="icon-sent"/>
+                <CheckAll v-else-if="asyncMode && message.uploaded && message.viewed" :size="14" class="icon-sent"/>
                 <div v-else-if="asyncMode" class="message-loading"></div>
             </div>
         </div>
@@ -36,10 +37,12 @@
 <script>
     import {mapGetters, mapMutations} from 'vuex';
     import CheckIcon from 'vue-material-design-icons/Check';
+    import CheckAll from 'vue-material-design-icons/CheckAll';
     import { DateTime } from "luxon";
     export default {
         components:{
-            CheckIcon
+            CheckIcon,
+            CheckAll
         },
         props: {
             colors: {
