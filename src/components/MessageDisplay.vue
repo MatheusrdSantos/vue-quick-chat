@@ -4,45 +4,19 @@
         <div v-if="loading" class="loader">
             <div class="message-loading"></div>
         </div>
-        <div v-for="(message, index) in messages" :key="index" class="message-container"
-             :class="{'my-message': message.myself, 'other-message': !message.myself}">
-            <template v-if="message.type == 'image'">
-                <p class="message-username-image">{{message.myself?myself.name:getParticipantById(message.participantId).name}}</p>
-                <div v-if="message.uploaded" class="message-image">
-                    <img class="message-image-display" :src="message.src" alt="" @click="onImageClicked(message)">
-                </div>
-                <div v-else class="message-image">
-                    <img class="message-image-display img-overlay" :src="message.preview" alt="">
-                    <div class="img-loading"></div>
-                </div>
-            </template>
-            <template v-else>
-                <div class="message-text"
-                     :style="{background: !message.myself?colors.message.others.bg: colors.message.myself.bg, color: !message.myself?colors.message.others.text: colors.message.myself.text}">
-                    <p v-if="!message.myself" class="message-username">{{getParticipantById(message.participantId).name}}</p>
-                    <p v-else class="message-username">{{myself.name}}</p>
-                    <p>{{message.content}}</p>
-                </div>
-            </template>
-            <div class="message-timestamp" :style="{'justify-content': message.myself?'flex-end':'baseline'}">
-                {{message.timestamp.toFormat('HH:mm')}}
-                <CheckIcon v-if="asyncMode && message.uploaded && !message.viewed" :size="14" class="icon-sent"/>
-                <CheckAll v-else-if="asyncMode && message.uploaded && message.viewed" :size="14" class="icon-sent"/>
-                <div v-else-if="asyncMode" class="message-loading"></div>
-            </div>
+        <div v-for="(message, index) in messages" :key="index" class="message-container">
+            <MyMessage v-if="message.myself" :message="message" :async-mode="asyncMode"/>
         </div>
     </div>
 </template>
 
 <script>
     import {mapGetters, mapMutations} from 'vuex';
-    import CheckIcon from 'vue-material-design-icons/Check';
-    import CheckAll from 'vue-material-design-icons/CheckAll';
     import { DateTime } from "luxon";
+    import MyMessage from './MyMessage.vue';
     export default {
         components:{
-            CheckIcon,
-            CheckAll
+            MyMessage,
         },
         props: {
             colors: {
@@ -231,11 +205,11 @@
             text-align: right;
         }
 
-        .my-message {
+        /* .my-message {
             justify-content: flex-end;
             padding-right: 15px;
             align-items: flex-end;
-        }
+        } */
 
         .other-message {
             justify-content: flex-start;
