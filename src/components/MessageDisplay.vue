@@ -5,8 +5,14 @@
             <div class="message-loading"></div>
         </div>
         <div v-for="(message, index) in messages" :key="index" class="message-container">
-            <MyMessage v-if="message.myself" :message="message" :async-mode="asyncMode" :colors="colors"/>
-            <OtherMessage v-else :message="message" :async-mode="asyncMode" :colors="colors"/>
+            <MyMessage v-if="message.myself" :message="message" :async-mode="asyncMode"
+                       :colors="colors"
+                       :on-image-clicked="onImageClicked"
+                       :profile-picture-config="profilePictureConfig"/>
+            <OtherMessage v-else :message="message" :async-mode="asyncMode" 
+                          :colors="colors"
+                          :on-image-clicked="onImageClicked"
+                          :profile-picture-config="profilePictureConfig"/>
         </div>
     </div>
 </template>
@@ -42,6 +48,10 @@
                 default: null
             },
             scrollBottom: {
+                type: Object,
+                required: true
+            },
+            profilePictureConfig: {
                 type: Object,
                 required: true
             }

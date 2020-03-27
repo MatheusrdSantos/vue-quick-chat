@@ -1,19 +1,32 @@
 <template>
     <div class="other-message-body">
-        <div class="thum-container">
-            <img class="participant-thumb" src="https://lh3.googleusercontent.com/-G1d4-a7d_TY/AAAAAAAAAAI/AAAAAAAAAAA/AAKWJJPez_wX5UCJztzEUeCxOd7HBK7-jA.CMID/s83-c/photo.jpg" alt="">
+        <div v-if="profilePictureConfig.others" class="thum-container">
+            <img class="participant-thumb" :src="getParticipantById(message.participantId).profilePicture"
+                 :style="{'width': profilePictureConfig.styles.width, 'height': profilePictureConfig.styles.height, 'border-radius': profilePictureConfig.styles.borderRadius}">
         </div>
         <div class="message-content">
-            <div class="message-text" :style="{background: colors.message.others.bg, color: colors.message.others.text}">
-                <p class="message-username">{{getParticipantById(message.participantId).name}}</p>
-                <p>{{message.content}}</p>
-            </div>
-            <div class="message-timestamp" :style="{'justify-content': 'baseline'}">
-                {{message.timestamp.toFormat('HH:mm')}}
-                <CheckIcon v-if="asyncMode && message.uploaded && !message.viewed" :size="14" class="icon-sent"/>
-                <CheckAll v-else-if="asyncMode && message.uploaded && message.viewed" :size="14" class="icon-sent"/>
-                <div v-else-if="asyncMode" class="message-loading"></div>
-            </div>
+            <template v-if="message.type == 'image'">
+                <p class="message-username-image">{{getParticipantById(message.participantId).name}}</p>
+                <div v-if="message.uploaded" class="message-image">
+                    <img class="message-image-display" :src="message.src" alt="" @click="onImageClicked(message)">
+                </div>
+                <div v-else class="message-image">
+                    <img class="message-image-display img-overlay" :src="message.preview" alt="">
+                    <div class="img-loading"></div>
+                </div>
+            </template>
+            <template v-else>
+                <div class="message-text" :style="{background: colors.message.others.bg, color: colors.message.others.text}">
+                    <p class="message-username">{{getParticipantById(message.participantId).name}}</p>
+                    <p>{{message.content}}</p>
+                </div>
+                <div class="message-timestamp" :style="{'justify-content': 'baseline'}">
+                    {{message.timestamp.toFormat('HH:mm')}}
+                    <CheckIcon v-if="asyncMode && message.uploaded && !message.viewed" :size="14" class="icon-sent"/>
+                    <CheckAll v-else-if="asyncMode && message.uploaded && message.viewed" :size="14" class="icon-sent"/>
+                    <div v-else-if="asyncMode" class="message-loading"></div>
+                </div>
+            </template>
         </div>
     </div>
 </template>
@@ -41,6 +54,15 @@
                 type: Object,
                 required: true
             },
+            onImageClicked: {
+                type: Function,
+                required: false,
+                default: null
+            },
+            profilePictureConfig: {
+                type: Object,
+                required: true
+            }
         },
         computed: {
             ...mapGetters([
@@ -66,9 +88,9 @@
         }
 
         .participant-thumb{
-            width: 25px;
+            /* width: 25px;
             height: 25px;
-            border-radius: 50%;
+            border-radius: 50%; */
             margin-right: 10px;
         }
 

@@ -7,7 +7,10 @@
                 <slot name="header"></slot>
             </template>
         </Header>
-        <MessageDisplay :colors="colors" :async-mode="asyncMode" :load-more-messages="loadMoreMessages" :scroll-bottom="scrollBottom" :on-image-clicked="onImageClicked"/>
+        <MessageDisplay :colors="colors" :async-mode="asyncMode" :load-more-messages="loadMoreMessages"
+                        :scroll-bottom="scrollBottom"
+                        :on-image-clicked="onImageClicked"
+                        :profile-picture-config="profilePictureConfig"/>
         <MessageManager :on-type="onType" :on-message-submit="onMessageSubmit" :colors="colors"
                         :border-style="borderStyle" :submit-icon-size="submitIconSize"
                         :submit-image-icon-size="submitImageIconSize"
@@ -143,12 +146,22 @@
                 type: Boolean,
                 required: false,
                 default: true
-            }
-            /* onImageButtonClick: {
-                type: Function,
+            },
+            profilePictureConfig: {
+                type: Object,
                 required: false,
-                default: () => false
-            } */
+                default: () => {
+                    return {
+                        others: true,
+                        myself: false,
+                        styles: {
+                            width: '25px',
+                            height: '25px',
+                            borderRadius: '50%'
+                        }
+                    }
+                }
+            }
         },
         watch: {
             participants() {

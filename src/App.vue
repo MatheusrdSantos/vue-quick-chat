@@ -23,7 +23,8 @@
                       :display-header="true"
                       :on-image-selected="onImageSelected"
                       :on-image-clicked="onImageClicked"
-                      :send-images="true"/>
+                      :send-images="true"
+                      :profile-picture-config="profilePictureConfig"/>
             </div>
             <div class="external-controller">
                 <div class="controller-btn-container">
@@ -57,16 +58,19 @@
                 participants: [
                     {
                         name: 'Arnaldo',
-                        id: 1
+                        id: 1,
+                        profilePicture: 'https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/NafSadh_Profile.jpg/768px-NafSadh_Profile.jpg'
                     },
                     {
                         name: 'Adam',
-                        id: 2
+                        id: 2,
+                        profilePicture: 'https://lh3.googleusercontent.com/-G1d4-a7d_TY/AAAAAAAAAAI/AAAAAAAAAAA/AAKWJJPez_wX5UCJztzEUeCxOd7HBK7-jA.CMID/s83-c/photo.jpg'
                     }
                 ],
                 myself: {
                     name: 'John Doe',
-                    id: 3
+                    id: 3,
+                    profilePicture: 'https://lh3.googleusercontent.com/-G1d4-a7d_TY/AAAAAAAAAAI/AAAAAAAAAAA/AAKWJJPez_wX5UCJztzEUeCxOd7HBK7-jA.CMID/s83-c/photo.jpg'
                 },
                 messages: [
                     {
@@ -173,6 +177,15 @@
                 scrollBottom: {
                     messageSent: true,
                     messageReceived: false
+                },
+                profilePictureConfig: {
+                    others: true,
+                    myself: false,
+                    styles: {
+                        width: '30px',
+                        height: '30px',
+                        borderRadius: '50%'
+                    }
                 }
             }
         },
