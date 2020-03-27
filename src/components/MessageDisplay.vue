@@ -5,7 +5,8 @@
             <div class="message-loading"></div>
         </div>
         <div v-for="(message, index) in messages" :key="index" class="message-container">
-            <MyMessage v-if="message.myself" :message="message" :async-mode="asyncMode"/>
+            <MyMessage v-if="message.myself" :message="message" :async-mode="asyncMode" :colors="colors"/>
+            <OtherMessage v-else :message="message" :async-mode="asyncMode" :colors="colors"/>
         </div>
     </div>
 </template>
@@ -14,9 +15,11 @@
     import {mapGetters, mapMutations} from 'vuex';
     import { DateTime } from "luxon";
     import MyMessage from './MyMessage.vue';
+    import OtherMessage from './OtherMessage.vue';
     export default {
         components:{
             MyMessage,
+            OtherMessage
         },
         props: {
             colors: {
@@ -148,18 +151,6 @@
             
         }}
 
-        .message-text {
-            background: #fff;
-            padding: 6px 10px;
-            line-height: 14px;
-            border-radius: 15px;
-            margin: 5px 0 5px 0;
-            max-width: 70%;
-            overflow-wrap: break-word;
-            text-align: left;
-            white-space: pre-wrap;
-        }
-
         .message-image{
             padding: 6px 10px;
             border-radius: 15px;
@@ -185,20 +176,6 @@
         .message-text > p {
             margin: 5px 0 5px 0;
             font-size: 14px;
-        }
-
-        .message-timestamp {
-            padding: 2px 7px;
-            border-radius: 15px;
-            margin: 0;
-            max-width: 50%;
-            overflow-wrap: break-word;
-            text-align: left;
-            font-size: 10px;
-            color: #bdb8b8;
-            width: 100%;
-            display: flex;
-            align-items: center;
         }
 
         .my-message > .message-timestamp {
