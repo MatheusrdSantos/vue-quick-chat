@@ -1,19 +1,19 @@
 <template>
     <div class="other-message-body">
+        <div class="thum-container">
+            <img class="participant-thumb" src="https://lh3.googleusercontent.com/-G1d4-a7d_TY/AAAAAAAAAAI/AAAAAAAAAAA/AAKWJJPez_wX5UCJztzEUeCxOd7HBK7-jA.CMID/s83-c/photo.jpg" alt="">
+        </div>
         <div class="message-content">
-            <div class="thum-container">
-                <img class="participant-thumb" src="https://lh3.googleusercontent.com/-G1d4-a7d_TY/AAAAAAAAAAI/AAAAAAAAAAA/AAKWJJPez_wX5UCJztzEUeCxOd7HBK7-jA.CMID/s83-c/photo.jpg" alt="">
-            </div>
             <div class="message-text" :style="{background: colors.message.others.bg, color: colors.message.others.text}">
                 <p class="message-username">{{getParticipantById(message.participantId).name}}</p>
                 <p>{{message.content}}</p>
             </div>
-        </div>
-        <div class="message-timestamp" :style="{'justify-content': 'baseline'}">
-            {{message.timestamp.toFormat('HH:mm')}}
-            <CheckIcon v-if="asyncMode && message.uploaded && !message.viewed" :size="14" class="icon-sent"/>
-            <CheckAll v-else-if="asyncMode && message.uploaded && message.viewed" :size="14" class="icon-sent"/>
-            <div v-else-if="asyncMode" class="message-loading"></div>
+            <div class="message-timestamp" :style="{'justify-content': 'baseline'}">
+                {{message.timestamp.toFormat('HH:mm')}}
+                <CheckIcon v-if="asyncMode && message.uploaded && !message.viewed" :size="14" class="icon-sent"/>
+                <CheckAll v-else-if="asyncMode && message.uploaded && message.viewed" :size="14" class="icon-sent"/>
+                <div v-else-if="asyncMode" class="message-loading"></div>
+            </div>
         </div>
     </div>
 </template>
@@ -55,15 +55,14 @@
 <style lang="less">
     .container-message-display .other-message-body{
         display: flex;
-        align-items: flex-start;
-        flex-direction: column;
-        justify-content: flex-end;
+        align-items: flex-end;
         padding-left: 10px;
 
         .message-content{
             display: flex;
-            align-items: flex-end;
+            align-items: flex-start;
             justify-content: flex-start;
+            flex-direction: column;
         }
 
         .participant-thumb{
@@ -85,7 +84,6 @@
             width: 100%;
             display: flex;
             align-items: center;
-            margin-left: 35px;
         }
 
         .message-text {
@@ -99,6 +97,7 @@
             text-align: left;
             white-space: pre-wrap;
             border-bottom-left-radius: 0px;
+            word-break: break-word;
         }
     }
 </style>
