@@ -180,7 +180,7 @@
                 },
                 profilePictureConfig: {
                     others: true,
-                    myself: false,
+                    myself: true,
                     styles: {
                         width: '30px',
                         height: '30px',

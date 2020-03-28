@@ -20,13 +20,13 @@
                     <p class="message-username">{{getParticipantById(message.participantId).name}}</p>
                     <p>{{message.content}}</p>
                 </div>
-                <div class="message-timestamp" :style="{'justify-content': 'baseline'}">
-                    {{message.timestamp.toFormat('HH:mm')}}
-                    <CheckIcon v-if="asyncMode && message.uploaded && !message.viewed" :size="14" class="icon-sent"/>
-                    <CheckAll v-else-if="asyncMode && message.uploaded && message.viewed" :size="14" class="icon-sent"/>
-                    <div v-else-if="asyncMode" class="message-loading"></div>
-                </div>
             </template>
+            <div class="message-timestamp" :style="{'justify-content': 'baseline'}">
+                {{message.timestamp.toFormat('HH:mm')}}
+                <CheckIcon v-if="asyncMode && message.uploaded && !message.viewed" :size="14" class="icon-sent"/>
+                <CheckAll v-else-if="asyncMode && message.uploaded && message.viewed" :size="14" class="icon-sent"/>
+                <div v-else-if="asyncMode" class="message-loading"></div>
+            </div>
         </div>
     </div>
 </template>

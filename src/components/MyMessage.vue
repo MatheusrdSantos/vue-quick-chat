@@ -16,13 +16,13 @@
                     <p class="message-username">{{myself.name}}</p>
                     <p>{{message.content}}</p>
                 </div>
-                <div class="message-timestamp" :style="{'justify-content': 'flex-end'}">
-                    {{message.timestamp.toFormat('HH:mm')}}
-                    <CheckIcon v-if="asyncMode && message.uploaded && !message.viewed" :size="14" class="icon-sent"/>
-                    <CheckAll v-else-if="asyncMode && message.uploaded && message.viewed" :size="14" class="icon-sent"/>
-                    <div v-else-if="asyncMode" class="message-loading"></div>
-                </div>
             </template>
+            <div class="message-timestamp" :style="{'justify-content': 'flex-end'}">
+                {{message.timestamp.toFormat('HH:mm')}}
+                <CheckIcon v-if="asyncMode && message.uploaded && !message.viewed" :size="14" class="icon-sent"/>
+                <CheckAll v-else-if="asyncMode && message.uploaded && message.viewed" :size="14" class="icon-sent"/>
+                <div v-else-if="asyncMode" class="message-loading"></div>
+            </div>
         </div>
         <div v-if="profilePictureConfig.myself" class="thum-container">
             <img class="participant-thumb" :src="myself.profilePicture"
