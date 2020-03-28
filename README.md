@@ -299,12 +299,14 @@ export default {
 |---------|--------|----------------|
 | id | int | The user id should be an unique value |
 | name | String | The user name that will be displayed |
+| profilePicture | String | The user profule picture url |
 
 Example
 ```javascript
 {
   name:  'Username',
-  id: 1
+  id: 1,
+  profilePicture: 'profile_url'
 },
 ```
 ### message
