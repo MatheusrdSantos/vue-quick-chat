@@ -7,6 +7,7 @@ This vue component is a simple chat that can be easily imported and used in your
 - Chat with multiple participants
 - Support for async actions like message uploaded status
 - Send images (released at version 1.1.0)
+- Support for profile pictures (released at version 1.1.1)
 
 <img src="https://user-images.githubusercontent.com/42742621/63946619-c3eda480-ca4b-11e9-82f0-b7636eace98d.png" style="height:500px"/>
 <img src="https://user-images.githubusercontent.com/42742621/77126981-a1dc6380-6a29-11ea-9087-45f62765a57d.png" style="height:500px; margin-left: 10px;"/>
@@ -56,7 +57,8 @@ export default {
         :display-header="displayHeader"
         :on-image-selected="onImageSelected"
         :on-image-clicked="onImageClicked"
-        :send-images="true"/>
+        :send-images="true"
+        :profile-picture-config="profilePictureConfig"/>
    </div>
 </template>
 ```
@@ -82,7 +84,8 @@ You can also use a slot to define the header content
         :display-header="displayHeader"
         :on-image-selected="onImageSelected"
         :on-image-clicked="onImageClicked"
-        :send-images="true">
+        :send-images="true"
+        :profile-picture-config="profilePictureConfig">
         <template v-slot:header>
           <div>
             <p v-for="(participant, index) in participants" :key="index" class="custom-title">{{participant.name}}</p>
@@ -106,16 +109,19 @@ export default {
             participants: [
                 {
                     name: 'Arnaldo',
-                    id: 1
+                    id: 1,
+                    profilePicture: 'https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/NafSadh_Profile.jpg/768px-NafSadh_Profile.jpg'
                 },
                 {
                     name: 'José',
-                    id: 2
+                    id: 2,
+                    profilePicture: 'https://lh3.googleusercontent.com/-G1d4-a7d_TY/AAAAAAAAAAI/AAAAAAAAAAA/AAKWJJPez_wX5UCJztzEUeCxOd7HBK7-jA.CMID/s83-c/photo.jpg'
                 }
             ],
             myself: {
                 name: 'Matheus S.',
-                id: 3
+                id: 3,
+                profilePicture: 'https://lh3.googleusercontent.com/-G1d4-a7d_TY/AAAAAAAAAAI/AAAAAAAAAAA/AAKWJJPez_wX5UCJztzEUeCxOd7HBK7-jA.CMID/s83-c/photo.jpg'
             },
             messages: [
                 {
@@ -197,7 +203,16 @@ export default {
                 messageSent: true,
                 messageReceived: false
             },
-            displayHeader:true
+            displayHeader:true,
+            profilePictureConfig: {
+                others: true,
+                myself: true,
+                styles: {
+                    width: '30px',
+                    height: '30px',
+                    borderRadius: '50%'
+                }
+            }
         }
     },
     methods: {
@@ -277,6 +292,7 @@ export default {
 | displayHeader | Boolean | false | true | This prop describes whether the header should be displayed or not |
 | onImageSelected | Function | false | () => false | This prop is a callback function that is called after the user selects an image from the computer. This is the function that should upload the image to the server and update the message status to uploaded and the src to the uploaded image URL. |
 | onImageClicked | Function | false | () => false |  This prop is a callback function that is called after the user clicks on an image. This function may receive the message that represents the image clicked. You have many possibilities of implementations, one of them, is to display the clicked image on full-screen mode. |
+| profilePictureConfig | Object | false | ```{ others: true, myself: false, styles: { width: '25px', height: '25px', borderRadius: '50%'} }``` | This prop is an js Object that decribes the style and the behavoir of the chat regards to the users profile picture. |
 
 ### participant
 | name | type | description |
@@ -299,6 +315,7 @@ Example
 | participantId | int | The participant's id who sent the message  |
 | timestamp | Object| Object describing the year, month, day, hour, minute, second and millisecond that the message was sent |
 | uploaded | Boolean| If asyncMode is ```true``` and uploaded is ```true```, a visual feedback is displayed bollow the message. If asyncMode is ```true``` and uploaded is ```false```, a visual loading feedback is displayed bollow the message. If asyncMode is ```false```, this property is ignored.|
+| viewed | Boolean| If asyncMode is ```true``` and viewed is ```true```, a visual feedback is displayed bollow the message.|
 | preview | String | (ONLY FOR IMAGES) This prop is automatically set by the chat. It represents the preview image URL while the image is being uploaded to the server. |
 | src | String | (ONLY FOR IMAGES) This prop should be set by you after the image is uploaded. You should do it in the callback function onImageSelected. The prop represents the image URL of the uploaded image. |
 | type | String | This prop should be set by you in case a new message is received, otherwise, the chat will automatically set this prop. |
@@ -319,6 +336,7 @@ Example
     millisecond: 123 
   },
   uploaded: true,
+  viewed: true,
   type: 'text' // or 'image'
   // generated by URL.createObjectURL(file)
   // (ONLY NEEDED FOR IMAGES)
@@ -331,7 +349,7 @@ Example
 |---------|--------|----------------|
 | header | Object | Object containing the header background and text color |
 | message | Object | Object containing the message background and text color. The Object should contains the style for 'myself' and 'others' |
-| messagesDisplay | Object | Object containing the  background color of mesages container. |
+| messagesDisplay | Object | Object containing the background color of mesages container. |
 | submitIcon | String | The color applied to the send message button icon |
 | submitImageIcon | String | The color applied to the send image button icon |
 
@@ -355,8 +373,28 @@ Example
   messagesDisplay: {
     bg: '#f7f3f3'
   },
-  submitIcon: '#b91010'
+  submitIcon: '#b91010',
   submitImageIcon: '#b91010'
+}
+
+```
+## profilePictureConfig
+| name | type | description |
+|---------|--------|----------------|
+| others | Boolean | Whether the profile picture of the other participant should be displayed on the screen |
+| myself | Boolean | Whether the profile picture of the current participant (myself) should be displayed on the screen |
+| styles | Object | Object containing the description of the size and the shape of the profile images picture |
+
+Example
+``` javascript
+profilePictureConfig: {
+    others: true,
+    myself: true,
+    styles: {
+        width: '30px',
+        height: '30px',
+        borderRadius: '50%'
+    }
 }
 ```
 ## Project setup
