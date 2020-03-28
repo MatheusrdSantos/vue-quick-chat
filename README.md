@@ -8,9 +8,7 @@ This vue component is a simple chat that can be easily imported and used in your
 - Support for async actions like message uploaded status
 - Send images (released at version 1.1.0)
 - Support for profile pictures (released at version 1.1.1)
-
-<img src="https://user-images.githubusercontent.com/42742621/63946619-c3eda480-ca4b-11e9-82f0-b7636eace98d.png" style="height:500px"/>
-<img src="https://user-images.githubusercontent.com/42742621/77126981-a1dc6380-6a29-11ea-9087-45f62765a57d.png" style="height:500px; margin-left: 10px;"/>
+<img src="./src/assets/vue-quick-chat.png" width="100%"/>
 
 ## Instalation
 ```
