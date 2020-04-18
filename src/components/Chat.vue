@@ -2,7 +2,7 @@
     <div class="quick-chat-container"
          :style="{'border-bottom-left-radius': borderStyle.bottomLeft, 'border-bottom-right-radius': borderStyle.bottomRight, 'border-top-right-radius': borderStyle.topRight, 'border-top-left-radius': borderStyle.topLeft}">
         <Header v-if="displayHeader" :colors="colors" :border-style="borderStyle" 
-                :hide-close-button="hideCloseButton" :close-button-icon-size="closeButtonIconSize" :on-close="onClose">
+                :hide-close-button="hideCloseButton" :close-button-icon-size="closeButtonIconSize" @onClose="onClose()">
             <template #header>
                 <slot name="header"></slot>
             </template>
@@ -127,11 +127,11 @@
                 required: false,
                 default: () => false
             },
-            onClose: {
+            /* onClose: {
                 type: Function,
                 required: false,
                 default: () => false
-            },
+            }, */
             onImageSelected: {
                 type: Function,
                 required: false,
@@ -197,7 +197,10 @@
                 'setMessages',
                 'setPlaceholder',
                 'setChatTitle'
-            ])
+            ]),
+            onClose: function(){
+                this.$emit("onClose");
+            }
         },
     }
 </script>

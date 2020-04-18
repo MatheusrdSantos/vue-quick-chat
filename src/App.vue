@@ -12,7 +12,6 @@
                       :placeholder="placeholder"
                       :colors="colors"
                       :border-style="borderStyle"
-                      :on-close="onClose"
                       :hide-close-button="hideCloseButton"
                       :close-button-icon-size="closeButtonIconSize"
                       :submit-icon-size="submitIconSize"
@@ -24,7 +23,8 @@
                       :on-image-selected="onImageSelected"
                       :on-image-clicked="onImageClicked"
                       :send-images="true"
-                      :profile-picture-config="profilePictureConfig"/>
+                      :profile-picture-config="profilePictureConfig"
+                      @onClose="onClose('param value')"/>
             </div>
             <div class="external-controller">
                 <div class="controller-btn-container">
@@ -220,7 +220,8 @@
                     message.viewed = true
                 }, 2000)
             },
-            onClose() {
+            onClose(param) {
+                console.log(param)
                 this.visible = false;
             },
             addMessage() {
