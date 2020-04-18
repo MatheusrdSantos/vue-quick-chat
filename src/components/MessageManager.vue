@@ -32,11 +32,11 @@
                 required: false,
                 default: () => false
             }, */
-            onMessageSubmit: {
+            /* onMessageSubmit: {
                 type: Function,
                 required: false,
                 default: () => false
-            },
+            }, */
             colors: {
                 type: Object,
                 required: true
@@ -110,7 +110,8 @@
                         viewed: false,
                         type: 'text'
                     };
-                    this.onMessageSubmit(message);
+                    this.$emit("onMessageSubmit", message);
+                    //this.onMessageSubmit(message);
                     this.newMessage(message)
                 }
             },
