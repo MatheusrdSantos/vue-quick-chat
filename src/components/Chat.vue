@@ -11,11 +11,12 @@
                         :scroll-bottom="scrollBottom"
                         :on-image-clicked="onImageClicked"
                         :profile-picture-config="profilePictureConfig"/>
-        <MessageManager :on-type="onType" :on-message-submit="onMessageSubmit" :colors="colors"
+        <MessageManager :on-message-submit="onMessageSubmit" :colors="colors"
                         :border-style="borderStyle" :submit-icon-size="submitIconSize"
                         :submit-image-icon-size="submitImageIconSize"
                         :on-image-selected="onImageSelected"
-                        :send-images="sendImages"/>
+                        :send-images="sendImages"
+                        @onType="onType"/>
     </div>
 </template>
 
@@ -117,11 +118,11 @@
                 required: false,
                 default: true
             },
-            onType: {
+            /* onType: {
                 type: Function,
                 required: false,
                 default: () => false
-            },
+            }, */
             onMessageSubmit: {
                 type: Function,
                 required: false,
@@ -200,6 +201,9 @@
             ]),
             onClose: function(){
                 this.$emit("onClose");
+            },
+            onType: function(e){
+                this.$emit("onType", e)
             }
         },
     }

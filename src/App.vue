@@ -6,7 +6,6 @@
                       :participants="participants"
                       :myself="myself"
                       :messages="messages"
-                      :on-type="onType"
                       :on-message-submit="onMessageSubmit"
                       :chat-title="chatTitle"
                       :placeholder="placeholder"
@@ -24,6 +23,7 @@
                       :on-image-clicked="onImageClicked"
                       :send-images="true"
                       :profile-picture-config="profilePictureConfig"
+                      @onType="onType"
                       @onClose="onClose('param value')"/>
             </div>
             <div class="external-controller">
@@ -191,9 +191,10 @@
         },
         methods: {
             // eslint-disable-next-line
-            onType: function () {
+            onType: function (e) {
                 // eslint-disable-next-line
                 console.log('typing');
+                console.log(e);
             },
             loadMoreMessages(resolve) {
                 setTimeout(() => {

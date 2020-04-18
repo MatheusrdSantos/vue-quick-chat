@@ -27,11 +27,11 @@
             ImageIcon
         },
         props: {
-            onType: {
+            /* onType: {
                 type: Function,
                 required: false,
                 default: () => false
-            },
+            }, */
             onMessageSubmit: {
                 type: Function,
                 required: false,
@@ -115,7 +115,7 @@
                 }
             },
             handleType: function (e) {
-                this.onType(e);
+                this.$emit("onType", e);
             },
             pickImage: function(){
                 this.$refs.inputImage.click()
