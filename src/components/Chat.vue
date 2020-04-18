@@ -9,8 +9,8 @@
         </Header>
         <MessageDisplay :colors="colors" :async-mode="asyncMode" :load-more-messages="loadMoreMessages"
                         :scroll-bottom="scrollBottom"
-                        :on-image-clicked="onImageClicked"
-                        :profile-picture-config="profilePictureConfig"/>
+                        :profile-picture-config="profilePictureConfig"
+                        @onImageClicked="onImageClicked"/>
         <MessageManager :colors="colors"
                         :border-style="borderStyle" :submit-icon-size="submitIconSize"
                         :submit-image-icon-size="submitImageIconSize"
@@ -139,11 +139,11 @@
                 required: false,
                 default: () => false
             }, */
-            onImageClicked: {
+            /* onImageClicked: {
                 type: Function,
                 required: false,
                 default: () => false
-            },
+            }, */
             sendImages: {
                 type: Boolean,
                 required: false,
@@ -211,6 +211,9 @@
             },
             onImageSelected: function(data){
                 this.$emit("onImageSelected", data)
+            },
+            onImageClicked: function(message){
+                this.$emit("onImageClicked", message)
             },
         },
     }

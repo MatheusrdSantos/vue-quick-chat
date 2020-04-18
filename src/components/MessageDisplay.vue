@@ -7,12 +7,12 @@
         <div v-for="(message, index) in messages" :key="index" class="message-container">
             <MyMessage v-if="message.myself" :message="message" :async-mode="asyncMode"
                        :colors="colors"
-                       :on-image-clicked="onImageClicked"
-                       :profile-picture-config="profilePictureConfig"/>
+                       :profile-picture-config="profilePictureConfig"
+                       @onImageClicked="onImageClicked"/>
             <OtherMessage v-else :message="message" :async-mode="asyncMode" 
                           :colors="colors"
-                          :on-image-clicked="onImageClicked"
-                          :profile-picture-config="profilePictureConfig"/>
+                          :profile-picture-config="profilePictureConfig"
+                          @onImageClicked="onImageClicked"/>
         </div>
     </div>
 </template>
@@ -42,11 +42,11 @@
                 required: false,
                 default: null
             },
-            onImageClicked: {
+            /* onImageClicked: {
                 type: Function,
                 required: false,
                 default: null
-            },
+            }, */
             scrollBottom: {
                 type: Object,
                 required: true
@@ -137,6 +137,9 @@
                 scrollDiv.scrollTop = scrollDiv.scrollHeight;
 
                 this.updateScroll = false;
+            },
+            onImageClicked(message){
+                this.$emit("onImageClicked", message)
             }
         }
     }

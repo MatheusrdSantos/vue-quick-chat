@@ -54,11 +54,11 @@
                 type: Object,
                 required: true
             },
-            onImageClicked: {
+            /* onImageClicked: {
                 type: Function,
                 required: false,
                 default: null
-            },
+            }, */
             profilePictureConfig: {
                 type: Object,
                 required: true
@@ -70,6 +70,11 @@
                 'messages',
                 'myself'
             ]),
+        },
+        methods: {
+            onImageClicked: function(message){
+                this.$emit("onImageClicked", message)
+            }
         }
     }
 </script>
