@@ -14,8 +14,8 @@
         <MessageManager :colors="colors"
                         :border-style="borderStyle" :submit-icon-size="submitIconSize"
                         :submit-image-icon-size="submitImageIconSize"
-                        :on-image-selected="onImageSelected"
                         :send-images="sendImages"
+                        @onImageSelected="onImageSelected"
                         @onMessageSubmit="onMessageSubmit"
                         @onType="onType"/>
     </div>
@@ -134,11 +134,11 @@
                 required: false,
                 default: () => false
             }, */
-            onImageSelected: {
+            /* onImageSelected: {
                 type: Function,
                 required: false,
                 default: () => false
-            },
+            }, */
             onImageClicked: {
                 type: Function,
                 required: false,
@@ -208,7 +208,10 @@
             },
             onMessageSubmit: function(message){
                 this.$emit("onMessageSubmit", message)
-            }
+            },
+            onImageSelected: function(data){
+                this.$emit("onImageSelected", data)
+            },
         },
     }
 </script>

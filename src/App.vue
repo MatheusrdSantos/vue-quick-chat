@@ -18,10 +18,10 @@
                       :async-mode="asyncMode"
                       :scroll-bottom="scrollBottom"
                       :display-header="true"
-                      :on-image-selected="onImageSelected"
                       :on-image-clicked="onImageClicked"
                       :send-images="true"
                       :profile-picture-config="profilePictureConfig"
+                      @onImageSelected="onImageSelected"
                       @onMessageSubmit="onMessageSubmit"
                       @onType="onType"
                       @onClose="onClose('param value')"/>
@@ -314,7 +314,7 @@
                 this.chatTitle = 'Change All Participants';
                 this.placeholder = 'اكتب رسالتك هنا';
             },
-            onImageSelected(files, message){
+            onImageSelected({file, message}){
                 let src = 'https://149364066.v2.pressablecdn.com/wp-content/uploads/2017/03/vue.jpg'
                 this.messages.push(message);
                 /**

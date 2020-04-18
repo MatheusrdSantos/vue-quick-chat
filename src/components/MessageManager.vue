@@ -63,11 +63,11 @@
                 required: false,
                 default: 24
             },
-            onImageSelected: {
+            /* onImageSelected: {
                 type: Function,
                 required: false,
                 default: () => false
-            },
+            }, */
             sendImages: {
                 type: Boolean,
                 required: false,
@@ -133,7 +133,8 @@
                     uploaded: false,
                     viewed: false
                 };
-                this.onImageSelected(files, message)
+                this.$emit("onImageSelected", {file: files[0], message});
+                //this.onImageSelected(files, message)
                 this.newMessage(message)
             }
         }
