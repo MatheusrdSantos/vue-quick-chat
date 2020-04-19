@@ -27,16 +27,16 @@
             ImageIcon
         },
         props: {
-            onType: {
+            /* onType: {
                 type: Function,
                 required: false,
                 default: () => false
-            },
-            onMessageSubmit: {
+            }, */
+            /* onMessageSubmit: {
                 type: Function,
                 required: false,
                 default: () => false
-            },
+            }, */
             colors: {
                 type: Object,
                 required: true
@@ -63,11 +63,11 @@
                 required: false,
                 default: 24
             },
-            onImageSelected: {
+            /* onImageSelected: {
                 type: Function,
                 required: false,
                 default: () => false
-            },
+            }, */
             sendImages: {
                 type: Boolean,
                 required: false,
@@ -110,12 +110,13 @@
                         viewed: false,
                         type: 'text'
                     };
-                    this.onMessageSubmit(message);
+                    this.$emit("onMessageSubmit", message);
+                    //this.onMessageSubmit(message);
                     this.newMessage(message)
                 }
             },
             handleType: function (e) {
-                this.onType(e);
+                this.$emit("onType", e);
             },
             pickImage: function(){
                 this.$refs.inputImage.click()
@@ -132,7 +133,8 @@
                     uploaded: false,
                     viewed: false
                 };
-                this.onImageSelected(files, message)
+                this.$emit("onImageSelected", {file: files[0], message});
+                //this.onImageSelected(files, message)
                 this.newMessage(message)
             }
         }

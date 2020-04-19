@@ -12,7 +12,7 @@
         </div>
 
         <div v-if="!hideCloseButton && !hasHeaderSlot" class="header-exit">
-            <slot name="close-button" :onClose="onClose">
+            <slot name="close-button">
                 <a class="header-exit-button" href="#" :style="{fontSize: closeButtonIconSize}"
                    @click.prevent="onClose">✕</a>
             </slot>
@@ -52,11 +52,11 @@
                 required: false,
                 default: "15px"
             },
-            onClose: {
+            /* onClose: {
                 type: Function,
                 required: false,
                 default: () => false
-            }
+            } */
         },
         computed: {
             participants() {
@@ -70,6 +70,11 @@
             },
             hasHeaderSlot: function () {
                 return !!this.$slots['header'];
+            }
+        },
+        methods:{
+            onClose: function(){
+                this.$emit("onClose")
             }
         }
     }

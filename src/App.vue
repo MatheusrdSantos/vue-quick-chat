@@ -6,13 +6,10 @@
                       :participants="participants"
                       :myself="myself"
                       :messages="messages"
-                      :on-type="onType"
-                      :on-message-submit="onMessageSubmit"
                       :chat-title="chatTitle"
                       :placeholder="placeholder"
                       :colors="colors"
                       :border-style="borderStyle"
-                      :on-close="onClose"
                       :hide-close-button="hideCloseButton"
                       :close-button-icon-size="closeButtonIconSize"
                       :submit-icon-size="submitIconSize"
@@ -21,10 +18,13 @@
                       :async-mode="asyncMode"
                       :scroll-bottom="scrollBottom"
                       :display-header="true"
-                      :on-image-selected="onImageSelected"
-                      :on-image-clicked="onImageClicked"
                       :send-images="true"
-                      :profile-picture-config="profilePictureConfig"/>
+                      :profile-picture-config="profilePictureConfig"
+                      @onImageClicked="onImageClicked"
+                      @onImageSelected="onImageSelected"
+                      @onMessageSubmit="onMessageSubmit"
+                      @onType="onType"
+                      @onClose="onClose('param value')"/>
             </div>
             <div class="external-controller">
                 <div class="controller-btn-container">
@@ -191,7 +191,7 @@
         },
         methods: {
             // eslint-disable-next-line
-            onType: function () {
+            onType: function (e) {
                 // eslint-disable-next-line
                 console.log('typing');
             },
@@ -220,7 +220,8 @@
                     message.viewed = true
                 }, 2000)
             },
-            onClose() {
+            onClose(param) {
+                console.log(param)
                 this.visible = false;
             },
             addMessage() {
@@ -313,7 +314,7 @@
                 this.chatTitle = 'Change All Participants';
                 this.placeholder = 'اكتب رسالتك هنا';
             },
-            onImageSelected(files, message){
+            onImageSelected({file, message}){
                 let src = 'https://149364066.v2.pressablecdn.com/wp-content/uploads/2017/03/vue.jpg'
                 this.messages.push(message);
                 /**

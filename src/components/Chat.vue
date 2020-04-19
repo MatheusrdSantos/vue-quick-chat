@@ -2,20 +2,22 @@
     <div class="quick-chat-container"
          :style="{'border-bottom-left-radius': borderStyle.bottomLeft, 'border-bottom-right-radius': borderStyle.bottomRight, 'border-top-right-radius': borderStyle.topRight, 'border-top-left-radius': borderStyle.topLeft}">
         <Header v-if="displayHeader" :colors="colors" :border-style="borderStyle" 
-                :hide-close-button="hideCloseButton" :close-button-icon-size="closeButtonIconSize" :on-close="onClose">
+                :hide-close-button="hideCloseButton" :close-button-icon-size="closeButtonIconSize" @onClose="onClose()">
             <template #header>
                 <slot name="header"></slot>
             </template>
         </Header>
         <MessageDisplay :colors="colors" :async-mode="asyncMode" :load-more-messages="loadMoreMessages"
                         :scroll-bottom="scrollBottom"
-                        :on-image-clicked="onImageClicked"
-                        :profile-picture-config="profilePictureConfig"/>
-        <MessageManager :on-type="onType" :on-message-submit="onMessageSubmit" :colors="colors"
+                        :profile-picture-config="profilePictureConfig"
+                        @onImageClicked="onImageClicked"/>
+        <MessageManager :colors="colors"
                         :border-style="borderStyle" :submit-icon-size="submitIconSize"
                         :submit-image-icon-size="submitImageIconSize"
-                        :on-image-selected="onImageSelected"
-                        :send-images="sendImages"/>
+                        :send-images="sendImages"
+                        @onImageSelected="onImageSelected"
+                        @onMessageSubmit="onMessageSubmit"
+                        @onType="onType"/>
     </div>
 </template>
 
@@ -117,31 +119,31 @@
                 required: false,
                 default: true
             },
-            onType: {
+            /* onType: {
                 type: Function,
                 required: false,
                 default: () => false
-            },
-            onMessageSubmit: {
+            }, */
+            /* onMessageSubmit: {
                 type: Function,
                 required: false,
                 default: () => false
-            },
-            onClose: {
+            }, */
+            /* onClose: {
                 type: Function,
                 required: false,
                 default: () => false
-            },
-            onImageSelected: {
+            }, */
+            /* onImageSelected: {
                 type: Function,
                 required: false,
                 default: () => false
-            },
-            onImageClicked: {
+            }, */
+            /* onImageClicked: {
                 type: Function,
                 required: false,
                 default: () => false
-            },
+            }, */
             sendImages: {
                 type: Boolean,
                 required: false,
@@ -197,7 +199,22 @@
                 'setMessages',
                 'setPlaceholder',
                 'setChatTitle'
-            ])
+            ]),
+            onClose: function(){
+                this.$emit("onClose");
+            },
+            onType: function(e){
+                this.$emit("onType", e)
+            },
+            onMessageSubmit: function(message){
+                this.$emit("onMessageSubmit", message)
+            },
+            onImageSelected: function(data){
+                this.$emit("onImageSelected", data)
+            },
+            onImageClicked: function(message){
+                this.$emit("onImageClicked", message)
+            },
         },
     }
 </script>
