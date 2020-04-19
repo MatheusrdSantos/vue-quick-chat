@@ -34,29 +34,29 @@ export default {
 ```html
 <template>
   <div>
-      <Chat 
+      <Chat v-if="visible"
         :participants="participants"
         :myself="myself"
         :messages="messages"
-        :on-type="onType"
-        :on-message-submit="onMessageSubmit"
         :chat-title="chatTitle"
         :placeholder="placeholder"
         :colors="colors"
         :border-style="borderStyle"
         :hide-close-button="hideCloseButton"
         :close-button-icon-size="closeButtonIconSize"
-        :on-close="onClose"
         :submit-icon-size="submitIconSize"
         :submit-image-icon-size="submitImageIconSize"
         :load-more-messages="toLoad.length > 0 ? loadMoreMessages : null"
         :async-mode="asyncMode"
         :scroll-bottom="scrollBottom"
-        :display-header="displayHeader"
-        :on-image-selected="onImageSelected"
-        :on-image-clicked="onImageClicked"
+        :display-header="true"
         :send-images="true"
-        :profile-picture-config="profilePictureConfig"/>
+        :profile-picture-config="profilePictureConfig"
+        @onImageClicked="onImageClicked"
+        @onImageSelected="onImageSelected"
+        @onMessageSubmit="onMessageSubmit"
+        @onType="onType"
+        @onClose="onClose"/>
    </div>
 </template>
 ```
@@ -67,23 +67,25 @@ You can also use a slot to define the header content
         :participants="participants"
         :myself="myself"
         :messages="messages"
-        :onType="onType"
-        :onMessageSubmit="onMessageSubmit"
-        :chatTitle="chatTitle"
+        :chat-title="chatTitle"
         :placeholder="placeholder"
         :colors="colors"
-        :borderStyle="borderStyle"
-        :hideCloseButton="hideCloseButton"
-        :closeButtonIconSize="closeButtonIconSize"
-        :submitIconSize="submitIconSize"
+        :border-style="borderStyle"
+        :hide-close-button="hideCloseButton"
+        :close-button-icon-size="closeButtonIconSize"
+        :submit-icon-size="submitIconSize"
+        :submit-image-icon-size="submitImageIconSize"
         :load-more-messages="toLoad.length > 0 ? loadMoreMessages : null"
-        :asyncMode="asyncMode"
+        :async-mode="asyncMode"
         :scroll-bottom="scrollBottom"
-        :display-header="displayHeader"
-        :on-image-selected="onImageSelected"
-        :on-image-clicked="onImageClicked"
+        :display-header="true"
         :send-images="true"
-        :profile-picture-config="profilePictureConfig">
+        :profile-picture-config="profilePictureConfig"
+        @onImageClicked="onImageClicked"
+        @onImageSelected="onImageSelected"
+        @onMessageSubmit="onMessageSubmit"
+        @onType="onType"
+        @onClose="onClose">
         <template v-slot:header>
           <div>
             <p v-for="(participant, index) in participants" :key="index" class="custom-title">{{participant.name}}</p>
@@ -273,9 +275,6 @@ export default {
 | participants | Array | true |  | An array of participants. Each [participant](#participant) should be an Object with name and id|
 | myself | Object | true |  | Object of my [participant](#participant). "myself" should be an Object with name and id|
 | messages | Array | true |  | An array of [messages](#message). Each message should be an Object with content, myself, participantId and timestamp|
-| onType | Function | false | () => false | Event called when the user is typing |
-| onMessageSubmit | Function | false | () => false | Event called when the user sends a new message |
-| onClose | Function | false | () => false | Event called when the user presses the close icon |
 | chatTitle | String | false | Empty String | The title on chat header |
 | placeholder | String | false | 'type your message here' | The placeholder of message text input |
 | colors | Object | true |  | Object with the [color's](#color) description of style properties |
@@ -288,9 +287,16 @@ export default {
 | loadMoreMessages | Function | false | () => false | If this function is passed and you reach the top of the messages, it will be called and a loading state will be displayed until you resolve it by calling the only parameter passed to it |
 | scrollBottom | Object | false | { messageSent: true, messageReceived: false} | This object describes the chat scroll behavior. The two options represent the moment when the chat should scroll to the bottom. If 'messageSent' is ```true```, the chat will scroll to bottom aways you send a new message. If 'messageReceived' is ```true```, the chat will scroll to bottom always you receive a new message.  |
 | displayHeader | Boolean | false | true | This prop describes whether the header should be displayed or not |
-| onImageSelected | Function | false | () => false | This prop is a callback function that is called after the user selects an image from the computer. This is the function that should upload the image to the server and update the message status to uploaded and the src to the uploaded image URL. |
-| onImageClicked | Function | false | () => false |  This prop is a callback function that is called after the user clicks on an image. This function may receive the message that represents the image clicked. You have many possibilities of implementations, one of them, is to display the clicked image on full-screen mode. |
 | profilePictureConfig | Object | false | ```{ others: true, myself: false, styles: { width: '25px', height: '25px', borderRadius: '50%'} }``` | This prop is an js Object that decribes the style and the behavoir of the chat regards to the users profile picture. |
+
+# Events
+| name | type | required |default |description |
+|------|------|----------|--------|------------|
+| onType | Function | false | () => false | Event called when the user is typing |
+| onMessageSubmit | Function | false | () => false | Event called when the user sends a new message |
+| onClose | Function | false | () => false | Event called when the user presses the close icon |
+| onImageClicked | Function | false | () => false |  This prop is a callback function that is called after the user clicks on an image. This function may receive the message that represents the image clicked. You have many possibilities of implementations, one of them, is to display the clicked image on full-screen mode. |
+| onImageSelected | Function | false | () => false | This prop is a callback function that is called after the user selects an image from the computer. This is the function that should upload the image to the server and update the message status to uploaded and the src to the uploaded image URL. |
 
 ### participant
 | name | type | description |
