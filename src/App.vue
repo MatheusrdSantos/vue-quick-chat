@@ -20,6 +20,7 @@
                       :display-header="true"
                       :send-images="true"
                       :profile-picture-config="profilePictureConfig"
+                      :timestamp-config="timestampConfig"
                       @onImageClicked="onImageClicked"
                       @onImageSelected="onImageSelected"
                       @onMessageSubmit="onMessageSubmit"
@@ -186,6 +187,10 @@
                         height: '30px',
                         borderRadius: '50%'
                     }
+                },
+                timestampConfig: {
+                    format: 'HH:mm',
+                    relative: false
                 }
             }
         },

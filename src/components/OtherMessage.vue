@@ -22,7 +22,12 @@
                 </div>
             </template>
             <div class="message-timestamp" :style="{'justify-content': 'baseline'}">
-                {{message.timestamp.toFormat('HH:mm')}}
+                <template v-if="timestampConfig.relative">
+                    {{message.timestamp.toRelative()}}
+                </template>
+                <template v-else> 
+                    {{message.timestamp.toFormat(timestampConfig.format)}}
+                </template>
                 <CheckIcon v-if="asyncMode && message.uploaded && !message.viewed" :size="14" class="icon-sent"/>
                 <CheckAll v-else-if="asyncMode && message.uploaded && message.viewed" :size="14" class="icon-sent"/>
                 <div v-else-if="asyncMode" class="message-loading"></div>

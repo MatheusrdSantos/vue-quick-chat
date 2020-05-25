@@ -81,6 +81,7 @@ You can also use a slot to define the header content
         :display-header="true"
         :send-images="true"
         :profile-picture-config="profilePictureConfig"
+        :timestamp-config="timestampConfig"
         @onImageClicked="onImageClicked"
         @onImageSelected="onImageSelected"
         @onMessageSubmit="onMessageSubmit"
@@ -212,6 +213,10 @@ export default {
                     height: '30px',
                     borderRadius: '50%'
                 }
+            },
+            timestampConfig: {   
+                format: 'HH:mm',
+                relative: false
             }
         }
     },
@@ -288,6 +293,7 @@ export default {
 | scrollBottom | Object | false | { messageSent: true, messageReceived: false} | This object describes the chat scroll behavior. The two options represent the moment when the chat should scroll to the bottom. If 'messageSent' is ```true```, the chat will scroll to bottom aways you send a new message. If 'messageReceived' is ```true```, the chat will scroll to bottom always you receive a new message.  |
 | displayHeader | Boolean | false | true | This prop describes whether the header should be displayed or not |
 | profilePictureConfig | Object | false | ```{ others: true, myself: false, styles: { width: '25px', height: '25px', borderRadius: '50%'} }``` | This prop is an js Object that decribes the style and the behavoir of the chat regards to the users profile picture. |
+| timestampConfig | Object | false | ```{ format: 'HH:mm', relative: false }``` | This prop is an js Object that decribes the timestamp format. |
 
 # Events
 | name | type | required |default |description |
@@ -401,6 +407,19 @@ profilePictureConfig: {
         height: '30px',
         borderRadius: '50%'
     }
+}
+```
+## timestampConfig
+| name | type | description |
+|---------|--------|----------------|
+| format | String | [Timestamp format](https://moment.github.io/luxon/docs/manual/formatting.html#toformat) |
+| relative | Boolean | Whether the timestamp should be relative to current time |
+
+Example
+``` javascript
+timestampConfig: {   
+    format: 'HH:mm',
+    relative: false
 }
 ```
 ## Project setup
