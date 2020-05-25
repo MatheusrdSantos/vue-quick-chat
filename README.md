@@ -52,6 +52,7 @@ export default {
         :display-header="true"
         :send-images="true"
         :profile-picture-config="profilePictureConfig"
+        :timestamp-config="timestampConfig"
         @onImageClicked="onImageClicked"
         @onImageSelected="onImageSelected"
         @onMessageSubmit="onMessageSubmit"
@@ -292,8 +293,8 @@ export default {
 | loadMoreMessages | Function | false | () => false | If this function is passed and you reach the top of the messages, it will be called and a loading state will be displayed until you resolve it by calling the only parameter passed to it |
 | scrollBottom | Object | false | { messageSent: true, messageReceived: false} | This object describes the chat scroll behavior. The two options represent the moment when the chat should scroll to the bottom. If 'messageSent' is ```true```, the chat will scroll to bottom aways you send a new message. If 'messageReceived' is ```true```, the chat will scroll to bottom always you receive a new message.  |
 | displayHeader | Boolean | false | true | This prop describes whether the header should be displayed or not |
-| profilePictureConfig | Object | false | ```{ others: true, myself: false, styles: { width: '25px', height: '25px', borderRadius: '50%'} }``` | This prop is an js Object that decribes the style and the behavoir of the chat regards to the users profile picture. |
-| timestampConfig | Object | false | ```{ format: 'HH:mm', relative: false }``` | This prop is an js Object that decribes the timestamp format. |
+| profilePictureConfig | Object | false | ```{ others: true, myself: false, styles: { width: '25px', height: '25px', borderRadius: '50%'} }``` | This prop is a js Object that decribes the style and the behavoir of the chat regards to the users profile picture. |
+| timestampConfig | Object | false | ```{ format: 'HH:mm', relative: false }``` | This prop is a js Object that decribes the timestamp format / relativeness. |
 
 # Events
 | name | type | required |default |description |
