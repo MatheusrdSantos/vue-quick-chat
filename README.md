@@ -8,6 +8,8 @@ This vue component is a simple chat that can be easily imported and used in your
 - Support for async actions like message uploaded status
 - Send images (released at version 1.1.0)
 - Support for profile pictures (released at version 1.1.1)
+- Support for Luxon and Events (released at version 1.2.0)
+- Support for timestamp config (released at version 1.2.1)
 <img src="./src/assets/vue-quick-chat.png" width="100%"/>
 
 ## Instalation
