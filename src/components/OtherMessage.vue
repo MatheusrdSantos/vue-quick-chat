@@ -70,7 +70,7 @@
             },
             timestampConfig: {
                 type: Object,
-                required: false
+                required: true
             }
         },
         computed: {
