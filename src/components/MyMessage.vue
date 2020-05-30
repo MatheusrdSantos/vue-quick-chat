@@ -67,6 +67,10 @@
             profilePictureConfig: {
                 type: Object,
                 required: true
+            },
+            timestampConfig: {
+                type: Object,
+                required: false
             }
         },
         computed: {
