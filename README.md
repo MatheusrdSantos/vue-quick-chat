@@ -8,6 +8,8 @@ This vue component is a simple chat that can be easily imported and used in your
 - Support for async actions like message uploaded status
 - Send images (released at version 1.1.0)
 - Support for profile pictures (released at version 1.1.1)
+- Uses Luxon in place of moment. Added event functions (released at version 1.2.0)
+- Support for timestamp config (released at version 1.2.1)
 <img src="./src/assets/vue-quick-chat.png" width="100%"/>
 
 ## Instalation
@@ -52,6 +54,7 @@ export default {
         :display-header="true"
         :send-images="true"
         :profile-picture-config="profilePictureConfig"
+        :timestamp-config="timestampConfig"
         @onImageClicked="onImageClicked"
         @onImageSelected="onImageSelected"
         @onMessageSubmit="onMessageSubmit"
@@ -81,6 +84,7 @@ You can also use a slot to define the header content
         :display-header="true"
         :send-images="true"
         :profile-picture-config="profilePictureConfig"
+        :timestamp-config="timestampConfig"
         @onImageClicked="onImageClicked"
         @onImageSelected="onImageSelected"
         @onMessageSubmit="onMessageSubmit"
@@ -212,6 +216,10 @@ export default {
                     height: '30px',
                     borderRadius: '50%'
                 }
+            },
+            timestampConfig: {   
+                format: 'HH:mm',
+                relative: false
             }
         }
     },
@@ -287,7 +295,8 @@ export default {
 | loadMoreMessages | Function | false | () => false | If this function is passed and you reach the top of the messages, it will be called and a loading state will be displayed until you resolve it by calling the only parameter passed to it |
 | scrollBottom | Object | false | { messageSent: true, messageReceived: false} | This object describes the chat scroll behavior. The two options represent the moment when the chat should scroll to the bottom. If 'messageSent' is ```true```, the chat will scroll to bottom aways you send a new message. If 'messageReceived' is ```true```, the chat will scroll to bottom always you receive a new message.  |
 | displayHeader | Boolean | false | true | This prop describes whether the header should be displayed or not |
-| profilePictureConfig | Object | false | ```{ others: true, myself: false, styles: { width: '25px', height: '25px', borderRadius: '50%'} }``` | This prop is an js Object that decribes the style and the behavoir of the chat regards to the users profile picture. |
+| profilePictureConfig | Object | false | ```{ others: true, myself: false, styles: { width: '25px', height: '25px', borderRadius: '50%'} }``` | This prop is a js Object that decribes the style and the behavoir of the chat regards to the users profile picture. |
+| timestampConfig | Object | false | ```{ format: 'HH:mm', relative: false }``` | This prop is a js Object that decribes the timestamp format / relativeness. |
 
 # Events
 | name | type | required |default |description |
@@ -401,6 +410,19 @@ profilePictureConfig: {
         height: '30px',
         borderRadius: '50%'
     }
+}
+```
+## timestampConfig
+| name | type | description |
+|---------|--------|----------------|
+| format | String | [Timestamp format](https://moment.github.io/luxon/docs/manual/formatting.html#toformat) |
+| relative | Boolean | Whether the timestamp should be relative to current time |
+
+Example
+``` javascript
+timestampConfig: {   
+    format: 'HH:mm',
+    relative: false
 }
 ```
 ## Project setup

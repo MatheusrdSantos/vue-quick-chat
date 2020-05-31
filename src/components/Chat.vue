@@ -10,6 +10,7 @@
         <MessageDisplay :colors="colors" :async-mode="asyncMode" :load-more-messages="loadMoreMessages"
                         :scroll-bottom="scrollBottom"
                         :profile-picture-config="profilePictureConfig"
+                        :timestamp-config="timestampConfig"
                         @onImageClicked="onImageClicked"/>
         <MessageManager :colors="colors"
                         :border-style="borderStyle" :submit-icon-size="submitIconSize"
@@ -163,7 +164,17 @@
                         }
                     }
                 }
-            }
+            },
+            timestampConfig: {
+                type: Object,
+                required: false,
+                default: () => {
+                    return {
+                        format: 'HH:mm',
+                        relative: false
+                    }
+                }
+            },
         },
         watch: {
             participants() {
