@@ -8,10 +8,12 @@
             <MyMessage v-if="message.myself" :message="message" :async-mode="asyncMode"
                        :colors="colors"
                        :profile-picture-config="profilePictureConfig"
+                       :timestamp-config="timestampConfig"
                        @onImageClicked="onImageClicked"/>
             <OtherMessage v-else :message="message" :async-mode="asyncMode" 
                           :colors="colors"
                           :profile-picture-config="profilePictureConfig"
+                          :timestamp-config="timestampConfig"
                           @onImageClicked="onImageClicked"/>
         </div>
     </div>
