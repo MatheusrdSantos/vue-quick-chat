@@ -55,6 +55,7 @@ export default {
         :send-images="true"
         :profile-picture-config="profilePictureConfig"
         :timestamp-config="timestampConfig"
+        :link-options="linkOptions"
         @onImageClicked="onImageClicked"
         @onImageSelected="onImageSelected"
         @onMessageSubmit="onMessageSubmit"
@@ -79,6 +80,7 @@ You can also use a slot to define the header content
         :submit-icon-size="submitIconSize"
         :submit-image-icon-size="submitImageIconSize"
         :load-more-messages="toLoad.length > 0 ? loadMoreMessages : null"
+        :link-options="linkOptions"
         :async-mode="asyncMode"
         :scroll-bottom="scrollBottom"
         :display-header="true"
@@ -220,6 +222,44 @@ export default {
             timestampConfig: {   
                 format: 'HH:mm',
                 relative: false
+            },
+            // there are other options, you can check them here
+            // https://soapbox.github.io/linkifyjs/docs/options.html
+            linkOptions: {
+                myself: {
+                    className: 'myLinkClass',
+                    events: {
+                        click: function (e) {
+                            alert('Link clicked!');
+                        },
+                        mouseover: function (e) {
+                            alert('Link hovered!');
+                        }
+                    },
+                    format: function (value, type) {
+                        if (type === 'url' && value.length > 50) {
+                            value = value.slice(0, 50) + '…';
+                        }
+                        return value;
+                    }
+                },
+                others: {
+                    className: 'othersLinkClass',
+                    events: {
+                        click: function (e) {
+                            alert('Link clicked!');
+                        },
+                        mouseover: function (e) {
+                            alert('Link hovered!');
+                        }
+                    },
+                    format: function (value, type) {
+                        if (type === 'url' && value.length > 50) {
+                            value = value.slice(0, 50) + '…';
+                        }
+                        return value;
+                    }
+                }
             }
         }
     },
@@ -297,6 +337,7 @@ export default {
 | displayHeader | Boolean | false | true | This prop describes whether the header should be displayed or not |
 | profilePictureConfig | Object | false | ```{ others: true, myself: false, styles: { width: '25px', height: '25px', borderRadius: '50%'} }``` | This prop is a js Object that decribes the style and the behavoir of the chat regards to the users profile picture. |
 | timestampConfig | Object | false | ```{ format: 'HH:mm', relative: false }``` | This prop is a js Object that decribes the timestamp format / relativeness. |
+| linkOptions | Object | false | ```{ myself: {}, others: {} }``` | This prop is an Object that configures the links that may appear on the messages' content. ```myself``` defines the config for links in sent messages. ```others``` defines the config for links in received messages. This functionality relies on [linkifyjs](https://soapbox.github.io/linkifyjs/). You can find the full doc of this prop [here](https://soapbox.github.io/linkifyjs/docs/options.html). |
 
 # Events
 | name | type | required |default |description |

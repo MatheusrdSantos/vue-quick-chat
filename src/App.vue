@@ -21,6 +21,7 @@
                       :send-images="true"
                       :profile-picture-config="profilePictureConfig"
                       :timestamp-config="timestampConfig"
+                      :link-options="linkOptions"
                       @onImageClicked="onImageClicked"
                       @onImageSelected="onImageSelected"
                       @onMessageSubmit="onMessageSubmit"
@@ -191,6 +192,44 @@
                 timestampConfig: {
                     format: 'HH:mm',
                     relative: false
+                },
+                // there are other options, you can check them here
+                // https://soapbox.github.io/linkifyjs/docs/options.html
+                linkOptions: {
+                    myself: {
+                        className: 'myLinkClass',
+                        events: {
+                            click: function (e) {
+                                alert('Link clicked!');
+                            },
+                            mouseover: function (e) {
+                                alert('Link hovered!');
+                            }
+                        },
+                        format: function (value, type) {
+                            if (type === 'url' && value.length > 50) {
+                                value = value.slice(0, 50) + '…';
+                            }
+                            return value;
+                        }
+                    },
+                    others: {
+                        className: 'othersLinkClass',
+                        events: {
+                            click: function (e) {
+                                alert('Link clicked!');
+                            },
+                            mouseover: function (e) {
+                                alert('Link hovered!');
+                            }
+                        },
+                        format: function (value, type) {
+                            if (type === 'url' && value.length > 50) {
+                                value = value.slice(0, 50) + '…';
+                            }
+                            return value;
+                        }
+                    }
                 }
             }
         },
