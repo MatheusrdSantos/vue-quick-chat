@@ -40,12 +40,13 @@
     import CheckIcon from 'vue-material-design-icons/Check';
     import CheckAll from 'vue-material-design-icons/CheckAll';
     import {mapGetters, mapMutations} from 'vuex';
-    import linkifyElement from 'linkifyjs/element'
+    import linkParse from '../mixins/linkParse';
     export default {
         components:{
             CheckIcon,
             CheckAll,
         },
+        mixins: [linkParse],
         props:{
             message: {
                 type: Object,
@@ -80,9 +81,6 @@
                 'messages',
                 'myself'
             ]),
-        },
-        mounted(){
-            linkifyElement(this.$refs['message-content'], {}, document)
         },
         methods: {
             onImageClicked: function(message){

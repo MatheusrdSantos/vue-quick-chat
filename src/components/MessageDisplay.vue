@@ -7,11 +7,13 @@
         <div v-for="(message, index) in messages" :key="index" class="message-container">
             <MyMessage v-if="message.myself" :message="message" :async-mode="asyncMode"
                        :colors="colors"
+                       :link-options="linkOptions.myself"
                        :profile-picture-config="profilePictureConfig"
                        :timestamp-config="timestampConfig"
                        @onImageClicked="onImageClicked"/>
             <OtherMessage v-else :message="message" :async-mode="asyncMode" 
                           :colors="colors"
+                          :link-options="linkOptions.others"
                           :profile-picture-config="profilePictureConfig"
                           :timestamp-config="timestampConfig"
                           @onImageClicked="onImageClicked"/>
@@ -60,7 +62,11 @@
             timestampConfig: {
                 type: Object,
                 required: true
-            }
+            },
+            linkOptions: {
+                type: Object,
+                required: true
+            } 
         },
         data() {
             return {

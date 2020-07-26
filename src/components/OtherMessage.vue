@@ -18,7 +18,7 @@
             <template v-else>
                 <div class="message-text" :style="{background: colors.message.others.bg, color: colors.message.others.text}">
                     <p class="message-username">{{getParticipantById(message.participantId).name}}</p>
-                    <p>{{message.content}}</p>
+                    <p ref="message-content">{{message.content}}</p>
                 </div>
             </template>
             <div class="message-timestamp" :style="{'justify-content': 'baseline'}">
@@ -40,11 +40,13 @@
     import CheckIcon from 'vue-material-design-icons/Check';
     import CheckAll from 'vue-material-design-icons/CheckAll';
     import {mapGetters, mapMutations} from 'vuex';
+    import linkParse from '../mixins/linkParse';
     export default {
         components:{
             CheckIcon,
             CheckAll,
         },
+        mixins: [linkParse],
         props:{
             message: {
                 type: Object,

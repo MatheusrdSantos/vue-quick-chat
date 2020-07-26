@@ -8,6 +8,7 @@
             </template>
         </Header>
         <MessageDisplay :colors="colors" :async-mode="asyncMode" :load-more-messages="loadMoreMessages"
+                        :link-options="linkOptions"
                         :scroll-bottom="scrollBottom"
                         :profile-picture-config="profilePictureConfig"
                         :timestamp-config="timestampConfig"
@@ -175,6 +176,16 @@
                     }
                 }
             },
+            linkOptions: {
+                type: Object,
+                required: false,
+                default: () => {
+                    return {
+                        myself: {},
+                        others: {}
+                    }
+                }
+            } 
         },
         watch: {
             participants() {
