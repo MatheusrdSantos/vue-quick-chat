@@ -14,7 +14,7 @@
             <template v-else>    
                 <div class="message-text" :style="{background: colors.message.myself.bg, color: colors.message.myself.text}">
                     <p class="message-username">{{myself.name}}</p>
-                    <p>{{message.content}}</p>
+                    <p ref="message-content">{{message.content}}</p>
                 </div>
             </template>
             <div class="message-timestamp" :style="{'justify-content': 'flex-end'}">
@@ -40,6 +40,7 @@
     import CheckIcon from 'vue-material-design-icons/Check';
     import CheckAll from 'vue-material-design-icons/CheckAll';
     import {mapGetters, mapMutations} from 'vuex';
+    import linkifyElement from 'linkifyjs/element'
     export default {
         components:{
             CheckIcon,
@@ -80,6 +81,9 @@
                 'myself'
             ]),
         },
+        mounted(){
+            linkifyElement(this.$refs['message-content'], {}, document)
+        },
         methods: {
             onImageClicked: function(message){
                 this.$emit("onImageClicked", message)
@@ -101,6 +105,7 @@
             align-items: flex-end;
             justify-content: flex-start;
             flex-direction: column;
+            flex-grow: 1;
         }
 
         .participant-thumb{

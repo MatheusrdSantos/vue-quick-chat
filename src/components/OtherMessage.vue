@@ -99,6 +99,7 @@
             align-items: flex-start;
             justify-content: flex-start;
             flex-direction: column;
+            flex-grow: 1;
         }
 
         .participant-thumb{

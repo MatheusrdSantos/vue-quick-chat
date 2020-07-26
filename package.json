@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "core-js": "^2.6.5",
+    "linkifyjs": "^2.1.9",
     "luxon": "^1.21.3",
     "vue": "^2.6.10",
     "vue-material-design-icons": "^4.4.0",
