@@ -22,6 +22,7 @@
                       :profile-picture-config="profilePictureConfig"
                       :timestamp-config="timestampConfig"
                       :link-options="linkOptions"
+                      :accept-image-types="'.png, .jpeg'"
                       @onImageClicked="onImageClicked"
                       @onImageSelected="onImageSelected"
                       @onMessageSubmit="onMessageSubmit"

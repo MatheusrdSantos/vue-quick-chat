@@ -56,6 +56,7 @@ export default {
         :profile-picture-config="profilePictureConfig"
         :timestamp-config="timestampConfig"
         :link-options="linkOptions"
+        :accept-image-types="'.png, .jpeg'"
         @onImageClicked="onImageClicked"
         @onImageSelected="onImageSelected"
         @onMessageSubmit="onMessageSubmit"
@@ -338,6 +339,7 @@ export default {
 | profilePictureConfig | Object | false | ```{ others: true, myself: false, styles: { width: '25px', height: '25px', borderRadius: '50%'} }``` | This prop is a js Object that decribes the style and the behavoir of the chat regards to the users profile picture. |
 | timestampConfig | Object | false | ```{ format: 'HH:mm', relative: false }``` | This prop is a js Object that decribes the timestamp format / relativeness. |
 | linkOptions | Object | false | ```{ myself: {}, others: {} }``` | This prop is an Object that configures the links that may appear on the messages' content. ```myself``` defines the config for links in sent messages. ```others``` defines the config for links in received messages. This functionality relies on [linkifyjs](https://soapbox.github.io/linkifyjs/). You can find the full doc of this prop [here](https://soapbox.github.io/linkifyjs/docs/options.html). |
+| acceptImageTypes | String | false | ```image/*``` | This prop defines the image types that are accepted to be uploaded. The image types should be separated by a comma (e.g. ```'.png, .jpeg, .jpg'```) |
 
 # Events
 | name | type | required |default |description |

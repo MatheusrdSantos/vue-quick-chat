@@ -17,6 +17,7 @@
                         :border-style="borderStyle" :submit-icon-size="submitIconSize"
                         :submit-image-icon-size="submitImageIconSize"
                         :send-images="sendImages"
+                        :accept-image-types="acceptImageTypes"
                         @onImageSelected="onImageSelected"
                         @onMessageSubmit="onMessageSubmit"
                         @onType="onType"/>
@@ -121,31 +122,6 @@
                 required: false,
                 default: true
             },
-            /* onType: {
-                type: Function,
-                required: false,
-                default: () => false
-            }, */
-            /* onMessageSubmit: {
-                type: Function,
-                required: false,
-                default: () => false
-            }, */
-            /* onClose: {
-                type: Function,
-                required: false,
-                default: () => false
-            }, */
-            /* onImageSelected: {
-                type: Function,
-                required: false,
-                default: () => false
-            }, */
-            /* onImageClicked: {
-                type: Function,
-                required: false,
-                default: () => false
-            }, */
             sendImages: {
                 type: Boolean,
                 required: false,
@@ -185,7 +161,12 @@
                         others: {}
                     }
                 }
-            } 
+            },
+            acceptImageTypes: {
+                type: String,
+                required: false,
+                default: "image/*"
+            }
         },
         watch: {
             participants() {

@@ -9,7 +9,7 @@
             <SendIcon :size="submitIconSize" :fill-color="colors.submitIcon"/>
         </div>
         <div v-if="sendImages" class="container-send-message icon-send-message" @click="pickImage">
-            <input ref="inputImage" accept="image/*" type="file" style="display: none;" @input="handleImageChange">
+            <input ref="inputImage" :accept="acceptImageTypes" type="file" style="display: none;" @input="handleImageChange">
             <ImageIcon :size="submitImageIconSize" :fill-color="colors.submitImageIcon"/>
         </div>
     </div>
@@ -27,16 +27,6 @@
             ImageIcon
         },
         props: {
-            /* onType: {
-                type: Function,
-                required: false,
-                default: () => false
-            }, */
-            /* onMessageSubmit: {
-                type: Function,
-                required: false,
-                default: () => false
-            }, */
             colors: {
                 type: Object,
                 required: true
@@ -63,15 +53,14 @@
                 required: false,
                 default: 24
             },
-            /* onImageSelected: {
-                type: Function,
-                required: false,
-                default: () => false
-            }, */
             sendImages: {
                 type: Boolean,
                 required: false,
                 default: true
+            },
+            acceptImageTypes: {
+                type: String,
+                required: true
             }
         },
         data() {
