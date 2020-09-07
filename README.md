@@ -135,21 +135,21 @@ export default {
                     content: 'received messages',
                     myself: false,
                     participantId: 1,
-                    timestamp: {year: 2019, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123}
+                    timestamp: {year: 2019, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
                     type: 'text'
                 },
                 {
                     content: 'sent messages',
                     myself: true,
                     participantId: 3,
-                    timestamp: {year: 2019, month: 4, day: 5, hour: 19, minute: 10, second: 3, millisecond: 123}
+                    timestamp: {year: 2019, month: 4, day: 5, hour: 19, minute: 10, second: 3, millisecond: 123},
                     type: 'text'
                 },
                 {
                     content: 'other received messages',
                     myself: false,
                     participantId: 2,
-                    timestamp: {year: 2019, month: 5, day: 5, hour: 10, minute: 10, second: 3, millisecond: 123}
+                    timestamp: {year: 2019, month: 5, day: 5, hour: 10, minute: 10, second: 3, millisecond: 123},
                     type: 'text'
                 }
             ],
