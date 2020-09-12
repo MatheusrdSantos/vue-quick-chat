@@ -83,15 +83,13 @@
             sendMessage(e) {
                 this.textInput = this.$refs.userInput.textContent;
                 this.$refs.userInput.textContent = '';
-
-                if (this.textInput) {
-                    let inputLen = this.textInput.length;
-                    let inputText = this.textInput;
-                    if (this.textInput[inputLen - 1] === '\n') {
-                        inputText = inputText.slice(0, inputLen - 1)
-                    }
+                // match characters that are different of spaces, tabs, line breaks...
+                const matchNotEmpty = /[^\s]+/i
+                // match characters that are between line spaces, tabs, line breaks...
+                const contentMatch = this.textInput.match(/^\s*((.|\n)+?)\s*$/i)
+                if (this.textInput && matchNotEmpty.test(this.textInput) && contentMatch) {
                     let message = {
-                        content: inputText,
+                        content: contentMatch[1],
                         // myself: true,
                         participantId: this.myself.id,
                         timestamp: DateTime.local(),
