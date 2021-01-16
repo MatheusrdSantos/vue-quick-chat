@@ -7,6 +7,8 @@ export default {
     }
   },
   mounted() {
-    linkifyElement(this.$refs['message-content'], this.linkOptions, document)
+  	if(this.$refs['message-content']){
+    	linkifyElement(this.$refs['message-content'], this.linkOptions, document)
+  	}
   },
 }

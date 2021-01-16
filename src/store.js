@@ -27,9 +27,10 @@ export default () => {
             },
             setMessages: (state, messages) => {
                 messages.map(message => {
-                    if(typeof message.timestamp == 'object'){
+                    if(message.timestamp && (typeof message.timestamp == 'object')){
                         message.timestamp = DateTime.fromObject(message.timestamp).toISO();
                     }
+                    
                     if (!("myself" in message))
                         message.myself = message.participantId === state.myself.id;
                 });
