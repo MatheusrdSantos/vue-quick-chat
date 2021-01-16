@@ -284,7 +284,7 @@
                     {
                         type: 'image',
                         preview: null,
-                        src: 'https://149364066.v2.pressablecdn.com/wp-content/uploads/2017/03/vue.jpg',
+                        src: 'https://pbs.twimg.com/profile_images/875996174305472512/upM71pVR.jpg',
                         content: 'image',
                         participantId: 1,
                         timestamp: {year: 2014, month: 3, day: 5, hour: 20, minute: 10, second: 3, millisecond: 123},
@@ -360,7 +360,7 @@
                 this.placeholder = 'اكتب رسالتك هنا';
             },
             onImageSelected({file, message}){
-                let src = 'https://149364066.v2.pressablecdn.com/wp-content/uploads/2017/03/vue.jpg'
+                let src = 'https://pbs.twimg.com/profile_images/875996174305472512/upM71pVR.jpg'
                 this.messages.push(message);
                 /**
                  * This timeout simulates a requisition that uploads the image file to the server.

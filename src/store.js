@@ -29,6 +29,8 @@ export default () => {
                 messages.map(message => {
                     if(message.timestamp && (typeof message.timestamp == 'object')){
                         message.timestamp = DateTime.fromObject(message.timestamp).toISO();
+                    } else {
+                        message.timestamp = DateTime.local().toISO();
                     }
                     
                     if (!("myself" in message))
