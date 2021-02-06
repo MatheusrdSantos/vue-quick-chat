@@ -26,17 +26,14 @@ export default () => {
                 state.myself = myself;
             },
             setMessages: (state, messages) => {
-                messages.map(message => {
-                    if(message.timestamp && (typeof message.timestamp == 'object')){
-                        message.timestamp = DateTime.fromObject(message.timestamp).toISO();
-                    } else {
-                        message.timestamp = DateTime.local().toISO();
-                    }
+                state.messages = messages.map(message => {
+                    if(message.timestamp) (typeof message.timestamp == 'object') && (message.timestamp = DateTime.fromObject(message.timestamp).toISO())
+                    else message.timestamp = DateTime.local().toISO();
                     
                     if (!("myself" in message))
                         message.myself = message.participantId === state.myself.id;
+                    return message
                 });
-                state.messages = messages;
             },
             setChatTitle: (state, title) => {
                 state.chatTitle = title;
