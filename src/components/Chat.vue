@@ -19,6 +19,10 @@
                         :send-images="sendImages"
                         :accept-image-types="acceptImageTypes"
                         @onImageSelected="onImageSelected"
+                        :submit-attachment-icon-size="submitAttachmentIconSize"
+                        :send-attachments="sendAttachments"
+                        :accept-attachment-types="acceptAttachmentTypes"
+                        @onAttachmentSelected="onAttachmentSelected"
                         @onMessageSubmit="onMessageSubmit"
                         @onType="onType"/>
     </div>
@@ -92,6 +96,11 @@
                 required: false,
                 default: 24
             },
+            submitAttachmentIconSize: {
+                type: Number,
+                required: false,
+                default: 24
+            },
             closeButtonIconSize: {
                 type: String,
                 required: false,
@@ -123,6 +132,11 @@
                 default: true
             },
             sendImages: {
+                type: Boolean,
+                required: false,
+                default: true
+            },
+            sendAttachments: {
                 type: Boolean,
                 required: false,
                 default: true
@@ -166,6 +180,11 @@
                 type: String,
                 required: false,
                 default: "image/*"
+            },
+            acceptAttachmentTypes: {
+                type: String,
+                required: false,
+                default: "*"
             }
         },
         watch: {
@@ -217,6 +236,12 @@
             },
             onImageClicked: function(message){
                 this.$emit("onImageClicked", message)
+            },
+            onAttachmentSelected: function(data){
+                this.$emit("onAttachmentSelected", data)
+            },
+            onAttachmentClicked: function(message){
+                this.$emit("onAttachmentClicked", message)
             },
         },
     }

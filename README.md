@@ -48,17 +48,23 @@ export default {
         :close-button-icon-size="closeButtonIconSize"
         :submit-icon-size="submitIconSize"
         :submit-image-icon-size="submitImageIconSize"
+        :submit-attachment-icon-size="submitAttachmentIconSize"
         :load-more-messages="toLoad.length > 0 ? loadMoreMessages : null"
         :async-mode="asyncMode"
         :scroll-bottom="scrollBottom"
         :display-header="true"
-        :send-images="true"
+        :send-images="true" 
+        :send-attachments="true"
         :profile-picture-config="profilePictureConfig"
         :timestamp-config="timestampConfig"
         :link-options="linkOptions"
         :accept-image-types="'.png, .jpeg'"
         @onImageClicked="onImageClicked"
         @onImageSelected="onImageSelected"
+        @onMessageSubmit="onMessageSubmit"
+        :accept-attachment-types="'.png, .jpeg, .pdf, .docx'"
+        @onAttachmentClicked="onImageClicked"
+        @onAttachmentSelected="onImageSelected"
         @onMessageSubmit="onMessageSubmit"
         @onType="onType"
         @onClose="onClose"/>
@@ -314,6 +320,32 @@ export default {
              * You can add your code here to do whatever you need with the image clicked. A common situation is to display the image clicked in full screen.
              */
             console.log('Image clicked', message.src)
+        },
+        onAttachmentSelected(files, message){
+            /**
+             *  The src image can be dynamic image based on file type from your backend
+              */
+
+            let src = 'https://149364066.v2.pressablecdn.com/wp-content/uploads/2017/03/vue.jpg'
+            let file = 'https://upload.wikimedia.org/wikipedia/en/3/36/Dok%27s_Dippy_Duck_sample.pdf'
+            this.messages.push(message);
+            /**
+             * This timeout simulates a requisition that uploads the image file to the server.
+             * It's up to you implement the request and deal with the response in order to
+             * update the message status and the message URL
+             */
+            setTimeout((res) => {
+                message.uploaded = true
+                message.src = res.src
+                message.file = res.file
+            }, 3000, {src, file});
+        },
+        onAttachmentClicked(message){
+            /**
+             * This is the callback function that is going to be executed when some image is clicked.
+             * You can add your code here to do whatever you need with the image clicked. A common situation is to display the image clicked in full screen.
+             */
+            console.log('Image clicked', message.src)
         }
     }
 }
@@ -331,6 +363,7 @@ export default {
 | hideCloseButton | Boolean | false | false  | If true, the 'Close' button will be hidden |
 | submitIconSize | int | false | 24 | The submit icon size in pixels. |
 | submitImageIconSize | int | false | 24 | The image submit icon size in pixels. |
+| submitAttachmentIconSize | int | false | 24 | The image submit icon size in pixels. |
 | closeButtonIconSize | String | false | "15px" | The close button icon size in pixels. |
 | asyncMode | Boolean | false | false | If the value is ```true``` the component begins to watch message upload status and displays a visual feedback for each message. If the value is ```false``` the visual feedback is disabled |
 | loadMoreMessages | Function | false | () => false | If this function is passed and you reach the top of the messages, it will be called and a loading state will be displayed until you resolve it by calling the only parameter passed to it |
@@ -339,7 +372,10 @@ export default {
 | profilePictureConfig | Object | false | ```{ others: true, myself: false, styles: { width: '25px', height: '25px', borderRadius: '50%'} }``` | This prop is a js Object that decribes the style and the behavoir of the chat regards to the users profile picture. |
 | timestampConfig | Object | false | ```{ format: 'HH:mm', relative: false }``` | This prop is a js Object that decribes the timestamp format / relativeness. |
 | linkOptions | Object | false | ```{ myself: {}, others: {} }``` | This prop is an Object that configures the links that may appear on the messages' content. ```myself``` defines the config for links in sent messages. ```others``` defines the config for links in received messages. This functionality relies on [linkifyjs](https://soapbox.github.io/linkifyjs/). You can find the full doc of this prop [here](https://soapbox.github.io/linkifyjs/docs/options.html). |
+| sendImages | Boolean | false | false  | If true, the 'Image' button will be shown |
 | acceptImageTypes | String | false | ```image/*``` | This prop defines the image types that are accepted to be uploaded. The image types should be separated by a comma (e.g. ```'.png, .jpeg, .jpg'```) |
+| sendAttachments | Boolean | false | false  | If true, the 'Attachment' button will be shown |
+| acceptAttachmentTypes | String | false | ```image/*``` | This prop defines the attachment types that are accepted to be uploaded. The attachment types should be separated by a comma (e.g. ```'.png, .jpg, .pdf'```) |
 
 # Events
 | name | type | required |default |description |
@@ -349,6 +385,8 @@ export default {
 | onClose | Function | false | () => false | Event called when the user presses the close icon |
 | onImageClicked | Function | false | () => false |  This prop is a callback function that is called after the user clicks on an image. This function may receive the message that represents the image clicked. You have many possibilities of implementations, one of them, is to display the clicked image on full-screen mode. |
 | onImageSelected | Function | false | () => false | This prop is a callback function that is called after the user selects an image from the computer. This is the function that should upload the image to the server and update the message status to uploaded and the src to the uploaded image URL. |
+| onAttachmentClicked | Function | false | () => false |  This prop is a callback function that is called after the user clicks on an attchment image. This function may receive the message that represents the image clicked. You have many possibilities of implementations, one of them, is to display the clicked image on full-screen mode. |
+| onAttachmentSelected | Function | false | () => false | This prop is a callback function that is called after the user selects an attachment from the computer. This is the function that should upload the file to the server and update the message status to uploaded and the src to the uploaded attachment URL. |
 
 ### participant
 | name | type | description |
