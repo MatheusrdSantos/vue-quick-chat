@@ -4,10 +4,20 @@
             <template v-if="message.type == 'image'">
                 <p class="message-username-image">{{myself.name}}</p>
                 <div v-if="message.uploaded" class="message-image">
-                    <img class="message-image-display" :src="message.src" alt="" @click="onImageClicked(message)">
+                    <img class="message-image-display" :src="message.src" alt="" @click="onImageClicked(message)" @load="onImageLoad(message)">
                 </div>
                 <div v-else class="message-image">
-                    <img class="message-image-display img-overlay" :src="message.preview" alt="">
+                    <img class="message-image-display img-overlay" :src="message.preview" alt="" @load="onImageLoad(message)">
+                    <div class="img-loading"></div>
+                </div>
+            </template>
+            <template v-if="message.type == 'attachment'">
+                <p class="message-username-image">{{myself.name}}</p>
+                <div v-if="message.uploaded" class="message-image">
+                    <img class="message-image-display" :src="message.src" alt="" @click="onAttachmentClicked(message)" @load="onImageLoad(message)">
+                </div>
+                <div v-else class="message-image">
+                    <img class="message-image-display img-overlay" :src="message.preview" alt="" @load="onImageLoad(message)">
                     <div class="img-loading"></div>
                 </div>
             </template>
@@ -83,8 +93,14 @@
             ]),
         },
         methods: {
+            onImageLoad: function(message){
+                this.$emit("onImageLoad", message)
+            },
             onImageClicked: function(message){
                 this.$emit("onImageClicked", message)
+            },
+            onAttachmentClicked: function(message){
+                this.$emit("onAttachmentClicked", message)
             }
         }
     }

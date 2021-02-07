@@ -11,8 +11,10 @@
                         :link-options="linkOptions"
                         :scroll-bottom="scrollBottom"
                         :profile-picture-config="profilePictureConfig"
-                        :timestamp-config="timestampConfig"
-                        @onImageClicked="onImageClicked"/>
+                        :timestamp-config="timestampConfig"                        
+                        @onImageLoad="onImageLoad"
+                        @onImageClicked="onImageClicked"
+                        @onAttachmentClicked="onAttachmentClicked"/>
         <MessageManager :colors="colors"
                         :border-style="borderStyle" :submit-icon-size="submitIconSize"
                         :submit-image-icon-size="submitImageIconSize"
@@ -230,6 +232,9 @@
             },
             onMessageSubmit: function(message){
                 this.$emit("onMessageSubmit", message)
+            },
+            onImageLoad: function(data){
+                this.$emit("onImageLoad", data)
             },
             onImageSelected: function(data){
                 this.$emit("onImageSelected", data)
