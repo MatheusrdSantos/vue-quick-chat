@@ -29,7 +29,8 @@
     export default {
         components: {
             SendIcon,
-            ImageIcon
+            ImageIcon,
+            PaperclipIcon
         },
         props: {
             colors: {
