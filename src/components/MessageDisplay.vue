@@ -10,13 +10,17 @@
                        :link-options="linkOptions.myself"
                        :profile-picture-config="profilePictureConfig"
                        :timestamp-config="timestampConfig"
-                       @onImageClicked="onImageClicked"/>
+                       @onImageLoad="onImageLoad"
+                       @onImageClicked="onImageClicked"
+                       @onAttachmentClicked="onAttachmentClicked"/>
             <OtherMessage v-else :message="message" :async-mode="asyncMode" 
                           :colors="colors"
                           :link-options="linkOptions.others"
                           :profile-picture-config="profilePictureConfig"
                           :timestamp-config="timestampConfig"
-                          @onImageClicked="onImageClicked"/>
+                          @onImageLoad="onImageLoad"
+                          @onImageClicked="onImageClicked"
+                          @onAttachmentClicked="onAttachmentClicked"/>
         </div>
     </div>
 </template>
@@ -150,8 +154,14 @@
 
                 this.updateScroll = false;
             },
+            onImageLoad(message){
+                this.$emit("onImageLoad", message)
+            },
             onImageClicked(message){
                 this.$emit("onImageClicked", message)
+            },
+            onAttachmentClicked(message){
+                this.$emit("onAttachmentClicked", message)
             }
         }
     }

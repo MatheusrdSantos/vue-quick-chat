@@ -11,14 +11,20 @@
                         :link-options="linkOptions"
                         :scroll-bottom="scrollBottom"
                         :profile-picture-config="profilePictureConfig"
-                        :timestamp-config="timestampConfig"
-                        @onImageClicked="onImageClicked"/>
+                        :timestamp-config="timestampConfig"                        
+                        @onImageLoad="onImageLoad"
+                        @onImageClicked="onImageClicked"
+                        @onAttachmentClicked="onAttachmentClicked"/>
         <MessageManager :colors="colors"
                         :border-style="borderStyle" :submit-icon-size="submitIconSize"
                         :submit-image-icon-size="submitImageIconSize"
                         :send-images="sendImages"
                         :accept-image-types="acceptImageTypes"
                         @onImageSelected="onImageSelected"
+                        :submit-attachment-icon-size="submitAttachmentIconSize"
+                        :send-attachments="sendAttachments"
+                        :accept-attachment-types="acceptAttachmentTypes"
+                        @onAttachmentSelected="onAttachmentSelected"
                         @onMessageSubmit="onMessageSubmit"
                         @onType="onType"/>
     </div>
@@ -92,6 +98,11 @@
                 required: false,
                 default: 24
             },
+            submitAttachmentIconSize: {
+                type: Number,
+                required: false,
+                default: 24
+            },
             closeButtonIconSize: {
                 type: String,
                 required: false,
@@ -123,6 +134,11 @@
                 default: true
             },
             sendImages: {
+                type: Boolean,
+                required: false,
+                default: true
+            },
+            sendAttachments: {
                 type: Boolean,
                 required: false,
                 default: true
@@ -166,6 +182,11 @@
                 type: String,
                 required: false,
                 default: "image/*"
+            },
+            acceptAttachmentTypes: {
+                type: String,
+                required: false,
+                default: "*"
             }
         },
         watch: {
@@ -212,11 +233,20 @@
             onMessageSubmit: function(message){
                 this.$emit("onMessageSubmit", message)
             },
+            onImageLoad: function(data){
+                this.$emit("onImageLoad", data)
+            },
             onImageSelected: function(data){
                 this.$emit("onImageSelected", data)
             },
             onImageClicked: function(message){
                 this.$emit("onImageClicked", message)
+            },
+            onAttachmentSelected: function(data){
+                this.$emit("onAttachmentSelected", data)
+            },
+            onAttachmentClicked: function(message){
+                this.$emit("onAttachmentClicked", message)
             },
         },
     }

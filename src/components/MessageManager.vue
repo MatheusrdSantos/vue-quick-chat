@@ -12,6 +12,10 @@
             <input ref="inputImage" :accept="acceptImageTypes" type="file" style="display: none;" @input="handleImageChange">
             <ImageIcon :size="submitImageIconSize" :fill-color="colors.submitImageIcon"/>
         </div>
+        <div v-if="sendAttachments" class="container-send-message icon-send-message" @click="pickAttachment">
+            <input ref="inputAttachment" :accept="acceptAttachmentTypes" type="file" style="display: none;" @input="handleAttachmentChange">
+            <PaperclipIcon :size="submitAttachmentIconSize" :fill-color="colors.submitAttachmentIcon"/>
+        </div>
     </div>
 </template>
 
@@ -21,10 +25,12 @@
     import { DateTime } from "luxon";
     import SendIcon from 'vue-material-design-icons/Send';
     import ImageIcon from 'vue-material-design-icons/Image';
+    import PaperclipIcon from 'vue-material-design-icons/Paperclip';
     export default {
         components: {
             SendIcon,
-            ImageIcon
+            ImageIcon,
+            PaperclipIcon
         },
         props: {
             colors: {
@@ -59,6 +65,20 @@
                 default: true
             },
             acceptImageTypes: {
+                type: String,
+                required: true
+            },
+            submitAttachmentIconSize: {
+                type: Number,
+                required: false,
+                default: 24
+            },
+            sendAttachments: {
+                type: Boolean,
+                required: false,
+                default: true
+            },
+            acceptAttachmentTypes: {
                 type: String,
                 required: true
             }
@@ -121,7 +141,32 @@
                     viewed: false
                 };
                 this.$emit("onImageSelected", {file: files[0], message});
-                //this.onImageSelected(files, message)
+                //this.onImageSelected({file, message})
+                this.newMessage(message)
+            },
+            pickAttachment: function(){
+                this.$refs.inputAttachment.click()
+            },
+            handleAttachmentChange: async function(e){
+                const files = e.target.files
+                let message = {
+                    type: 'image',
+                    src: '',
+                    content: 'attachment',
+                    participantId: this.myself.id,
+                    timestamp: DateTime.local(),
+                    uploaded: false,
+                    viewed: false
+                };
+                const  fileType = files[0]['type'];
+                const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+                if(validImageTypes.includes(fileType)){
+                    message.preview = URL.createObjectURL(files[0])
+                }else{
+                    message.preview = 'data:image/jpeg;base64,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'
+                }
+                this.$emit("onAttachmentSelected", {file: files[0], message});
+                //this.onAttachmentSelected({file, message})
                 this.newMessage(message)
             }
         }
