@@ -29,7 +29,7 @@
           }"
         >
           <p class="message-username">{{ myself.name }}</p>
-            <slot name="content" :message="message">
+            <slot name="content-myself" :message="message">
                 {{ message.content }}
             </slot>
         </div>

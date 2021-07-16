@@ -30,8 +30,11 @@
       :timestamp-config="timestampConfig"
       @onImageClicked="onImageClicked"
     >
-      <template #content="{ message }">
-        <slot name="content" :message="message"></slot>
+      <template #content-myself="{ message }">
+        <slot name="content-myself" :message="message"></slot>
+      </template>
+      <template #content-participant="{ message }">
+        <slot name="content-participant" :message="message"></slot>
       </template>
     </MessageDisplay>
     <MessageManager
