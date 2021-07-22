@@ -16,9 +16,11 @@
                 </div>
             </template>
             <template v-else>
-                <div class="message-text" :style="{background: colors.message.others.bg, color: colors.message.others.text}">
+                <div class="message-text" :style="{background: message.customBgColor ? message.customBgColor : colors.message.others.bg, color: message.customTextColor ? message.customTextColor : colors.message.others.text}">
                     <p class="message-username">{{getParticipantById(message.participantId).name}}</p>
-                    <p ref="message-content">{{message.content}}</p>
+                    <slot name="content-participant" :message="message">
+                {{ message.content }}
+            </slot>
                 </div>
             </template>
             <div class="message-timestamp" :style="{'justify-content': 'baseline'}">

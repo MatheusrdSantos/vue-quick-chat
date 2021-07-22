@@ -1,6 +1,6 @@
 {
-  "name": "vue-quick-chat",
-  "version": "1.2.8",
+  "name": "vue-quick-chat-slotted",
+  "version": "1.1.0",
   "private": false,
   "main": "./dist/vue-quick-chat.common.js",
   "files": [
@@ -10,7 +10,7 @@
     "*.json",
     "*.js"
   ],
-  "author": "Matheus Santos <matheus.r.d.s10@hotmail.com>",
+  "author": "Talha Amjad <talhaamjadx@live.com>",
   "license": "MIT",
   "keywords": [
     "vue",
@@ -19,7 +19,7 @@
     "vuejs",
     "simple-chat"
   ],
-  "repository": "https://github.com/MatheusrdSantos/vue-quick-chat",
+  "repository": "https://github.com/talhaamjadx/vue-quick-chat",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

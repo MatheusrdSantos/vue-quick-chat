@@ -10,13 +10,21 @@
                        :link-options="linkOptions.myself"
                        :profile-picture-config="profilePictureConfig"
                        :timestamp-config="timestampConfig"
-                       @onImageClicked="onImageClicked"/>
+                       @onImageClicked="onImageClicked">
+                       <template #content-myself="{ message }">
+                       <slot name="content-myself" :message="message"></slot>
+                       </template>
+                       </MyMessage>
             <OtherMessage v-else :message="message" :async-mode="asyncMode" 
                           :colors="colors"
                           :link-options="linkOptions.others"
                           :profile-picture-config="profilePictureConfig"
                           :timestamp-config="timestampConfig"
-                          @onImageClicked="onImageClicked"/>
+                          @onImageClicked="onImageClicked">
+                          <template #content-participant="{ message }">
+                       <slot name="content-participant" :message="message"></slot>
+                       </template>
+                          </OtherMessage>
         </div>
     </div>
 </template>
